@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader, SiteFooter, Arrow } from "./site-shell";
 import { JsonLd } from "./structured-data";
-import { primarySolutions, resourcePages, industries, siteUrl } from "./content";
+import { primarySolutions, resourcePages, industries } from "./content";
 
 export const metadata: Metadata = {
   title: "Enterprise AI engineering in Lisbon",

@@ -1,4 +1,11 @@
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const configuredSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ??
+  "http://localhost:3000";
+
+export const siteUrl = configuredSiteUrl.startsWith("http")
+  ? configuredSiteUrl
+  : `https://${configuredSiteUrl}`;
 
 export type PageData = { slug: string; title: string; eyebrow: string; description: string; intro: string; short?: string; code?: string; type?: string; sections: { title: string; body: string; bullets?: string[] }[]; faq: { q: string; a: string }[] };
 
