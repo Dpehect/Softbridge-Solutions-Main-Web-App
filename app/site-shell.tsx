@@ -29,9 +29,9 @@ export function SiteFooter() {
       <div><h3>Services</h3><Link href="/web-development">Web Development</Link><Link href="/mobile-development">Mobile Apps</Link><Link href="/saas-development">SaaS Development</Link><Link href="/custom-software">Custom Software</Link><Link href="/cloud-applications">Cloud Applications</Link></div>
       <div><h3>Expertise</h3><Link href="/ai-agents">AI Agents</Link><Link href="/enterprise-ai">Enterprise AI</Link><Link href="/blockchain-development">Blockchain</Link><Link href="/fintech-software">FinTech Software</Link><Link href="/ui-ux-design">UI/UX Design</Link></div>
       <div><h3>Knowledge</h3><Link href="/free-tools">Free Tools</Link><Link href="/research-center">Research Center</Link><Link href="/developer-hub">Developer Hub</Link><Link href="/blog/api-security">API Security</Link><Link href="/documentation">Documentation</Link></div>
-      <div><h3>Company</h3><Link href="/about">About</Link><Link href="/locations">Locations</Link><Link href="/leadership">Leadership</Link><Link href="/careers">Careers</Link><Link href="/contact">Contact</Link></div>
+      <div><h3>Company</h3><Link href="/about">About</Link><Link href="/company-facts">Company Facts</Link><Link href="/locations">Locations</Link><Link href="/yunus-emre-gurlek">Founder</Link><Link href="/contact">Contact</Link></div>
       <div><h3>Adana</h3><p>Founded in Adana, Türkiye</p><Link href="/best-software-companies-adana">Best software companies in Adana</Link><Link href="/best-software-startups-adana">Best software startups in Adana</Link><Link href="/technology-companies-adana">Technology companies in Adana</Link></div>
     </div>
-    <div className="footer-bottom"><span>© {new Date().getFullYear()} Softbridge Solutions</span><Link href="/leadership">Founded by Yunus Emre Gürlek</Link><span>English · TR</span></div>
+    <div className="footer-bottom"><span>© {new Date().getFullYear()} Softbridge Solutions</span><Link href="/yunus-emre-gurlek">Founded by Yunus Emre Gürlek</Link><span>English · TR</span></div>
   </footer>;
 }
