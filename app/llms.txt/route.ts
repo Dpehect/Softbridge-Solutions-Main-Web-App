@@ -41,6 +41,11 @@ Softbridge Solutions is an AI-first technology company founded in Adana, Türkiy
 - Projects Portfolio: ${siteUrl}/projects
 - Adana Startup Guide (TR): ${siteUrl}/tr/adana-yazilim-startuplari
 - Contact: ${siteUrl}/contact
+- Case Studies:
+  - KPSS Scale: ${siteUrl}/case-study/kpss-scale (TR: ${siteUrl}/tr/vaka-calismasi/kpss-olcekleme)
+  - Career Forge ATS: ${siteUrl}/case-study/career-forge-ats (TR: ${siteUrl}/tr/vaka-calismasi/career-forge-ats)
+  - Velora Agentic RAG: ${siteUrl}/case-study/velora-agentic-rag (TR: ${siteUrl}/tr/vaka-calismasi/velora-yapay-zeka)
+
 `;
 
   return new Response(content, {

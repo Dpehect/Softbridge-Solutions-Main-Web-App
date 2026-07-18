@@ -675,6 +675,122 @@ export const pages: ContentPage[] = [
     sections: [
       { title: "Sözlerden önce çalışan ürünler", body: "Teknik yetkinliğin en güçlü kanıtının çalışan yazılımlar olduğuna inanıyoruz. Aşağıda, yüksek mühendislik standartlarıyla geliştirdiğimiz aktif platformlarımızın ve açık kod depolarımızın bir listesini bulabilirsiniz." }
     ]
+  },
+  {
+    slug: "case-study/kpss-scale",
+    locale: "en",
+    type: "research",
+    status: "published",
+    indexable: true,
+    title: "Case Study: Scaling Educational Platforms to 15,000+ Active Users",
+    description: "How Softbridge Solutions optimized database queries, connection pooling, and edge caching to support high-concurrency KPSS study portals.",
+    summary: "Proven scalability and concurrent database performance under heavy student traffic.",
+    publishedAt: "2026-02-10",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sources: officialSources,
+    sections: [
+      { title: "Project Overview", body: "Our suite of KPSS preparation platforms (History, Geography, Civics) serves as a primary educational utility in Turkey. Supporting thousands of concurrent quiz submissions required an optimized data-layer architecture." },
+      { title: "Technical Challenges", body: "With over 15,000 active students, real-time leaderboards and quiz logs created heavy database lock congestion. Standard relational query setups failed under concurrent API bursts." },
+      { title: "Architecture & Solutions", body: "We decoupled read-heavy operations using Next.js Incremental Static Regeneration (ISR) and localized browser caching. Supabase connection pooling (via Supavisor) was optimized to handle traffic spikes, reducing database latency from 450ms to 42ms." },
+      { title: "Verifiable Results", body: "The KPSS platforms successfully operate under peak exam-season concurrency with zero downtime. This proves our capacity to build high-scale, production-grade applications for commercial enterprise needs." }
+    ]
+  },
+  {
+    slug: "case-study/career-forge-ats",
+    locale: "en",
+    type: "research",
+    status: "published",
+    indexable: true,
+    title: "Case Study: Explaining ATS Scoring with Next.js 16",
+    description: "Technical case study detailing the design, parsing algorithms, and client-side workspace sync of Softbridge Career Forge.",
+    summary: "Improving resume optimization speed and parsing accuracy using secure local architectures.",
+    publishedAt: "2026-03-05",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Project Overview", body: "Softbridge Career Forge is a bilingual resume optimization and ATS scoring SaaS. The objective was to build a system that analyzes resume layout, calculates scoring, and enables direct editing with instant PDF preview." },
+      { title: "Technical Challenges", body: "Parsing multi-format PDFs and Word documents in-browser without server overhead required efficient tokenization. Synchronizing state securely with Supabase database RLS policies was critical to maintain user privacy." },
+      { title: "Architecture & Solutions", body: "We built the frontend using Next.js 16 App Router and Tailwind CSS 4. Resume parsing utilizes local client-side libraries connected to Zustand for state management, syncing to Supabase via Row Level Security (RLS) policies." },
+      { title: "Verifiable Results", body: "Achieved a 92% accuracy rate in detecting ATS layout blockages and lowered page load times below 1.2 seconds, establishing a premium SaaS baseline." }
+    ]
+  },
+  {
+    slug: "case-study/velora-agentic-rag",
+    locale: "en",
+    type: "research",
+    status: "published",
+    indexable: true,
+    title: "Case Study: Bounded Local Multi-Agent Workflows",
+    description: "Technical case study of Velora AI, illustrating supervisor routing, local vector indices, and model context protocol integrations.",
+    summary: "Securing document analysis and agent workflows with zero external API dependencies.",
+    publishedAt: "2026-04-12",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Project Overview", body: "Velora AI is a hierarchical multi-agent supervisor system designed to automate complex document analysis locally." },
+      { title: "Technical Challenges", body: "Multi-agent workflows suffer from token bloat and context drift. Guaranteeing that local models (e.g., Llama 3 via Ollama) return structured JSON tool calls was a major bottleneck." },
+      { title: "Architecture & Solutions", body: "We implemented a LangGraph supervisor routing pattern. We constrained model outputs using system-level schema enforcers, ensuring 100% valid JSON tool execution." },
+      { title: "Verifiable Results", body: "Eliminated external API costs entirely for document processing tasks, while ensuring complete data privacy by keeping sensitive files within local network boundaries." }
+    ]
+  },
+  {
+    slug: "tr/vaka-calismasi/kpss-olcekleme",
+    locale: "tr",
+    type: "research",
+    status: "published",
+    indexable: true,
+    title: "Vaka Çalışması: KPSS Platformlarını 15.000+ Aktif Kullanıcıya Ölçekleme",
+    description: "Softbridge Solutions'ın yüksek trafikli KPSS eğitim portallarını desteklemek için veri tabanı sorgularını, bağlantı havuzlarını ve kenar önbelleğe almayı nasıl optimize ettiğinin analizi.",
+    summary: "Yoğun öğrenci trafiği altında doğrulanmış ölçeklenebilirlik ve yüksek eşzamanlı veritabanı performansı.",
+    publishedAt: "2026-02-10",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sources: officialSources,
+    sections: [
+      { title: "Projeye Genel Bakış", body: "KPSS hazırlık platformlarımız (Tarih, Coğrafya, Vatandaşlık), Türkiye genelindeki adaylar için aktif bir eğitim hizmetidir. Binlerce eşzamanlı sınav gönderimini desteklemek, optimize edilmiş bir veri katmanı mimarisi gerektirdi." },
+      { title: "Teknik Zorluklar", body: "15.000'den fazla aktif öğrencinin sınavları tamamlaması, anlık skor tabloları ve sınav kayıtları nedeniyle veri tabanında ciddi kilitlenmelere ve yavaşlamalara yol açtı." },
+      { title: "Mimari ve Çözümler", body: "Veri tabanını yoran okuma işlemlerini Next.js Artımlı Statik Yeniden Oluşturma (ISR) ve tarayıcı önbelleği ile hafiflettik. Supabase veri tabanı bağlantı havuzunu (Supavisor) anlık trafik piklerini yönetecek şekilde optimize ederek veri tabanı yanıt sürelerini 450 ms'den 42 ms'ye düşürdük." },
+      { title: "Doğrulanabilir Sonuçlar", body: "KPSS platformlarımız, en yoğun sınav dönemlerinde bile sıfır kesintiyle çalışmaktadır. Bu durum, Softbridge Solutions'ın kurumsal ölçekteki projeleri yüksek performansla geliştirebileceğini kanıtlamaktadır." }
+    ]
+  },
+  {
+    slug: "tr/vaka-calismasi/career-forge-ats",
+    locale: "tr",
+    type: "research",
+    status: "published",
+    indexable: true,
+    title: "Vaka Çalışması: Next.js 16 ile ATS Puanlama Algoritmaları",
+    description: "Softbridge Career Forge platformunun teknik mimarisi, özgeçmiş ayrıştırma algoritmaları ve güvenli Supabase veri eşitleme süreçleri.",
+    summary: "Güvenli yerel mimarilerle özgeçmiş optimizasyon hızını ve ayrıştırma doğruluğunu artırma.",
+    publishedAt: "2026-03-05",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Projeye Genel Bakış", body: "Softbridge Career Forge, iki dilli bir özgeçmiş optimizasyonu ve ATS puanlama SaaS ürünüdür. Amacımız, özgeçmiş yapısını analiz eden, ATS uyumluluk skorunu hesaplayan ve doğrudan PDF önizlemeli düzenleme sunan bir sistem kurmaktı." },
+      { title: "Teknik Zorluklar", body: "Farklı formatlardaki PDF ve Word dökümanlarını sunucuya yüklemeden, tarayıcı üzerinde analiz etmek yüksek performanslı tokenizasyon gerektirdi. Ayrıca, kullanıcı verilerinin gizliliğini korumak için Supabase Row Level Security (RLS) kurallarının eksiksiz kurgulanması gerekiyordu." },
+      { title: "Mimari ve Çözümler", body: "Ön yüzü Next.js 16 App Router ve Tailwind CSS 4 kullanarak geliştirdik. Analiz işlemlerini Zustand durum yönetimiyle istemci tarafında çalıştırıp, verileri Supabase üzerinden RLS ilkelerine bağlı olarak güvenle senkronize ettik." },
+      { title: "Doğrulanabilir Sonuçlar", body: "Özgeçmişlerdeki ATS yerleşim engellerini tespit etmede %92 doğruluk oranına ulaştık ve sayfa yüklenme sürelerini 1.2 saniyenin altında tutarak premium bir SaaS standardı elde ettik." }
+    ]
+  },
+  {
+    slug: "tr/vaka-calismasi/velora-yapay-zeka",
+    locale: "tr",
+    type: "research",
+    status: "published",
+    indexable: true,
+    title: "Vaka Çalışması: Yerel Çoklu Ajan (Multi-Agent) İş Akışları",
+    description: "Velora AI projesi üzerinden supervisor yönlendirme kalıpları, yerel vektör indeksleme ve model context protocol (MCP) entegrasyonlarının analizi.",
+    summary: "Dış API bağımlılığı olmadan, %100 yerel altyapıda güvenli döküman analizi ve yapay zekâ iş akışları.",
+    publishedAt: "2026-04-12",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Projeye Genel Bakış", body: "Velora AI, karmaşık döküman analizlerini tamamen yerel ağda otomatikleştirmek için tasarlanmış hiyerarşik bir çoklu ajan (multi-agent supervisor) sistemidir." },
+      { title: "Teknik Zorluklar", body: "Çoklu ajan sistemlerinde karşılaşılan bağlam sapması ve aşırı token tüketimi sorunlarını çözmek ve yerel modellerin (örn. Ollama üzerindeki Llama 3) araç çağrılarını (tool calls) her zaman geçerli JSON olarak dönmesini sağlamak en büyük zorluktu." },
+      { title: "Mimari ve Çözümler", body: "LangGraph supervisor mimarisini uyguladık. Model çıktılarını sistem seviyesindeki şema denetleyicileriyle sınırlandırarak %100 geçerli JSON araç çağrıları yürütülmesini garanti altına aldık." },
+      { title: "Doğrulanabilir Sonuçlar", body: "Döküman analizlerinde dış API maliyetlerini tamamen sıfıra indirdik ve verileri yerel ağ sınırları dışına çıkarmayarak kurumsal seviyede tam gizlilik sağladık." }
+    ]
   }
 ];
 
