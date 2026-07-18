@@ -1,4 +1,4 @@
-export const siteUrl = "https://softbridge-solutions.sites.openai.com";
+export const siteUrl = "https://softbridge-solutions-ai.vi-lliansultan01.chatgpt.site";
 
 export type PageData = { slug: string; title: string; eyebrow: string; description: string; intro: string; short?: string; code?: string; type?: string; sections: { title: string; body: string; bullets?: string[] }[]; faq: { q: string; a: string }[] };
 

@@ -6,7 +6,7 @@ const geist = Geist({ variable: "--font-sans", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://softbridge-solutions.sites.openai.com"),
+  metadataBase: new URL("https://softbridge-solutions-ai.vi-lliansultan01.chatgpt.site"),
   title: { default: "Softbridge Solutions | Enterprise AI engineering", template: "%s | Softbridge Solutions" },
   description: "Lisbon-based AI engineering for enterprise agents, language-model applications and workflow automation.",
   applicationName: "Softbridge Solutions",
