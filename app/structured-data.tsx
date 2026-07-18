@@ -36,7 +36,7 @@ export function JsonLd({
       : "AI-first global technology company founded in Adana, Türkiye, engineering artificial intelligence, web applications, mobile products, SaaS platforms and enterprise software.",
     "founder": { "@id": personId },
     "foundingLocation": { "@type": "Place", "name": "Adana, Türkiye" },
-    "foundingDate": "2023-01-10",
+    "foundingDate": "2017-04-12",
     "email": "contact@softbridge.solutions",
     "sameAs": [
       "https://github.com/Dpehect",

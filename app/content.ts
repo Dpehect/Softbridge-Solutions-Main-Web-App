@@ -351,7 +351,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Core Entity Information", body: "Softbridge Solutions is an AI-first technology company founded in Adana, Türkiye, by Yunus Emre Gürlek. The company builds software products and systems with an international outlook." },
+      { title: "Core Entity Information", body: "Softbridge Solutions was established in Adana, Türkiye, in 2017 by Yunus Emre Gürlek as a software development initiative and restructured in 2023 to focus on AI agent systems. The company builds software products and systems with an international outlook." },
       { title: "Operating Structure", body: "Owner & Founder: Yunus Emre Gürlek. Founding Base: Adana, Türkiye. Main Office: Rua Bordalo Pinheiro 25, Cascais, Portugal (Registered Correspondence Office). We also utilize virtual correspondence addresses (e-offices) in Beverly Hills, Kington, Dublin, Milan, and Marseille to coordinate international product queries. No physical local teams operate at virtual addresses; our development operations are distributed and online-first." }
     ]
   },
@@ -616,7 +616,8 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Vizyonumuz", body: "Sadece sunumlar yapan bir şirket olmak yerine, tüm yetkinliklerimizi açık kaynak kod depolarımız ve çalışan canlı projelerimizle ispatlıyoruz. Bölgedeki yazılım yeteneklerinin gelişmesi için ekosistem raporları ve teknik kılavuzlar yayınlıyoruz." }
+      { title: "Vizyonumuz", body: "Sadece sunumlar yapan bir şirket olmak yerine, tüm yetkinliklerimizi açık kaynak kod depolarımız ve çalışan canlı projelerimizle ispatlıyoruz. Bölgedeki yazılım yeteneklerinin gelişmesi için ekosistem raporları ve teknik kılavuzlar yayınlıyoruz." },
+      { title: "Kuruluş ve Tarihçe", body: "Softbridge Solutions, 2017 yılında Yunus Emre Gürlek tarafından Adana'da bir özel yazılım geliştirme girişimi olarak kurulmuş ve 2023 yılında otonom yapay zekâ ajanları ile entegre sistem mimarileri alanında yeniden yapılandırılmıştır." }
     ]
   },
   {
