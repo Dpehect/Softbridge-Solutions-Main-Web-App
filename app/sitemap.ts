@@ -9,6 +9,9 @@ import {
 
 const DEFAULT_LAST_MODIFIED = new Date("2026-07-19");
 
+type ChangeFrequency =
+  NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
+
 function getLocalizedSlug(
   originalSlug: string,
   marketRoute: string,
@@ -68,6 +71,23 @@ function createPageAlternates(
     `${siteUrl}/en/${originalSlug}`;
 
   return languages;
+}
+
+function getChangeFrequency(
+  pageType: string,
+): ChangeFrequency {
+  if (
+    pageType === "article" ||
+    pageType === "research"
+  ) {
+    return "monthly";
+  }
+
+  if (pageType === "service") {
+    return "monthly";
+  }
+
+  return "yearly";
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -132,10 +152,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const pageUrl =
         `${siteUrl}/${market.route}/${localizedSlug}`;
 
-      const isArticle =
-        page.type === "article" ||
-        page.type === "research";
-
       const isService = page.type === "service";
 
       sitemapEntries.push({
@@ -145,9 +161,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ? new Date(page.updatedAt)
           : DEFAULT_LAST_MODIFIED,
 
-        changeFrequency: isArticle
-          ? "monthly"
-          : "quarterly",
+        changeFrequency: getChangeFrequency(
+          page.type,
+        ),
 
         priority: isService
           ? 0.9
