@@ -1,4 +1,4 @@
-import { pages } from "../app/content";
+import { pages } from "../content";
 
 function audit() {
   const errors: string[] = [];
@@ -11,25 +11,28 @@ function audit() {
 
   pages.forEach((p) => {
     const pageId = `[Slug: ${p.slug}, Locale: ${p.locale}]`;
+    const localeSlug = `${p.locale}/${p.slug}`;
+    const localeTitle = `${p.locale}/${p.title}`;
+    const localeDesc = `${p.locale}/${p.description}`;
 
     // 1. Duplicate checks
-    if (slugs.has(p.slug)) {
-      errors.push(`Duplicate slug: ${p.slug}`);
+    if (slugs.has(localeSlug)) {
+      errors.push(`Duplicate slug: ${localeSlug}`);
     } else {
-      slugs.add(p.slug);
+      slugs.add(localeSlug);
     }
 
     if (p.indexable) {
-      if (titles.has(p.title)) {
+      if (titles.has(localeTitle)) {
         errors.push(`Duplicate title: "${p.title}" on page ${pageId}`);
       } else {
-        titles.add(p.title);
+        titles.add(localeTitle);
       }
 
-      if (descriptions.has(p.description)) {
+      if (descriptions.has(localeDesc)) {
         errors.push(`Duplicate description: "${p.description}" on page ${pageId}`);
       } else {
-        descriptions.add(p.description);
+        descriptions.add(localeDesc);
       }
     }
 

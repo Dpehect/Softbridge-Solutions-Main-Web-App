@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "../site-shell";
-import { siteUrl } from "../content";
+import { siteUrl } from "../../content";
 import { JsonLd } from "../structured-data";
 import { ToolsClient } from "./tools-client";
 

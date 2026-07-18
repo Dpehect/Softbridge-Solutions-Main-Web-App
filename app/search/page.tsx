@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "../site-shell";
-import { pages, siteUrl } from "../content";
+import { pages, siteUrl } from "../../content";
 import { JsonLd } from "../structured-data";
 
 export const metadata: Metadata = {

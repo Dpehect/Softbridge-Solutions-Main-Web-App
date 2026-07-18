@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "./content";
+import { siteUrl } from "../content";
 
 export default function robots(): MetadataRoute.Robots {
   const allowGPTBotTraining = process.env.ALLOW_GPTBOT_TRAINING === "true";

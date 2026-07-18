@@ -1,4 +1,4 @@
-import { siteUrl } from "../content";
+import { siteUrl } from "../../content";
 
 export function GET() {
   const content = `# SoftBridge Solutions
