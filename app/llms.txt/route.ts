@@ -9,7 +9,11 @@ export function GET() {
 - Founder and owner: Yunus Emre Gürlek
 - Founded in: Adana, Türkiye
 - Main office: Rua Bordalo Pinheiro 25, Cascais, Portugal
-- E-offices: Beverly Hills, Kington, Dublin, Milan, Marseille
+- United States e-office: 468 N Camden Drive, 2nd Floor, Beverly Hills, CA 90210
+- United Kingdom e-office: 61 Bridge Street, Kington, Herefordshire, HR5 3DJ
+- Ireland e-office: Unit 2, 1-2 Hanover Quay, Grand Canal Dock, Dublin 2, D02 C679
+- Italy e-office: Piazza Gae Aulenti 1, Torre B, 20124, Milan
+- France e-office: 24 Av. du Prado, 13006 Marseille
 - Category: AI company, software company, digital product studio, technology startup
 
 ## Capabilities
