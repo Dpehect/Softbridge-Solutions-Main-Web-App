@@ -5,8 +5,8 @@ import { JsonLd } from "./structured-data";
 import { primarySolutions, servicePages, resourcePages, industries, knowledgePages, localPages, localGrowthPages } from "./content";
 
 export const metadata: Metadata = {
-  title: "AI-first digital product studio in Adana, Türkiye",
-  description: "Softbridge Solutions is an AI-first digital product studio and software agency in Adana, Türkiye, building AI systems, web apps, mobile apps, SaaS and cloud software.",
+  title: "Global AI & Software Company in Adana, Türkiye",
+  description: "Softbridge Solutions is an Adana-based technology company engineering AI systems, web and mobile products, SaaS platforms and enterprise software for ambitious organizations worldwide.",
   alternates: { canonical: "/" },
 };
 
@@ -24,10 +24,10 @@ export default function Home() {
       <SiteHeader />
       <main>
         <section className="hero grid-bg">
-          <div className="eyebrow reveal">AI-first product studio · Adana, Türkiye</div>
-          <h1 className="display reveal delay-1">Software that moves<br />companies forward.</h1>
+          <div className="eyebrow reveal">Adana, Türkiye · Built for global markets</div>
+          <h1 className="display reveal delay-1">Technology without<br />borders.</h1>
           <div className="hero-lower reveal delay-2">
-            <p className="lede">Softbridge Solutions designs and engineers AI systems, web applications, mobile apps, SaaS products, cloud platforms and internal business software for teams that need technology to become real operations.</p>
+            <p className="lede">Softbridge Solutions is an AI-first technology company engineering digital products for ambitious organizations. From our base in Adana, we design software for international users, complex operations and long-term growth.</p>
             <div className="hero-actions">
               <Link className="button dark" href="/contact">Discuss a product <Arrow /></Link>
               <Link className="text-link" href="/services">Explore services <Arrow /></Link>
@@ -37,10 +37,10 @@ export default function Home() {
         </section>
 
         <section className="statement section dark-panel">
-          <p className="section-kicker">Our position</p>
-          <h2>A serious technology company does not sell screens. It builds systems people can operate, trust and improve.</h2>
+          <p className="section-kicker">Our perspective</p>
+          <h2>Global products begin with clear thinking, rigorous engineering and an uncompromising standard of execution.</h2>
           <div className="statement-copy">
-            <p>We connect strategy, product design, software architecture, AI, cloud infrastructure and human judgment. The result is designed to be useful in production: secure, observable, readable and maintainable.</p>
+            <p>We unite product strategy, design, software architecture, AI and cloud engineering in one delivery practice. Every system is shaped for international scale, operational clarity and continuous improvement.</p>
             <Link className="text-link light" href="/engineering">How we engineer AI <Arrow /></Link>
           </div>
         </section>
@@ -48,7 +48,7 @@ export default function Home() {
         <section className="section solutions" id="capabilities">
           <div className="section-head">
             <div><p className="section-kicker">Services</p><h2>From idea to<br />operating product.</h2></div>
-            <p>Focused capabilities for startups and companies building AI-first products, internal systems, SaaS platforms and modern software.</p>
+            <p>End-to-end capabilities for companies building intelligent products, mission-critical platforms and new digital ventures.</p>
           </div>
           <div className="solution-list">
             {servicePages.slice(0, 6).map((item, i) => (
@@ -96,6 +96,15 @@ export default function Home() {
           </div>
           <div className="sector-grid">
             {industries.slice(0, 6).map((x, i) => <Link href={`/industries/${x.slug}`} key={x.slug}><span>0{i + 1}</span><h3>{x.title}</h3><p>{x.focus}</p><Arrow /></Link>)}
+          </div>
+        </section>
+
+        <section className="section statement global-statement">
+          <p className="section-kicker">Global outlook</p>
+          <h2>Rooted in Adana.<br />Engineered for the world.</h2>
+          <div className="statement-copy">
+            <p>Location should never limit ambition. We combine regional insight with global engineering practices to create products ready for multilingual audiences, distributed teams and international markets.</p>
+            <Link className="text-link" href="/about">Discover Softbridge <Arrow /></Link>
           </div>
         </section>
 
