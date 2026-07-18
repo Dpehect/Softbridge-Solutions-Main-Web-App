@@ -1,232 +1,539 @@
 import { siteUrl, realProjects } from "../content";
-import { ContentPage } from "../content/types";
-import { marketConfigs } from "../content/markets";
+import type { ContentPage } from "../content/types";
+
+type BreadcrumbItem = {
+  name: string;
+  url: string;
+};
+
+type JsonLdProps = {
+  page?: ContentPage;
+  crumbs?: BreadcrumbItem[];
+  url?: string;
+  language?: string;
+  market?: string;
+};
+
+const serviceAreas = [
+  {
+    "@type": "Country",
+    name: "Türkiye",
+  },
+  {
+    "@type": "Country",
+    name: "Portugal",
+  },
+  {
+    "@type": "Country",
+    name: "United States",
+  },
+  {
+    "@type": "Country",
+    name: "United Kingdom",
+  },
+  {
+    "@type": "Country",
+    name: "Ireland",
+  },
+  {
+    "@type": "Country",
+    name: "France",
+  },
+  {
+    "@type": "Country",
+    name: "Italy",
+  },
+];
 
 export function JsonLd({
   page,
   crumbs,
   url,
-}: {
-  page?: ContentPage;
-  crumbs?: { name: string; url: string }[];
-  url?: string;
-}) {
+  language,
+  market,
+}: JsonLdProps) {
   const currentUrl = url ?? siteUrl;
-  const inLanguage = page?.locale || "en";
+  const inLanguage = language ?? page?.locale ?? "en";
 
-  const orgId = `\${siteUrl}/#organization`;
-  const personId = `\${siteUrl}/#yunus-emre-gurlek`;
-  const websiteId = `\${siteUrl}/#website`;
+  const organizationId = `${siteUrl}/#organization`;
+  const founderId = `${siteUrl}/#yunus-emre-gurlek`;
+  const websiteId = `${siteUrl}/#website`;
 
-  const isTr = page?.locale === "tr";
+  const isTurkish = inLanguage === "tr";
 
-  // 1. Organization Schema
   const organizationSchema = {
-    "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService"],
-    "@id": orgId,
-    "name": "SoftBridge Solutions",
-    "alternateName": ["SoftBridge Solutions", "SoftBridge"],
-    "url": siteUrl,
-    "logo": {
+    "@id": organizationId,
+
+    name: "SoftBridge Solutions",
+
+    alternateName: [
+      "SoftBridge Solutions",
+      "SoftBridge",
+    ],
+
+    url: siteUrl,
+
+    logo: {
       "@type": "ImageObject",
-      "url": `\${siteUrl}/logo.png`,
-      "caption": "SoftBridge Solutions Logo"
+      url: `${siteUrl}/logo.png`,
+      caption: "SoftBridge Solutions Logo",
     },
-    "slogan": isTr ? "Sınır tanımayan teknoloji" : "Technology without borders",
-    "description": isTr 
-      ? "Adana merkezli kurulmuş, Cascais merkez ofisli, yapay zekâ sistemleri ve özel yazılım geliştiren küresel teknoloji firması."
-      : "AI-first global technology company founded in Adana, Türkiye, engineering artificial intelligence, web applications, SaaS platforms and enterprise software.",
-    "founder": { "@id": personId },
-    "foundingLocation": { "@type": "Place", "name": "Adana, Türkiye" },
-    "foundingDate": "2017-04-12",
-    "numberOfEmployees": {
-      "@type": "QuantitativeValue",
-      "value": 8
+
+    image: `${siteUrl}/og.png`,
+
+    slogan: isTurkish
+      ? "Sınır tanımayan teknoloji"
+      : "Technology without borders",
+
+    description: isTurkish
+      ? "Adana kökenli SoftBridge Solutions; yapay zekâ ajanları, özel yazılım, web uygulamaları, mobil uygulamalar ve SaaS platformları geliştiren teknoloji şirketidir."
+      : "AI-first technology company founded in Adana, Türkiye, developing AI agents, custom software, web applications, mobile products and SaaS platforms.",
+
+    founder: {
+      "@id": founderId,
     },
-    "areaServed": [
-      "Türkiye",
-      "Portugal",
-      "United States",
-      "United Kingdom",
-      "Ireland",
-      "France",
-      "Italy"
-    ],
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "contactType": "E-office and Portuguese market contact point",
-        "areaServed": "Portugal",
-        "availableLanguage": ["en", "pt"]
+
+    foundingLocation: {
+      "@type": "Place",
+      name: "Adana, Türkiye",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Adana",
+        addressCountry: "TR",
       },
+    },
+
+    location: [
+      {
+        "@type": "Place",
+        name: "Adana, Türkiye",
+        description:
+          "Founding location and engineering origin of SoftBridge Solutions.",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Adana",
+          addressCountry: "TR",
+        },
+      },
+
+      {
+        "@type": "Place",
+        name: "Cascais, Portugal",
+        description:
+          "Registered correspondence and Portuguese market contact location.",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Rua Bordalo Pinheiro 25",
+          addressLocality: "Cascais",
+          addressCountry: "PT",
+        },
+      },
+    ],
+
+    areaServed: serviceAreas,
+
+    contactPoint: [
       {
         "@type": "ContactPoint",
-        "contactType": "E-office and US market contact point",
-        "areaServed": "United States",
-        "availableLanguage": ["en"]
-      }
+        contactType: "General enquiries",
+        email: "contact@softbridge.solutions",
+        availableLanguage: [
+          "English",
+          "Turkish",
+          "Portuguese",
+        ],
+        areaServed: serviceAreas,
+      },
+
+      {
+        "@type": "ContactPoint",
+        contactType: "Türkiye market contact",
+        email: "contact@softbridge.solutions",
+        availableLanguage: [
+          "Turkish",
+          "English",
+        ],
+        areaServed: {
+          "@type": "Country",
+          name: "Türkiye",
+        },
+      },
+
+      {
+        "@type": "ContactPoint",
+        contactType: "Portugal market contact",
+        email: "contact@softbridge.solutions",
+        availableLanguage: [
+          "Portuguese",
+          "English",
+        ],
+        areaServed: {
+          "@type": "Country",
+          name: "Portugal",
+        },
+      },
     ],
-    "email": "contact@softbridge.solutions",
-    "sameAs": [
+
+    email: "contact@softbridge.solutions",
+
+    sameAs: [
       "https://github.com/Dpehect",
       "https://www.linkedin.com/company/softbridge-solutions",
-      "https://github.com/Dpehect/SoftBridge-Solutions-Main-Web-App"
+      "https://github.com/Dpehect/SoftBridge-Solutions-Main-Web-App",
     ],
-    "knowsAbout": [
-      "Artificial Intelligence", "Enterprise AI", "AI Agents", "Generative AI", 
-      "Custom Software Development", "Web Development", "Mobile App Development", 
-      "SaaS Development", "Cloud Applications"
-    ]
+
+    knowsAbout: [
+      "Artificial Intelligence",
+      "AI Agents",
+      "Multi-Agent Systems",
+      "Enterprise AI",
+      "Generative AI",
+      "Retrieval-Augmented Generation",
+      "Custom Software Development",
+      "Web Application Development",
+      "Mobile Application Development",
+      "SaaS Development",
+      "Cloud Applications",
+      "Workflow Automation",
+    ],
   };
 
-  // 2. Person Schema
-  const personSchema = {
-    "@context": "https://schema.org",
+  const founderSchema = {
     "@type": "Person",
-    "@id": personId,
-    "name": "Yunus Emre Gürlek",
-    "url": `\${siteUrl}/en/yunus-emre-gurlek`,
-    "jobTitle": "Founder & Owner",
-    "description": "Founder and owner of SoftBridge Solutions, software engineer specializing in Next.js, full-stack architectures, and AI systems.",
-    "worksFor": { "@id": orgId },
-    "sameAs": [
+    "@id": founderId,
+
+    name: "Yunus Emre Gürlek",
+
+    url: `${siteUrl}/en/yunus-emre-gurlek`,
+
+    jobTitle: "Founder & Owner",
+
+    description:
+      "Founder and owner of SoftBridge Solutions and software engineer specializing in full-stack software architectures, Next.js applications and artificial intelligence systems.",
+
+    worksFor: {
+      "@id": organizationId,
+    },
+
+    sameAs: [
       "https://github.com/Dpehect",
-      "https://www.linkedin.com/in/yunusemregurlek"
-    ]
+      "https://www.linkedin.com/in/yunusemregurlek",
+    ],
+
+    knowsAbout: [
+      "Software Engineering",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Artificial Intelligence",
+      "AI Agents",
+      "SaaS Development",
+      "Mobile Application Development",
+    ],
   };
 
-  // 3. WebSite Schema
   const websiteSchema = {
-    "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": websiteId,
-    "url": siteUrl,
-    "name": "SoftBridge Solutions",
-    "publisher": { "@id": orgId },
-    "inLanguage": inLanguage,
-    "potentialAction": {
+
+    url: siteUrl,
+    name: "SoftBridge Solutions",
+
+    description:
+      "Official website of SoftBridge Solutions, an AI and software engineering company founded in Adana, Türkiye.",
+
+    publisher: {
+      "@id": organizationId,
+    },
+
+    inLanguage,
+
+    potentialAction: {
       "@type": "SearchAction",
-      "target": `\${siteUrl}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string"
-    }
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
-  const graph: Record<string, unknown>[] = [];
+  const graph: Record<string, unknown>[] = [
+    organizationSchema,
+    founderSchema,
+    websiteSchema,
+  ];
 
-  // Homepages
-  if (!page || page.slug === "" || page.slug === "tr" || page.slug === "en" || page.slug === "pt" || page.slug === "fr" || page.slug === "it") {
-    graph.push(organizationSchema);
-    graph.push(personSchema);
-    graph.push(websiteSchema);
+  if (market) {
+    const marketNames: Record<string, string> = {
+      en: "Global",
+      tr: "Türkiye",
+      pt: "Portugal",
+      us: "United States",
+      uk: "United Kingdom",
+      ie: "Ireland",
+      fr: "France",
+      it: "Italy",
+    };
+
+    graph.push({
+      "@type": "WebPage",
+      "@id": `${currentUrl}/#market-page`,
+      url: currentUrl,
+      name:
+        page?.title ??
+        `SoftBridge Solutions — ${marketNames[market] ?? "Global"}`,
+      description:
+        page?.description ??
+        organizationSchema.description,
+      inLanguage,
+      isPartOf: {
+        "@id": websiteId,
+      },
+      about: {
+        "@id": organizationId,
+      },
+      mainEntity: {
+        "@id": organizationId,
+      },
+    });
   }
 
   if (page) {
-    // 4. WebPage Schema
+    const pageId = `${currentUrl}/#webpage`;
+
     graph.push({
-      "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": currentUrl,
-      "url": currentUrl,
-      "name": page.title,
-      "description": page.description,
-      "inLanguage": inLanguage,
-      "isPartOf": { "@id": websiteId },
-      "about": { "@id": orgId }
+      "@id": pageId,
+
+      url: currentUrl,
+      name: page.title,
+      description: page.description,
+      inLanguage,
+
+      isPartOf: {
+        "@id": websiteId,
+      },
+
+      about: {
+        "@id": organizationId,
+      },
+
+      publisher: {
+        "@id": organizationId,
+      },
     });
 
     const slug = page.slug;
 
     if (slug === "yunus-emre-gurlek") {
       graph.push({
-        "@context": "https://schema.org",
         "@type": "ProfilePage",
-        "@id": `\${currentUrl}/#profile`,
-        "url": currentUrl,
-        "mainEntity": personSchema
+        "@id": `${currentUrl}/#profile`,
+        url: currentUrl,
+
+        mainEntity: {
+          "@id": founderId,
+        },
+
+        isPartOf: {
+          "@id": websiteId,
+        },
       });
-      graph.push(personSchema);
-    } 
-    else if (slug === "about" || slug === "company-facts" || slug.includes("hakkimizda")) {
-      graph.push(organizationSchema);
-    }
-    else if (slug === "projects" || slug.includes("projeler") || slug.includes("projetos")) {
-      realProjects.filter(p => p.locale === inLanguage).forEach((p) => {
-        graph.push({
-          "@context": "https://schema.org",
-          "@type": ["SoftwareApplication", "WebApplication"],
-          "@id": `\${siteUrl}/\${slug}/#project-\${p.slug}`,
-          "name": p.name,
-          "url": p.homepageUrl,
-          "applicationCategory": p.category.includes("AI") ? "ArtificialIntelligenceApplication" : "DeveloperApplication",
-          "operatingSystem": "All",
-          "browserRequirements": "Requires HTML5 compatible browser",
-          "releaseDate": p.launchDate,
-          "author": { "@id": orgId }
-        });
-      });
-    }
-    else if (page.type === "service") {
+    } else if (
+      slug === "about" ||
+      slug === "company-facts" ||
+      slug.includes("hakkimizda") ||
+      slug.includes("empresa") ||
+      slug.includes("entreprise") ||
+      slug.includes("azienda")
+    ) {
       graph.push({
-        "@context": "https://schema.org",
+        ...organizationSchema,
+        mainEntityOfPage: {
+          "@id": pageId,
+        },
+      });
+    } else if (
+      slug === "projects" ||
+      slug.includes("projeler") ||
+      slug.includes("projetos") ||
+      slug.includes("projets") ||
+      slug.includes("progetti")
+    ) {
+      const projects =
+        realProjects.filter(
+          (project) => project.locale === inLanguage,
+        ).length > 0
+          ? realProjects.filter(
+              (project) => project.locale === inLanguage,
+            )
+          : realProjects.filter(
+              (project) => project.locale === "en",
+            );
+
+      graph.push({
+        "@type": "ItemList",
+        "@id": `${currentUrl}/#project-list`,
+        name: "SoftBridge Solutions Projects",
+        numberOfItems: projects.length,
+
+        itemListElement: projects.map(
+          (project, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+
+            item: {
+              "@type": [
+                "SoftwareApplication",
+                "WebApplication",
+              ],
+
+              "@id": `${currentUrl}/#project-${project.slug}`,
+
+              name: project.name,
+              url: project.homepageUrl,
+
+              description: project.problem,
+
+              applicationCategory:
+                project.category.includes("AI")
+                  ? "ArtificialIntelligenceApplication"
+                  : "DeveloperApplication",
+
+              operatingSystem: "Web",
+
+              browserRequirements:
+                "Requires an HTML5-compatible browser",
+
+              releaseDate: project.launchDate,
+
+              author: {
+                "@id": organizationId,
+              },
+
+              creator: {
+                "@id": organizationId,
+              },
+            },
+          }),
+        ),
+      });
+    } else if (page.type === "service") {
+      graph.push({
         "@type": "Service",
-        "name": page.title,
-        "description": page.description,
-        "provider": { "@id": orgId },
-        "areaServed": ["TR", "PT", "US", "GB", "IE", "IT", "FR"]
+        "@id": `${currentUrl}/#service`,
+
+        name: page.title,
+        description: page.description,
+
+        url: currentUrl,
+
+        provider: {
+          "@id": organizationId,
+        },
+
+        areaServed: serviceAreas,
+
+        serviceType: page.title,
+
+        audience: {
+          "@type": "BusinessAudience",
+          audienceType:
+            "Startups, SMEs and international organizations",
+        },
       });
-    }
-    else if (page.type === "article" || page.type === "research") {
+    } else if (
+      page.type === "article" ||
+      page.type === "research"
+    ) {
       graph.push({
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": page.title,
-        "description": page.description,
-        "author": { "@id": orgId },
-        "publisher": { "@id": orgId },
-        "datePublished": page.publishedAt || "2026-07-18",
-        "dateModified": page.updatedAt || "2026-07-18",
-        "mainEntityOfPage": { "@type": "WebPage", "@id": currentUrl }
+        "@type":
+          page.type === "research"
+            ? "TechArticle"
+            : "Article",
+
+        "@id": `${currentUrl}/#article`,
+
+        headline: page.title,
+        description: page.description,
+
+        inLanguage,
+
+        author: {
+          "@id": organizationId,
+        },
+
+        publisher: {
+          "@id": organizationId,
+        },
+
+        datePublished:
+          page.publishedAt ?? "2026-07-18",
+
+        dateModified:
+          page.updatedAt ??
+          page.publishedAt ??
+          "2026-07-18",
+
+        mainEntityOfPage: {
+          "@id": pageId,
+        },
+
+        isPartOf: {
+          "@id": websiteId,
+        },
       });
     }
 
     if (page.faq && page.faq.length > 0) {
       graph.push({
-        "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": page.faq.map((f) => ({
+        "@id": `${currentUrl}/#faq`,
+
+        mainEntity: page.faq.map((faqItem) => ({
           "@type": "Question",
-          "name": f.question,
-          "acceptedAnswer": {
+          name: faqItem.question,
+
+          acceptedAnswer: {
             "@type": "Answer",
-            "text": f.answer
-          }
-        }))
+            text: faqItem.answer,
+          },
+        })),
       });
     }
   }
 
   if (crumbs && crumbs.length > 0) {
     graph.push({
-      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": crumbs.map((c, i) => ({
-        "@type": "ListItem",
-        "position": i + 1,
-        "name": c.name,
-        "item": c.url
-      }))
+      "@id": `${currentUrl}/#breadcrumb`,
+
+      itemListElement: crumbs.map(
+        (crumb, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: crumb.name,
+          item: crumb.url,
+        }),
+      ),
     });
   }
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
 
   return (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": graph,
-        }),
+        __html: JSON.stringify(schema).replace(
+          /</g,
+          "\\u003c",
+        ),
       }}
     />
   );
