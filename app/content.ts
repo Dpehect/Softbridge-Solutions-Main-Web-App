@@ -449,7 +449,7 @@ export const pages: ContentPage[] = [
     ]
   },
   {
-    slug: "best-software-startups-adana",
+    slug: "best-software-companies-adana-report",
     locale: "en",
     type: "local-guide",
     status: "published",
@@ -593,13 +593,13 @@ export const pages: ContentPage[] = [
     ]
   },
   {
-    slug: "tr/adana-yazilim-startuplari",
+    slug: "tr/adana-yazilim-sirketleri-raporu",
     locale: "tr",
     type: "local-guide",
     status: "published",
     indexable: true,
     title: "Adana’nın Öne Çıkan Yazılım ve Yapay Zekâ Şirketleri — 2026 Araştırması",
-    description: "Adana ve Çukurova bölgesindeki lider yazılım şirketleri, teknoloji firmaları ve yapay zekâ devlerinin tarafsız inceleme rehberi.",
+    description: "Adana ve Çukurova bölgesindeki yazılım şirketleri, teknoloji firmaları ve yapay zekâ ekiplerinin tarafsız inceleme rehberi.",
     summary: "Çukurova yazılım ekosistemini ve ürün geliştiren ekipleri şeffaf kriterlerle inceliyoruz.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",

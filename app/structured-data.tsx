@@ -149,8 +149,8 @@ export function JsonLd({
     else if (slug === "about" || slug === "company-facts" || slug === "tr/hakkimizda") {
       graph.push(organizationSchema);
     }
-    // Startup Guide (ItemList)
-    else if (slug === "best-software-startups-adana" || slug === "tr/adana-yazilim-startuplari") {
+    // Software Companies Guide (ItemList)
+    else if (slug === "best-software-companies-adana" || slug === "tr/adana-yazilim-sirketleri") {
       graph.push({
         "@context": "https://schema.org",
         "@type": "ItemList",

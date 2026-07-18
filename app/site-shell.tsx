@@ -16,7 +16,8 @@ const pathTranslations: Record<string, string> = {
   "/saas-development": "/tr/saas-gelistirme",
   "/custom-software": "/tr/ozel-yazilim",
   "/ai-agents": "/tr/yapay-zeka-ajanlari",
-  "/best-software-startups-adana": "/tr/adana-yazilim-startuplari",
+  "/best-software-companies-adana": "/tr/adana-yazilim-sirketleri",
+  "/best-software-companies-adana-report": "/tr/adana-yazilim-sirketleri-raporu",
   "/projects": "/tr/projeler",
   "/about": "/tr/hakkimizda",
   "/contact": "/tr/iletisim",
@@ -159,8 +160,8 @@ export function SiteFooter() {
             <div>
               <h3>Adana</h3>
               <p>Founded in Adana, Türkiye</p>
-              <Link href="/best-software-companies-adana">Best software companies in Adana</Link>
-              <Link href="/best-software-startups-adana">Best software startups in Adana</Link>
+              <Link href="/best-software-companies-adana">{isTr ? "Adana Yazılım Sektörü Kılavuzu" : "Evaluating Adana Software Partners"}</Link>
+              <Link href="/best-software-companies-adana-report">{isTr ? "Adana Yazılım Şirketleri Raporu" : "Adana Software Companies Report"}</Link>
             </div>
           </>
         )}
