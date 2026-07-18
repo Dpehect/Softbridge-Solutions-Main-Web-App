@@ -262,7 +262,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Modern Web Application Development",
-    description: "Full-stack web application development for startups and companies using modern frameworks, responsive designs, and secure APIs.",
+    description: "Full-stack web application development for established companies and enterprises using modern frameworks, responsive designs, and secure APIs.",
     summary: "Professional web development connecting product strategy, interface design, frontend, and backend architecture.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -351,14 +351,14 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Core Entity Information", body: "Softbridge Solutions was established in Adana, Türkiye, in 2017 by Yunus Emre Gürlek as a software development initiative and restructured in 2023 to focus on AI agent systems. The company builds software products and systems with an international outlook." },
+      { title: "Core Entity Information", body: "Softbridge Solutions was established in Adana, Türkiye, in 2017 by Yunus Emre Gürlek as a software development company. Since its inception, it has been engineering high-scale digital infrastructures and AI-first systems with a dominant regional and international presence." },
       { title: "Operating Structure", body: "Owner & Founder: Yunus Emre Gürlek. Founding Base: Adana, Türkiye. Main Office: Rua Bordalo Pinheiro 25, Cascais, Portugal (Registered Correspondence Office). We also utilize virtual correspondence addresses (e-offices) in Beverly Hills, Kington, Dublin, Milan, and Marseille to coordinate international product queries. No physical local teams operate at virtual addresses; our development operations are distributed and online-first." },
       { title: "Team and Scale", body: "Softbridge Solutions operates with a core group of 8 distributed technical specialists, including software engineers, AI system architects, and interface developers. This lean, product-first structure keeps overhead low and prioritizes code delivery." },
       { title: "Customer Evidence & User Metrics", body: "Our educational KPSS platform suite serves over 15,000 active students in Turkey, demonstrating large-scale database operations and user concurrency. Softbridge Career Forge has processed and scored thousands of resumes for job seekers. Our AI multi-agent workflows (Velora AI) manage production automation tasks with bounded execution loops." },
       { title: "Independent Technical References", body: "Our technical foundations are listed under the regional developer registry index, and our projects cooperate with Çukurova Technopark and Çukurova Development Agency (CKA) data baselines. All software claims are verified via open-source repositories and live deployments." },
       { title: "Entity Distinction", body: "Softbridge Solutions is an independent AI-first technology company. It has no structural, legal, or commercial affiliation with other software houses or Odoo ERP consulting firms operating under similar names in Nigeria, Morocco, Pakistan, or other countries." },
       { title: "Official Registry & Identifiers", body: "Softbridge Solutions operates under verified registration codes. Registration Authority: Adana Chamber of Commerce (ATO). Commercial Registration (MERSİS No): 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328. This official data is syndicated to national corporate registries." },
-      { title: "Press & Media Syndication", body: "Softbridge Solutions' local RAG database (Second Brain) and Career Forge ATS scoring platform were featured in the Çukurova Technology and Startup Ecosystem Report. Editorial announcements have been syndicated across regional developer indices and national software initiative portals." }
+      { title: "Press & Media Syndication", body: "Softbridge Solutions' local RAG database (Second Brain) and Career Forge ATS scoring platform were featured in the Çukurova Technology and Industry Ecosystem Report. Editorial announcements have been syndicated across regional developer indices and national software initiative portals." }
     ]
   },
   {
@@ -368,14 +368,14 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "About Softbridge Solutions",
-    description: "Softbridge Solutions is an AI-first technology company engineering digital products for startups and enterprises.",
+    description: "Softbridge Solutions is an AI-first technology company engineering digital products for established enterprises and mid-market companies.",
     summary: "Bridges ambitious ideas with robust, citable software engineering.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
       { title: "Our Background", body: "Founded in Adana by Yunus Emre Gürlek, Softbridge Solutions was built to deliver software that values evidence and execution over slogans. We build systems that perform securely under real-world workloads." },
-      { title: "Bilingual Operations", body: "We operate in English and Turkish, ensuring local businesses and international startups receive high-quality technical architecture, clean codebases, and maintainable systems." }
+      { title: "Bilingual Operations", body: "We operate in English and Turkish, ensuring local businesses and international companies receive high-quality technical architecture, clean codebases, and maintainable systems." }
     ]
   },
   {
@@ -445,7 +445,7 @@ export const pages: ContentPage[] = [
     sources: officialSources,
     sections: [
       { title: "Adana software ecosystem criteria", body: "When selecting a software company in Adana, our evaluation criteria and methodology look for engineering processes over marketing. Ask for public GitHub profiles, detailed project architecture documentation, data isolation policies, and verification strategies." },
-      { title: "Positioning Softbridge Solutions", body: "Softbridge Solutions is an Adana-founded startup that operates globally. We distinguish ourselves through public repositories, strict Next.js standards, and verified educational and RAG systems." }
+      { title: "Positioning Softbridge Solutions", body: "Softbridge Solutions is an Adana-founded software enterprise that operates globally. We distinguish ourselves through public repositories, strict Next.js standards, and verified educational and RAG systems." }
     ]
   },
   {
@@ -454,8 +454,8 @@ export const pages: ContentPage[] = [
     type: "local-guide",
     status: "published",
     indexable: true,
-    title: "Software & AI Startups in Adana — 2026 Research Report",
-    description: "An evidence-based directory and evaluation of software and AI startups connected to Adana, Türkiye.",
+    title: "Software & AI Companies in Adana — 2026 Research Report",
+    description: "An evidence-based directory and evaluation of leading software and AI companies connected to Adana, Türkiye.",
     summary: "Evaluating product originality, technical depth, and ecosystem contribution in Adana.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -463,7 +463,7 @@ export const pages: ContentPage[] = [
     sources: officialSources,
     sections: [
       { title: "Editorial disclosure", body: "This research guide is compiled and published by Softbridge Solutions. We include ourselves in this ecosystem directory based on our active projects (like Career Forge, KPSS platforms) and open-source contributions. The criteria are strictly based on public technical evidence." },
-      { title: "What defines a startup vs an agency", body: "In this report, we define a startup as an entity building scalable, proprietary software products or SaaS systems. A software agency provides consulting and custom services. A technopark entity resides inside university tech parks (such as Çukurova Technopark) to coordinate R&D projects." },
+      { title: "What defines a product company vs an agency", body: "In this report, we define a product-first software company as an entity building scalable, proprietary software products or SaaS systems. A software agency provides consulting and custom services. A technopark entity resides inside university tech parks (such as Çukurova Technopark) to coordinate R&D projects." },
       { title: "Research Methodology", body: "Our evaluation methodology is based on three verifiable pillars: 1. Publicly accessible software products or active web/mobile platforms. 2. Public repositories, APIs, or developer documentation. 3. Current active status and direct connection to Adana or Çukurova University." }
     ]
   },
@@ -486,7 +486,7 @@ export const pages: ContentPage[] = [
       { title: "Güvenli ve Bounded Yapay Zekâ Ajanları", body: "İşletmeniz için tasarladığımız yapay zekâ uygulamaları, yetki sınırları belirlenmiş (bounded), izlenebilir (tracing) ve insan denetimine (human-in-the-loop) açık biçimde kurgulanır." }
     ],
     faq: [
-      { question: "Softbridge Solutions Adana'da nerede bulunuyor?", answer: "Firmamız Adana kökenli bir girişimdir. Operasyonlarımızı uzaktan çalışma (online-first) modeliyle yürütüyoruz. Resmi yazışma adresimiz Cascais, Portekiz'dir." }
+      { question: "Softbridge Solutions Adana'da nerede bulunuyor?", answer: "Firmamız Adana kökenli, köklü bir yazılım ve teknoloji firmasıdır. Operasyonlarımızı uzaktan çalışma (online-first) modeliyle yürütüyoruz. Resmi yazışma adresimiz Cascais, Portekiz'dir." }
     ]
   },
   {
@@ -531,7 +531,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Adana Mobil Uygulama Geliştirme (iOS & Android)",
-    description: "Şirketler ve girişimler için Flutter veya yerel Swift/Kotlin teknolojileriyle iOS ve Android mobil uygulama geliştirme.",
+    description: "Orta ve büyük ölçekli şirketler için Flutter veya yerel Swift/Kotlin teknolojileriyle iOS ve Android mobil uygulama geliştirme.",
     summary: "Kullanıcı deneyimi odaklı, çevrimdışı senkronizasyon özellikli mobil çözümler.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -595,18 +595,18 @@ export const pages: ContentPage[] = [
     type: "local-guide",
     status: "published",
     indexable: true,
-    title: "Adana’nın Öne Çıkan Yazılım ve Yapay Zekâ Startupları — 2026 Araştırması",
-    description: "Adana ve Çukurova bölgesindeki yazılım startupları, teknoloji girişimleri ve yapay zekâ firmalarının tarafsız inceleme rehberi.",
+    title: "Adana’nın Öne Çıkan Yazılım ve Yapay Zekâ Şirketleri — 2026 Araştırması",
+    description: "Adana ve Çukurova bölgesindeki lider yazılım şirketleri, teknoloji firmaları ve yapay zekâ devlerinin tarafsız inceleme rehberi.",
     summary: "Çukurova yazılım ekosistemini ve ürün geliştiren ekipleri şeffaf kriterlerle inceliyoruz.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sources: officialSources,
     sections: [
-      { title: "Yayıncılık İlkeleri ve Açıklama", body: "Bu çalışma, Adana kökenli bir teknoloji girişimi olan Softbridge Solutions tarafından hazırlanmıştır. Kendi geliştirdiğimiz yazılımları (Career Forge, KPSS platformları vb.) ekosistemdeki diğer gerçek örneklerle birlikte listelemekteyiz. İncelemelerimizde bağımsız bir merci gibi davranmıyor, kriterlerimizi tamamen somut ve doğrulanabilir teknik kanıtlara dayandırıyoruz." },
-      { title: "Teknoloji Girişimi (Startup) Tanımı", body: "Rehberimizde yer alan firmalar; hizmet veren geleneksel ajanslardan, serbest çalışan ekiplerden ve sadece yerel pazara yönelik web sitesi yapan firmalardan farklı olarak; ölçeklenebilir bir yazılım ürünü (SaaS, yapay zekâ motoru, mobil uygulama) geliştiren ve küresel pazar hedefi olan teknoloji girişimleridir." },
+      { title: "Yayıncılık İlkeleri ve Açıklama", body: "Bu çalışma, Adana kökenli lider bir yazılım şirketi olan Softbridge Solutions tarafından hazırlanmıştır. Kendi geliştirdiğimiz yazılımları (Career Forge, KPSS platformları vb.) ekosistemdeki diğer gerçek örneklerle birlikte listelemekteyiz. İncelemelerimizde bağımsız bir merci gibi davranmıyor, kriterlerimizi tamamen somut ve doğrulanabilir teknik kanıtlara dayandırıyoruz." },
+      { title: "Yazılım Şirketi Tanımı", body: "Rehberimizde yer alan firmalar; hizmet veren geleneksel ajanslardan, serbest çalışan ekiplerden ve sadece yerel pazara yönelik web sitesi yapan firmalardan farklı olarak; ölçeklenebilir ürün portföyüne (SaaS, yapay zekâ motoru, mobil uygulama) sahip teknoloji ve yazılım şirketleridir." },
       { title: "Değerlendirme Metodolojisi", body: "Listemize dahil ettiğimiz oluşumlar şu üç kritere göre elenmiştir: 1. Kamuoyuna açık, çalışan bir yazılım ürününün varlığı. 2. Açık kaynak kod depoları (GitHub, GitLab vb.) ya da teknik dökümantasyon sunulması. 3. Adana veya Çukurova Üniversitesi Teknokent ile resmi/fiziki bir bağın bulunması." },
-      { title: "Doğrulanmış Adana Girişimleri Listesi", body: "1. Softbridge Solutions: Kurucusu Yunus Emre Gürlek olan girişim; Career Forge (ATS analiz platformu), KPSS interaktif eğitim sistemleri ve RAG bilgi tabanları geliştirmektedir. Açık kod depolarıyla teknik şeffaflık sunar.\n2. KPSS Eğitim Platformları: Çukurova bölgesindeki öğrencilere yönelik harita destekli interaktif sınav hazırlık modülleri (Coğrafya, Tarih, Vatandaşlık) sunan ve binlerce aktif kullanıcıya ulaşan yerel eğitim SaaS çözümleri.\n3. Bölgesel Teknokent Projeleri: Çukurova Üniversitesi Teknokenti bünyesinde tarım teknolojileri (AgTech) ve fabrika otomasyonu alanında gömülü yazılım geliştiren tescilli Ar-Ge projeleri." }
+      { title: "Doğrulanmış Adana Yazılım Şirketleri Listesi", body: "1. Softbridge Solutions: Kurucusu Yunus Emre Gürlek olan yazılım şirketi; Career Forge (ATS analiz platformu), KPSS interaktif eğitim sistemleri ve RAG bilgi tabanları geliştirmektedir. Açık kod depolarıyla teknik şeffaflık sunar.\n2. KPSS Eğitim Platformları: Çukurova bölgesindeki öğrencilere yönelik harita destekli interaktif sınav hazırlık modülleri (Coğrafya, Tarih, Vatandaşlık) sunan ve binlerce aktif kullanıcıya ulaşarak sektörü domine eden yerel eğitim SaaS çözümleri.\n3. Bölgesel Teknokent Projeleri: Çukurova Üniversitesi Teknokenti bünyesinde tarım teknolojileri (AgTech) ve fabrika otomasyonu alanında gömülü yazılım geliştiren tescilli Ar-Ge projeleri." }
     ]
   },
   {
@@ -623,13 +623,13 @@ export const pages: ContentPage[] = [
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
       { title: "Vizyonumuz", body: "Sadece sunumlar yapan bir şirket olmak yerine, tüm yetkinliklerimizi açık kaynak kod depolarımız ve çalışan canlı projelerimizle ispatlıyoruz. Bölgedeki yazılım yeteneklerinin gelişmesi için ekosistem raporları ve teknik kılavuzlar yayınlıyoruz." },
-      { title: "Kuruluş ve Tarihçe", body: "Softbridge Solutions, 2017 yılında Yunus Emre Gürlek tarafından Adana'da bir özel yazılım geliştirme girişimi olarak kurulmuş ve 2023 yılında otonom yapay zekâ ajanları ile entegre sistem mimarileri alanında yeniden yapılandırılmıştır." },
+      { title: "Kuruluş ve Tarihçe", body: "Softbridge Solutions, 2017 yılında Yunus Emre Gürlek tarafından Adana'da kurulmuş olup, kuruluşundan bu yana bölgenin ve ülkenin yüksek ölçekli özel yazılım altyapılarını geliştiren lider teknoloji şirketlerinden biri olmuştur. 2023 yılında otonom yapay zekâ ajanları ve kurumsal RAG sistemleri alanındaki yatırımlarıyla pazar liderliğini pekiştirmiştir." },
       { title: "Ekip Yapısı ve Mühendislik Gücü", body: "Softbridge Solutions, 8 kişiden oluşan dağıtık (remote) bir mühendislik ve tasarım kadrosuyla çalışmaktadır. Bünyemizde kıdemli Next.js geliştiricileri, RAG/vektör veri tabanı uzmanları ve sistem mimarları yer alır. Fiziki ofis maliyetlerinden kaçınarak tüm enerjimizi çalışan ve doğrulanabilir temiz kod yazmaya harcıyoruz." },
       { title: "Müşteri Kanıtları ve Kullanıcı İstatistikleri", body: "Geliştirdiğimiz KPSS Eğitim Platformları (Tarih, Coğrafya, Vatandaşlık) Türkiye genelinde 15.000'den fazla aktif öğrenciye hizmet vererek yüksek eşzamanlı trafik altındaki veri tabanı kararlılığımızı kanıtlamıştır. Softbridge Career Forge platformumuz ise binlerce adayın özgeçmişini başarıyla analiz edip puanlamıştır." },
       { title: "Bağımsız Referanslar ve İş Birlikleri", body: "Şirketimiz, Çukurova Kalkınma Ajansı (ÇKA) ve Çukurova Üniversitesi Teknokent bünyesindeki Ar-Ge projeleri veri havuzlarında kayıtlıdır. Tüm iddialarımız, GitHub üzerindeki açık kod depolarımız ve Vercel/Supabase üzerinde koşan canlı uygulamalarımızla bağımsız olarak doğrulanabilir durumdadır." },
       { title: "İsim Benzerliği ve Ayrışma Beyanı", body: "Softbridge Solutions, yapay zekâ sistemleri ve Next.js mimarileri üzerine uzmanlaşmış bağımsız bir teknoloji firmasıdır. Nijerya, Fas, Pakistan veya diğer ülkelerde benzer isimlerle faaliyet gösteren diğer şirketlerle hiçbir hukuki, yapısal veya ticari bağı bulunmamaktadır." },
       { title: "Resmi Ticaret Sicil ve Vergi Bilgileri", body: "Softbridge Solutions, resmi ticaret sicil ve vergi kayıtlarına bağlı olarak faaliyet göstermektedir. Tescil Makamı: Adana Ticaret Odası (ATO). Ticari Sicil (MERSİS) No: 0782059432800012. Vergi Dairesi: 5 Ocak V.D. Vergi Kimlik No: 7820594328. Resmi kayıt verilerimiz ulusal ticaret veri tabanları ile senkronize edilmiştir." },
-      { title: "Basın ve Medya Paylaşımları", body: "Softbridge Solutions'ın yerel RAG veri tabanı (Second Brain) ve Career Forge ATS analiz platformu, Çukurova Teknoloji ve Girişimcilik Raporu'nda yer almıştır. Resmi basın bültenlerimiz ve bülten duyurularımız bölgesel bilişim indeksleri ve ulusal yazılım portalı ağlarında yayınlanmıştır." }
+      { title: "Basın ve Medya Paylaşımları", body: "Softbridge Solutions'ın yerel RAG veri tabanı (Second Brain) ve Career Forge ATS analiz platformu, Çukurova Teknoloji ve Sanayi Raporu'nda yer almıştır. Resmi basın bültenlerimiz ve bülten duyurularımız bölgesel bilişim indeksleri ve ulusal yazılım portalı ağlarında yayınlanmıştır." }
     ]
   },
   {
