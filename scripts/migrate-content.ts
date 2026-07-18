@@ -1,27 +1,76 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "node:fs";
+import path from "node:path";
 
-// Import content dynamically
-import { pages, realProjects } from '../app/content.js';
+import { pages, realProjects } from "../content";
+import type {
+  ContentPage,
+  ProjectDetails,
+} from "../content/types";
 
-const __dirname = path.resolve();
+const projectRoot = process.cwd();
+const contentDirectory = path.join(projectRoot, "content");
 
-const enPages = pages.filter(p => p.locale === 'en');
-const trPages = pages.filter(p => p.locale === 'tr');
+function generateFileContent(
+  projectsData: ProjectDetails[],
+  pagesData: ContentPage[],
+): string {
+  return `import type { ContentPage, ProjectDetails } from "./types";
 
-const enProjects = realProjects.filter(p => p.locale === 'en');
-const trProjects = realProjects.filter(p => p.locale === 'tr');
+export const projects: ProjectDetails[] = ${JSON.stringify(
+    projectsData,
+    null,
+    2,
+  )};
 
-function generateFileContent(locale, pagesData, projectsData) {
-  return `import { ContentPage, ProjectDetails } from "./types";
-
-export const projects: ProjectDetails[] = ${JSON.stringify(projectsData, null, 2)};
-
-export const pages: ContentPage[] = ${JSON.stringify(pagesData, null, 2)};
+export const pages: ContentPage[] = ${JSON.stringify(
+    pagesData,
+    null,
+    2,
+  )};
 `;
 }
 
-fs.writeFileSync(path.join(__dirname, 'content/en.ts'), generateFileContent('en', enPages, enProjects));
-fs.writeFileSync(path.join(__dirname, 'content/tr.ts'), generateFileContent('tr', trPages, trProjects));
+function writeLocaleContent(locale: "en" | "tr"): void {
+  const localePages = pages.filter(
+    (page) => page.locale === locale,
+  );
 
-console.log("Migration complete!");
+  const localeProjects = realProjects.filter(
+    (project) => project.locale === locale,
+  );
+
+  const targetFile = path.join(
+    contentDirectory,
+    `${locale}.ts`,
+  );
+
+  const fileContent = generateFileContent(
+    localeProjects,
+    localePages,
+  );
+
+  fs.writeFileSync(
+    targetFile,
+    fileContent,
+    "utf8",
+  );
+
+  console.log(
+    `Generated ${targetFile}: ${localePages.length} pages and ${localeProjects.length} projects.`,
+  );
+}
+
+function runMigration(): void {
+  if (!fs.existsSync(contentDirectory)) {
+    throw new Error(
+      `Content directory not found: ${contentDirectory}`,
+    );
+  }
+
+  writeLocaleContent("en");
+  writeLocaleContent("tr");
+
+  console.log("Content migration completed successfully.");
+}
+
+runMigration();
