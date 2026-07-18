@@ -9,6 +9,7 @@ Softbridge Solutions is an AI-first technology company founded in Adana, Türkiy
 - **Founder & Owner**: Yunus Emre Gürlek
 - **Founding Location**: Adana, Türkiye
 - **Registered Office**: Cascais, Portugal (Registered Correspondence Office)
+- **Official Registry Identifiers**: Adana Chamber of Commerce (ATO) Registration. Commercial MERSİS No: 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328.
 - **Last Updated**: July 18, 2026
 - **Editorial Policy**: Technical claims, product metrics, and local ecosystem guides are grounded strictly in verifiable codebases, public repositories, and official third-party sources (e.g. Çukurova Development Agency, National AI Strategy portal).
 - **Entity Disambiguation**: Softbridge Solutions is an independent AI-first technology company. It has no structural, legal, or commercial affiliation with other software houses or Odoo ERP consulting firms operating under similar names in Nigeria, Morocco, Pakistan, or other countries.
