@@ -22,10 +22,21 @@ export default function FreeToolsPage() {
   const description = metadata.description as string;
 
   return <>
-    <JsonLd page={{ title, description, faq: [
-      { q: "Are these tools free?", a: "Yes. The tools on this page are intended as free educational and practical utilities for developers, founders and product teams." },
-      { q: "Do the tools replace technical discovery?", a: "No. Calculators and validators are useful for planning, but serious software, AI and security work still requires scoped technical discovery." },
-    ] }} url={`${siteUrl}/free-tools`} crumbs={[{ name: "Home", url: siteUrl }, { name: title, url: `${siteUrl}/free-tools` }]} />
+    <JsonLd page={{
+      slug: "free-tools",
+      locale: "en",
+      type: "tool",
+      status: "published",
+      indexable: true,
+      title,
+      description,
+      summary: "Useful browser-based tools for developers, founders and product teams.",
+      sections: [],
+      faq: [
+        { question: "Are these tools free?", answer: "Yes. The tools on this page are intended as free educational and practical utilities for developers, founders and product teams." },
+        { question: "Do the tools replace technical discovery?", answer: "No. Calculators and validators are useful for planning, but serious software, AI and security work still requires scoped technical discovery." },
+      ]
+    }} url={`${siteUrl}/free-tools`} crumbs={[{ name: "Home", url: siteUrl }, { name: title, url: `${siteUrl}/free-tools` }]} />
     <SiteHeader />
     <main className="article-page">
       <header className="article-hero grid-bg">

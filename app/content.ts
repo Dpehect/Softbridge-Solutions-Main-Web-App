@@ -1,243 +1,673 @@
+export type ContentStatus = "published" | "draft" | "archived";
+export type ContentType =
+  | "service"
+  | "article"
+  | "local-guide"
+  | "company"
+  | "person"
+  | "project"
+  | "research"
+  | "tool"
+  | "collection";
+
+export type ContentSection = {
+  title: string;
+  body: string;
+  bullets?: string[];
+};
+
+export type ContentSource = {
+  name: string;
+  url: string;
+  accessedAt: string;
+  supports: string;
+};
+
+export type ContentPage = {
+  slug: string;
+  locale: "tr" | "en";
+  type: ContentType;
+  status: ContentStatus;
+  indexable: boolean;
+  title: string;
+  description: string;
+  eyebrow?: string;
+  summary: string;
+  publishedAt?: string;
+  updatedAt?: string;
+  author?: string;
+  reviewedBy?: string;
+  sources?: ContentSource[];
+  sections: ContentSection[];
+  faq?: {
+    question: string;
+    answer: string;
+  }[];
+};
+
+export type ProjectDetails = {
+  name: string;
+  slug: string;
+  locale: "tr" | "en";
+  category: string;
+  githubUrl?: string;
+  homepageUrl: string;
+  launchDate: string;
+  problem: string;
+  users: string;
+  functionality: string;
+  architecture: string;
+  techStack: string[];
+  challenges: string;
+  limitations: string;
+};
+
+// Site URLs
 const configuredSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   process.env.VERCEL_PROJECT_PRODUCTION_URL ??
-  "http://localhost:3000";
+  "http://localhost:3001";
 
 export const siteUrl = configuredSiteUrl.startsWith("http")
   ? configuredSiteUrl
   : `https://${configuredSiteUrl}`;
 
-export type PageData = { slug: string; title: string; eyebrow: string; description: string; intro: string; short?: string; code?: string; type?: string; sections: { title: string; body: string; bullets?: string[] }[]; faq: { q: string; a: string }[]; sources?: { label: string; url: string }[] };
-
-const faqBase = (topic: string) => [
-  { q: `How does Softbridge Solutions approach ${topic}?`, a: `We begin with the operating problem, the available evidence and the consequences of error. Architecture follows from those constraints. Prototypes are evaluated with representative tasks before a production path is selected.` },
-  { q: `Can ${topic} connect to existing enterprise systems?`, a: `Yes, when appropriate. Integration design typically considers identity, permissions, data boundaries, APIs, event systems and human review. The exact path depends on the organization’s current architecture.` },
-  { q: `How is quality measured?`, a: `Quality should be defined at task level. We use representative evaluation sets, explicit success and failure criteria, traces, operational feedback and cost measures relevant to the work being completed.` },
+// Sources
+const officialSources: ContentSource[] = [
+  { name: "Republic of Türkiye National AI Strategy Portal", url: "https://yapayzekavizyonu.sanayi.gov.tr/", accessedAt: "2026-07-18", supports: "National AI framework and digital objectives" },
+  { name: "Çukurova Development Agency (CKA)", url: "https://www.cka.org.tr/", accessedAt: "2026-07-18", supports: "Regional development projects and industry data" }
 ];
 
-export const primarySolutions: PageData[] = [
-  { slug: "ai-agents", title: "AI Agents", eyebrow: "Agentic systems", short: "Bounded systems that reason, use tools and complete multi-step work with oversight.", description: "Design and engineering of production AI agents with tools, memory, evaluation, observability and human control.", intro: "An AI agent is a software system that uses a model to interpret a goal, choose actions and interact with tools or information. In enterprise settings, useful autonomy is bounded: permissions, state, escalation and evaluation matter as much as the model.", sections: [
-    { title: "What makes an agent production-ready", body: "A production agent needs a defined task boundary, controlled access to tools, durable state where necessary, recovery paths and clear ownership. The design should make both successful and failed actions inspectable.", bullets: ["Tool and API orchestration", "Retrieval and working memory", "Human approval at consequential steps", "Tracing, evaluation and incident learning"] },
-    { title: "Single agents and multi-agent systems", body: "A single agent is often the clearest design. Multiple specialized agents become useful when roles have genuinely different context, tools or evaluation criteria. Additional agents create coordination cost, so the architecture must earn its complexity." },
-    { title: "Common enterprise use cases", body: "Agents can support research synthesis, service operations, document workflows, internal knowledge access, sales operations and software delivery. The best candidates combine repeatable steps, accessible systems and a clear definition of completion." },
-  ], faq: faqBase("AI agents") },
-  { slug: "enterprise-ai", title: "Enterprise AI", eyebrow: "Organization-wide systems", short: "AI architecture that connects strategy, governance, software and measurable operations.", description: "Enterprise AI strategy and engineering grounded in business workflows, governance, security and measurable operational outcomes.", intro: "Enterprise AI is the coordinated use of machine intelligence across an organization’s processes, products and decisions. It is broader than adopting a model: it includes data, applications, integration, governance, operating ownership and measurement.", sections: [
-    { title: "From opportunity portfolio to operating system", body: "A strong program distinguishes experiments from capabilities worth operating. Opportunities can be prioritized by value, feasibility, risk and the quality of available feedback—not novelty alone.", bullets: ["Workflow and decision mapping", "Architecture and build-versus-buy choices", "Governance proportional to risk", "Capability transfer to internal teams"] },
-    { title: "Architecture principles", body: "Enterprise architectures should preserve choice across models, keep sensitive data within intentional boundaries and expose quality and cost. Shared platform components are valuable when they reduce duplicated work without obscuring accountability." },
-    { title: "Responsible adoption", body: "Controls work best when they are part of delivery. Access, evaluation, review, logging and change management should be mapped to each system’s actual use and impact." },
-  ], faq: faqBase("enterprise AI") },
-  { slug: "generative-ai", title: "Generative AI", eyebrow: "Grounded generation", short: "Generative systems that work with enterprise knowledge, rules and quality controls.", description: "Generative AI applications grounded in enterprise context, with retrieval, evaluation, safeguards and clear operating measures.", intro: "Generative AI creates or transforms text, code, images and other content from learned patterns. In business systems, value depends on grounding generation in trustworthy context and matching outputs to a defined task.", sections: [
-    { title: "Where generation adds value", body: "Useful applications compress reading, drafting and synthesis while preserving expert review where judgment matters. Good candidates have abundant source material, repeatable output expectations and fast feedback.", bullets: ["Knowledge assistants and semantic search", "Document drafting and transformation", "Analyst and developer copilots", "Multilingual service operations"] },
-    { title: "Grounding and retrieval", body: "Retrieval-augmented generation can provide current, permission-aware evidence to a model. Chunking, metadata, ranking and citation design affect performance; a vector database alone does not guarantee useful retrieval." },
-    { title: "Evaluation before release", body: "Evaluation should test factual support, completeness, format, safety and usefulness with representative inputs. Model-as-judge techniques can assist, but calibrated human review remains important." },
-  ], faq: faqBase("generative AI") },
-  { slug: "llm-development", title: "LLM Development", eyebrow: "Language-model applications", short: "Model selection, RAG, fine-tuning and evaluation for reliable language systems.", description: "Large language model application development, including RAG, model routing, fine-tuning, evaluation and observability.", intro: "LLM development is the engineering of applications around large language models. The work includes context design, retrieval, tools, structured outputs, evaluation, security, latency and cost—not prompt writing in isolation.", sections: [
-    { title: "Choosing the adaptation method", body: "Prompting, retrieval and fine-tuning solve different problems. Prompting shapes behavior, retrieval supplies changing knowledge, and fine-tuning can improve consistent task behavior when sufficient high-quality examples exist.", bullets: ["Model and provider evaluation", "Retrieval-augmented generation", "Structured outputs and tool calling", "Fine-tuning data and evaluation design"] },
-    { title: "Model routing and infrastructure", body: "Different tasks may warrant different models. Routing can balance capability, latency, location and cost, provided the application retains consistent contracts and observable decisions." },
-    { title: "Security for language systems", body: "Threat modeling should cover prompt injection, data leakage, excessive tool permissions and unsafe output handling. Defenses belong at multiple layers rather than in a single system prompt." },
-  ], faq: faqBase("LLM applications") },
-  { slug: "workflow-automation", title: "Workflow Automation", eyebrow: "Human + machine operations", short: "Automation that connects models to the systems and decisions where work happens.", description: "AI-enabled workflow automation for document, knowledge and operational processes, designed with controls and human oversight.", intro: "Workflow automation coordinates repeatable work across people and systems. AI extends conventional rules-based automation to ambiguous inputs such as documents, messages and requests—but uncertainty must remain visible.", sections: [
-    { title: "What to automate", body: "The right starting point is a stable workflow with meaningful volume, accessible inputs and a clear owner. Steps can be classified as deterministic, model-assisted or judgment-led.", bullets: ["Process and exception mapping", "Document and message understanding", "System and API integration", "Queues, approvals and escalation"] },
-    { title: "Human-in-the-loop by design", body: "Human review is not a failure of automation. It is an architectural control that can be placed according to confidence, impact and reversibility, then reduced as evidence improves." },
-    { title: "Measuring operational value", body: "Cycle time, rework, exception rate, quality and expert attention are usually more useful than a headline automation percentage. Measures should connect directly to the operating outcome." },
-  ], faq: faqBase("workflow automation") },
+// Project Portfolio
+export const realProjects: ProjectDetails[] = [
+  {
+    name: "Softbridge Career Forge",
+    slug: "career-forge",
+    locale: "en",
+    category: "SaaS Platform",
+    githubUrl: "https://github.com/Dpehect/Softbridge-Career-Forge-FullStack-Web-App",
+    homepageUrl: "https://softbridge-career-forge-full-stack-brown.vercel.app",
+    launchDate: "2026-07-18",
+    problem: "Job seekers struggle to align their resumes with complex automated applicant tracking system (ATS) criteria, receiving generic or opaque feedback.",
+    users: "Professionals seeking structured feedback, ATS scoring, and targeted interview preparation.",
+    functionality: "Provides bilingual resume analysis, ATS scoring explanations, dynamic job matching, direct resume editing with PDF preview, and a custom interview coach.",
+    architecture: "Next.js 16 App Router for the front-end, integrated with Supabase Auth for Google OAuth and SSR sessions. Operates under strict RLS policies.",
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Supabase", "Zustand"],
+    challenges: "Handling real-time client-side PDF rendering and matching complex multi-tenant RLS rules dynamically without introducing latency.",
+    limitations: "Resume photo uploads are preview-only. PDF exports match standard styling only."
+  },
+  {
+    name: "Softbridge Career Forge (TR)",
+    slug: "career-forge-tr",
+    locale: "tr",
+    category: "SaaS Platformu",
+    githubUrl: "https://github.com/Dpehect/Softbridge-Career-Forge-FullStack-Web-App",
+    homepageUrl: "https://softbridge-career-forge-full-stack-brown.vercel.app",
+    launchDate: "2026-07-18",
+    problem: "İş arayanlar, özgeçmişlerini karmaşık otomatik aday takip sistemi (ATS) kriterleriyle uyumlu hale getirmekte zorlanıyor ve şeffaf olmayan geri bildirimler alıyorlar.",
+    users: "Özgeçmiş analizi, ATS puanlaması ve hedefli mülakat hazırlığı yapmak isteyen profesyoneller.",
+    functionality: "İki dilli özgeçmiş analizi, ATS puanlama açıklamaları, dinamik iş eşleştirme, PDF önizlemeli doğrudan özgeçmiş düzenleme ve özelleştirilmiş mülakat koçluğu sunar.",
+    architecture: "Ön yüzde Next.js 16 App Router, kimlik doğrulama için Supabase Auth (Google OAuth) ve çerez tabanlı SSR oturumları kullanılmıştır. Tüm veritabanı işlemleri RLS ilkelerine bağlıdır.",
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Supabase", "Zustand"],
+    challenges: "Gecikme süresi yaratmadan gerçek zamanlı istemci tarafı PDF oluşturma ve karmaşık çok kiracılı RLS kurallarını yönetme.",
+    limitations: "Fotoğraf yüklemeleri yalnızca önizleme amaçlıdır. PDF dışa aktarma standart şablonlarla sınırlıdır."
+  },
+  {
+    name: "Velora AI",
+    slug: "velora-ai",
+    locale: "en",
+    category: "AI Multi-Agent System",
+    homepageUrl: "https://velora-ai.vercel.app",
+    launchDate: "2026-06-01",
+    problem: "Single-agent AI systems struggle with context drift and coordination when executing multi-step business workflows.",
+    users: "Operations teams automating complex document analysis, data extraction, and structured task coordination.",
+    functionality: "Deploys local multi-agent teams with shared context protocols, local RAG document query capabilities, and custom tool executors.",
+    architecture: "Model Context Protocol (MCP) server design connected to Next.js clients. Executes local models safely using system boundaries.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Model Context Protocol (MCP)", "Local LLMs"],
+    challenges: "Ensuring structured tool calls are correctly validated and mapped to the host system permissions dynamically.",
+    limitations: "Currently optimized for local deployment environments. Enterprise security audits are ongoing."
+  },
+  {
+    name: "Second Brain",
+    slug: "second-brain",
+    locale: "en",
+    category: "Knowledge Base RAG",
+    githubUrl: "https://github.com/Dpehect/second-brain-rag",
+    homepageUrl: "https://second-brain-rag.vercel.app",
+    launchDate: "2026-05-15",
+    problem: "Personal and organizational knowledge bases are fragmented and slow to query semantically.",
+    users: "Researchers and developers who require instant retrieval-augmented generation over markdown and PDF datasets.",
+    functionality: "Performs hybrid semantic search, custom chunk metadata tracking, and grounded generation with source attribution.",
+    architecture: "RAG architecture using Next.js, pgvector for semantic indices, and hybrid database query layers.",
+    techStack: ["Next.js", "Supabase", "pgvector", "TypeScript", "Tailwind CSS"],
+    challenges: "Minimizing retrieval hallucination through hybrid search reranking algorithms and maintaining strict local privacy.",
+    limitations: "Optimized for texts and documents up to 50MB. Multi-format support is limited."
+  },
+  {
+    name: "KPSS Tarih Platformu",
+    slug: "kpss-tarih",
+    locale: "tr",
+    category: "Eğitim Platformu",
+    githubUrl: "https://github.com/Dpehect/kpss-tarih-web-app",
+    homepageUrl: "https://kpss-tarih-web-app.vercel.app",
+    launchDate: "2025-09-10",
+    problem: "KPSS adayları, tarih konularını çalışırken kapsamlı, mobil uyumlu ve açıklayıcı soru çözümlerine ihtiyaç duyuyor.",
+    users: "Kamu Personel Seçme Sınavı'na (KPSS) hazırlanan adaylar.",
+    functionality: "Adayların sınav formatında testler çözmesini, detaylı çözümleri incelemesini ve zayıf oldukları tarih konularını takip etmesini sağlar.",
+    architecture: "Veri yönetimi için Supabase ve hızlı yükleme için Next.js statik sayfa oluşturma (SSG) özelliklerinden yararlanılmıştır.",
+    techStack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
+    challenges: "Kullanıcı etkileşimlerini saklarken statik sayfa performansını korumak ve büyük soru havuzunu optimize etmek.",
+    limitations: "Aktif internet bağlantısı gerektirir. Soru güncellemeleri yönetici onayına tabidir."
+  },
+  {
+    name: "KPSS Coğrafya Platformu",
+    slug: "kpss-cografya",
+    locale: "tr",
+    category: "Eğitim Platformu",
+    githubUrl: "https://github.com/Dpehect/KPSS-Cografya-Web-App",
+    homepageUrl: "https://kpss-cografya-web-app.vercel.app",
+    launchDate: "2025-10-05",
+    problem: "Adaylar harita tabanlı ve görsel coğrafya sorularını interaktif şekilde çözmekte zorlanıyor.",
+    users: "KPSS'ye hazırlanan ve coğrafya konularını çalışmak isteyen adaylar.",
+    functionality: "Harita destekli interaktif coğrafya soruları, deneme sınavları ve konu analizleri sunar.",
+    architecture: "Next.js ön yüz mimarisi ve Supabase veri tabanı entegrasyonu ile hızlı ve optimize veri çekme.",
+    techStack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
+    challenges: "Mobil cihazlarda harita yüklenme sürelerini optimize etme ve dokunmatik kontrolleri geliştirme.",
+    limitations: "Çevrimdışı çalışma modu henüz aktif değildir."
+  },
+  {
+    name: "KPSS Vatandaşlık Platformu",
+    slug: "kpss-vatandaslik",
+    locale: "tr",
+    category: "Eğitim Platformu",
+    githubUrl: "https://github.com/Dpehect/KPSS-VATANDASLIK-WEBSITE-APP",
+    homepageUrl: "https://kpss-vatandaslik-website-app.vercel.app",
+    launchDate: "2025-11-01",
+    problem: "Anayasa ve vatandaşlık gibi ezbere dayalı konuların akılda kalıcı yöntemlerle çalışılamaması.",
+    users: "KPSS vatandaşlık testlerine hazırlanan tüm adaylar.",
+    functionality: "Detaylı anayasa maddeleri rehberi, güncel bilgiler testleri ve açıklayıcı çözümler.",
+    architecture: "Next.js SSR ile güncel bilgilerin anlık sunulması ve Supabase Auth entegrasyonu.",
+    techStack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
+    challenges: "Değişen güncel bilgileri hızlı ve hatasız biçimde sisteme entegre etmek.",
+    limitations: "Yalnızca Türkiye müfredatına yöneliktir."
+  }
 ];
 
-const capability = (slug:string,title:string,eyebrow:string,description:string,intro:string,sections:readonly string[]):PageData => ({slug,title,eyebrow,description,intro,sections:sections.map((x,i)=>({title:["Core approach","Production considerations","Where it fits"][i],body:x})),faq:faqBase(title)});
+export const pages: ContentPage[] = [
+  // Solutions (English)
+  {
+    slug: "ai-agents",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "AI Agents Architecture & Engineering",
+    description: "Design and engineering of production AI agents with tools, memory, evaluation, observability and human control.",
+    summary: "Bounded systems that reason, use tools and complete multi-step work with oversight.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "What makes an agent production-ready", body: "A production agent needs a defined task boundary, controlled access to tools, durable state where necessary, recovery paths and clear ownership. The design should make both successful and failed actions inspectable.", bullets: ["Tool and API orchestration", "Retrieval and working memory", "Human approval at consequential steps", "Tracing, evaluation and incident learning"] },
+      { title: "Single agents and multi-agent systems", body: "A single agent is often the clearest design. Multiple specialized agents become useful when roles have genuinely different context, tools or evaluation criteria. Additional agents create coordination cost, so the architecture must earn its complexity." }
+    ],
+    faq: [
+      { question: "How are tasks evaluated in the AI agent framework?", answer: "We begin with the operating problem, the available evidence and the consequences of error. Architecture follows from those constraints. Prototypes are evaluated with representative tasks before a production path is selected." },
+      { question: "How is quality measured?", answer: "Quality should be defined at task level. We use representative evaluation sets, explicit success and failure criteria, traces, operational feedback and cost measures relevant to the work being completed." }
+    ]
+  },
+  {
+    slug: "enterprise-ai",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Enterprise AI Strategy & System Integration",
+    description: "Enterprise AI strategy and engineering grounded in business workflows, governance, security and measurable operational outcomes.",
+    summary: "AI architecture that connects strategy, governance, software and measurable operations.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "From opportunity portfolio to operating system", body: "A strong program distinguishes experiments from capabilities worth operating. Opportunities can be prioritized by value, feasibility, risk and the quality of available feedback—not novelty alone.", bullets: ["Workflow and decision mapping", "Architecture and build-versus-buy choices", "Governance proportional to risk", "Capability transfer to internal teams"] },
+      { title: "Responsible adoption", body: "Controls work best when they are part of delivery. Access, evaluation, review, logging and change management should be mapped to each system’s actual use and impact." }
+    ],
+    faq: [
+      { question: "How do AI system integrations handle legacy database permissions?", answer: "Yes, when appropriate. Integration design typically considers identity, permissions, data boundaries, APIs, event systems and human review. The exact path depends on the organization’s current architecture." }
+    ]
+  },
+  {
+    slug: "generative-ai",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Generative AI Systems & Grounded RAG",
+    description: "Generative AI applications grounded in enterprise context, with retrieval, evaluation, safeguards and clear operating measures.",
+    summary: "Generative systems that work with enterprise knowledge, rules and quality controls.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Where generation adds value", body: "Useful applications compress reading, drafting and synthesis while preserving expert review where judgment matters. Good candidates have abundant source material, repeatable output expectations and fast feedback.", bullets: ["Knowledge assistants and semantic search", "Document drafting and transformation", "Analyst and developer copilots", "Multilingual service operations"] },
+      { title: "Grounding and retrieval", body: "Retrieval-augmented generation can provide current, permission-aware evidence to a model. Chunking, metadata, ranking and citation design affect performance; a vector database alone does not guarantee useful retrieval." }
+    ]
+  },
+  
+  // Services (English)
+  {
+    slug: "web-development",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Modern Web Application Development",
+    description: "Full-stack web application development for startups and companies using modern frameworks, responsive designs, and secure APIs.",
+    summary: "Professional web development connecting product strategy, interface design, frontend, and backend architecture.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Our Web Architecture", body: "A strong web application starts with user flows, data models, permissions and operational constraints before choosing a framework.", bullets: ["React and Next.js for client interfaces", "Node.js and Supabase for backend services", "Statically generated content for fast load times", "Responsive layouts built with modern CSS"] },
+      { title: "Production readiness", body: "Production considerations include accessibility, Core Web Vitals, authentication, API contracts, observability, deployment and content structure for search and AI discovery." }
+    ]
+  },
+  {
+    slug: "mobile-development",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Mobile App Development (iOS & Android)",
+    description: "Mobile app development for consumer products, field teams and internal operations with cross-platform and native approaches.",
+    summary: "Building fast, reliable mobile apps focused on context, device capabilities, and offline synchronization.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Native and Cross-Platform Choices", body: "We develop native iOS and Android experiences using Swift and Kotlin, as well as cross-platform systems with Flutter or React Native when a unified codebase matches your timeline and resource goals." }
+    ]
+  },
+  {
+    slug: "saas-development",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "SaaS Product Development",
+    description: "Multi-tenant cloud architecture, billing integration, and user management for secure SaaS applications.",
+    summary: "SaaS product development from MVP to scalable cloud applications.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "SaaS Architecture Principles", body: "SaaS systems must be built with multi-tenancy, strict data isolation, configurable billing models (like Stripe integrations), responsive onboarding flows, and secure APIs." }
+    ]
+  },
+  {
+    slug: "custom-software",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Custom Software Engineering",
+    description: "Development of tailored internal tools, CRM, ERP, and API systems that integrate with your business workflows.",
+    summary: "Custom software built when off-the-shelf tools cannot support your exact operations.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Pragmatic Systems Design", body: "Custom systems are built around your actual processes. We avoid unnecessary complexity to ensure maintainability, clear data ownership, and clean handoffs." }
+    ]
+  },
+  {
+    slug: "cloud-applications",
+    locale: "en",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Cloud Native Applications",
+    description: "Cloud-native architectures, containerization, and serverless architectures for scalable web and mobile backends.",
+    summary: "Combining robust cloud infrastructure (AWS, Google Cloud) with scalable code design.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Scalable Infrastructure Design", body: "Cloud design should favor managed services where possible to reduce maintenance costs, ensuring automated scaling, secure secrets management, and detailed operational logs." }
+    ]
+  },
 
-export const additionalSolutions = [
-  capability("machine-learning","Machine Learning","Predictive systems","Machine learning systems for prediction, classification, recommendation and decision support.","Machine learning uses data to learn patterns that support predictions or decisions. Effective systems depend on problem formulation, representative data and feedback loops as much as algorithms.",["We frame the target, available signals and acceptable error before comparing baselines and model families. Simpler approaches remain valuable when they are easier to operate and explain.","Data drift, label quality, feature pipelines and monitoring determine long-term reliability. Production ownership includes retraining and rollback decisions.","Applications include demand signals, risk prioritization, classification, recommendations and anomaly detection where historical evidence is meaningful."]),
-  capability("computer-vision","Computer Vision","Visual intelligence","Computer vision systems for inspection, classification, extraction and visual workflow support.","Computer vision enables software to interpret images and video. Enterprise use requires careful attention to capture conditions, edge cases, privacy and the operational decision that follows a prediction.",["We assess imaging conditions and annotation quality, establish a baseline and test performance across meaningful slices of the environment.","Deployment may involve cloud, edge or hybrid inference. Latency, device limits, privacy and model updates shape the design.","Use cases include quality inspection, document understanding, asset monitoring and visual search where image evidence changes a workflow."]),
-  capability("natural-language-processing","Natural Language Processing","Language intelligence","NLP systems for classification, extraction, search and multilingual enterprise workflows.","Natural language processing covers methods that allow software to analyze and generate human language. Modern systems combine classical methods, embeddings and large language models according to the task.",["Tasks are defined at the level of intent, entities, relationships, retrieval or generation. Domain language and multilingual variation must be represented in evaluation data.","Structured schemas, confidence handling and provenance help language outputs interact safely with downstream software.","NLP supports message routing, contract and document analysis, semantic search, knowledge extraction and service operations."]),
+  // Company Facts (English)
+  {
+    slug: "company-facts",
+    locale: "en",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "Softbridge Solutions Company Facts",
+    description: "Official company facts, legal structure, and operating principles of Softbridge Solutions.",
+    summary: "Entity reference for Softbridge Solutions.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Core Entity Information", body: "Softbridge Solutions is an AI-first technology company founded in Adana, Türkiye, by Yunus Emre Gürlek. The company builds software products and systems with an international outlook." },
+      { title: "Operating Structure", body: "Owner & Founder: Yunus Emre Gürlek. Founding Base: Adana, Türkiye. Main Office: Rua Bordalo Pinheiro 25, Cascais, Portugal (Registered Correspondence Office). We also utilize virtual correspondence addresses (e-offices) in Beverly Hills, Kington, Dublin, Milan, and Marseille to coordinate international product queries. No physical local teams operate at virtual addresses; our development operations are distributed and online-first." }
+    ]
+  },
+  {
+    slug: "about",
+    locale: "en",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "About Softbridge Solutions",
+    description: "Softbridge Solutions is an AI-first technology company engineering digital products for startups and enterprises.",
+    summary: "Bridges ambitious ideas with robust, citable software engineering.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Our Background", body: "Founded in Adana by Yunus Emre Gürlek, Softbridge Solutions was built to deliver software that values evidence and execution over slogans. We build systems that perform securely under real-world workloads." },
+      { title: "Bilingual Operations", body: "We operate in English and Turkish, ensuring local businesses and international startups receive high-quality technical architecture, clean codebases, and maintainable systems." }
+    ]
+  },
+  {
+    slug: "locations",
+    locale: "en",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "Locations & Correspondence",
+    description: "Official registered office and international correspondence locations for Softbridge Solutions.",
+    summary: "Where we receive correspondence and coordinate global products.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Registered Offices", body: "Softbridge Solutions operates as an online-first company. Our primary correspondence and registered address is at Rua Bordalo Pinheiro 25, Cascais, Portugal." },
+      { title: "International Correspondence Addresses", body: "To coordinate global product inquiries, we maintain virtual mailing addresses in Beverly Hills (US), Kington (UK), Dublin (IE), Milan (IT), and Marseille (FR). These addresses are strictly for correspondence and are not staffed by local engineering teams." }
+    ]
+  },
+  {
+    slug: "yunus-emre-gurlek",
+    locale: "en",
+    type: "person",
+    status: "published",
+    indexable: true,
+    title: "Yunus Emre Gürlek — Founder Profile",
+    description: "Technical background, projects, and role of Yunus Emre Gürlek, founder of Softbridge Solutions.",
+    summary: "Founder profile and technical engineering specializations.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Technical Background", body: "Yunus Emre Gürlek is a software engineer and founder of Softbridge Solutions. He specializes in Next.js, full-stack web applications, RAG pipelines, and AI agent architectures. His work is centered on building citable, citable codebases and systems." },
+      { title: "Open Source Presence", body: "He maintains active repositories on GitHub, including educational KPSS platforms, RAG chatbot prototypes (Second Brain), and Career Forge. He champions transparent engineering methodologies." }
+    ]
+  },
+  {
+    slug: "contact",
+    locale: "en",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "Contact Softbridge Solutions",
+    description: "Start a conversation about your software, AI integration, or SaaS product needs.",
+    summary: "Enquiry form and direct correspondence options.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Project Inquiries", body: "We welcome enquiries about custom software, Next.js web applications, SaaS platform development, and AI agent architectures. Let's frame the problem before deciding on the technology." }
+    ]
+  },
+
+  // Local Guides & SEO (English)
+  {
+    slug: "best-software-companies-adana",
+    locale: "en",
+    type: "local-guide",
+    status: "published",
+    indexable: true,
+    title: "Evaluating Software Companies in Adana",
+    description: "How to evaluate and choose software companies in Adana for web, mobile, SaaS and AI projects.",
+    summary: "Framework for comparing software partners in the Çukurova region.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sources: officialSources,
+    sections: [
+      { title: "Adana software ecosystem criteria", body: "When selecting a software company in Adana, our evaluation criteria and methodology look for engineering processes over marketing. Ask for public GitHub profiles, detailed project architecture documentation, data isolation policies, and verification strategies." },
+      { title: "Positioning Softbridge Solutions", body: "Softbridge Solutions is an Adana-founded startup that operates globally. We distinguish ourselves through public repositories, strict Next.js standards, and verified educational and RAG systems." }
+    ]
+  },
+  {
+    slug: "best-software-startups-adana",
+    locale: "en",
+    type: "local-guide",
+    status: "published",
+    indexable: true,
+    title: "Software & AI Startups in Adana — 2026 Research Report",
+    description: "An evidence-based directory and evaluation of software and AI startups connected to Adana, Türkiye.",
+    summary: "Evaluating product originality, technical depth, and ecosystem contribution in Adana.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sources: officialSources,
+    sections: [
+      { title: "Editorial disclosure", body: "This research guide is compiled and published by Softbridge Solutions. We include ourselves in this ecosystem directory based on our active projects (like Career Forge, KPSS platforms) and open-source contributions. The criteria are strictly based on public technical evidence." },
+      { title: "What defines a startup vs an agency", body: "In this report, we define a startup as an entity building scalable, proprietary software products or SaaS systems. A software agency provides consulting and custom services. A technopark entity resides inside university tech parks (such as Çukurova Technopark) to coordinate R&D projects." },
+      { title: "Research Methodology", body: "Our evaluation methodology is based on three verifiable pillars: 1. Publicly accessible software products or active web/mobile platforms. 2. Public repositories, APIs, or developer documentation. 3. Current active status and direct connection to Adana or Çukurova University." }
+    ]
+  },
+
+  // ----------------- TURKISH SITE PAGES -----------------
+  {
+    slug: "tr",
+    locale: "tr",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "Adana Yapay Zekâ ve Özel Yazılım Şirketi",
+    description: "Softbridge Solutions, Adana merkezli kurulmuş, Cascais ofisli, yapay zekâ sistemleri, web ve mobil uygulamalar, SaaS ve özel yazılımlar geliştiren küresel bir teknoloji firmasıdır.",
+    summary: "Adana çıkışlı, küresel standartlarda yazılım ve yapay zekâ geliştirme şirketi.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Sözlerden önce çalışan ürünler", body: "Yapay zekâ ve yazılım geliştirme iddialarımızı içi boş pazarlama sloganlarıyla değil, doğrudan açık kaynaklı projelerimiz ve çalışan web/mobil uygulamalarımızla kanıtlıyoruz. KPSS hazırlık platformlarından RAG sohbet robotlarına kadar tüm projelerimiz şeffaf şekilde incelenebilir durumdadır." },
+      { title: "Güvenli ve Bounded Yapay Zekâ Ajanları", body: "İşletmeniz için tasarladığımız yapay zekâ uygulamaları, yetki sınırları belirlenmiş (bounded), izlenebilir (tracing) ve insan denetimine (human-in-the-loop) açık biçimde kurgulanır." }
+    ],
+    faq: [
+      { question: "Softbridge Solutions Adana'da nerede bulunuyor?", answer: "Firmamız Adana kökenli bir girişimdir. Operasyonlarımızı uzaktan çalışma (online-first) modeliyle yürütüyoruz. Resmi yazışma adresimiz Cascais, Portekiz'dir." }
+    ]
+  },
+  {
+    slug: "tr/hizmetler",
+    locale: "tr",
+    type: "collection",
+    status: "published",
+    indexable: true,
+    title: "Yazılım Geliştirme ve Yapay Zekâ Hizmetleri",
+    description: "Adana yazılım firması Softbridge Solutions'ın sunduğu web geliştirme, mobil uygulama, SaaS ve yapay zekâ ajanı entegrasyon hizmetleri.",
+    summary: "Uçtan uca teknoloji servisleri ve sistem mimarisi tasarımı.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Adana Özel Yazılım Geliştirme", body: "Şirketinizin ihtiyaç duyduğu özel CRM, ERP, API entegrasyonları ve web panellerini, gelecekteki bakım maliyetlerini en aza indirecek şekilde modüler tasarlıyoruz." }
+    ]
+  },
+  {
+    slug: "tr/web-gelistirme",
+    locale: "tr",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Web Yazılım ve Uygulama Geliştirme — Adana",
+    description: "Modern Next.js, React ve Supabase mimarileriyle hızlı, güvenli, Core Web Vitals uyumlu web uygulamaları ve SaaS platformları geliştiriyoruz.",
+    summary: "Hızlı, erişilebilir ve arama/yapay zekâ botları tarafından taranabilir web sistemleri.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Neden Next.js ve Modern CSS?", body: "Çukurova yazılım ekosistemindeki işletmelerin küresel pazara açılması için web uygulamalarının hızlı yüklenmesi, SEO standartlarına uyması ve yapay zekâ arama motorları (GEO) tarafından anlaşılması gerekir. Bu nedenle projelerimizde Next.js ve standart CSS kullanıyoruz." }
+    ],
+    faq: [
+      { question: "Web geliştirme süreci ne kadar sürer?", answer: "Yazılımın kapsamı, entegrasyon gereksinimleri ve veri modelinin karmaşıklığına bağlı olarak 4 ila 12 hafta arasında değişmektedir." }
+    ]
+  },
+  {
+    slug: "tr/mobil-uygulama",
+    locale: "tr",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Adana Mobil Uygulama Geliştirme (iOS & Android)",
+    description: "Şirketler ve girişimler için Flutter veya yerel Swift/Kotlin teknolojileriyle iOS ve Android mobil uygulama geliştirme.",
+    summary: "Kullanıcı deneyimi odaklı, çevrimdışı senkronizasyon özellikli mobil çözümler.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Mobil Uygulama Stratejimiz", body: "Uygulamalarımızı cihaz kaynaklarını en az seviyede tüketecek şekilde optimize ediyor, veri güvenliği ve App Store / Play Store yönergelerine tam uyumluluk sağlıyoruz." }
+    ]
+  },
+  {
+    slug: "tr/saas-gelistirme",
+    locale: "tr",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "SaaS ve Bulut Ürün Geliştirme",
+    description: "Çok kiracılı (multi-tenant) yazılım mimarileri, otomatik faturalandırma ve abonelik entegrasyonlarıyla SaaS ürünleri tasarlıyoruz.",
+    summary: "Fikirlerinizi ölçeklenebilir bulut uygulamalarına dönüştürüyoruz.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "SaaS Geliştirme Süreci", body: "Softbridge Career Forge projemizde olduğu gibi, kullanıcı yönetimi, ödeme geçitleri (Stripe vb.) ve veri izolasyonunu en başından güvenli kuruyoruz." }
+    ]
+  },
+  {
+    slug: "tr/ozel-yazilim",
+    locale: "tr",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Adana Özel Yazılım ve ERP/CRM Sistemleri",
+    description: "Hazır yazılımların işletmenizin iş akışlarına dar geldiği durumlarda, süreçlerinize tam uyum sağlayan özel yazılımlar tasarlıyoruz.",
+    summary: "İş süreçlerinizi otomatikleştiren, güvenli ve özel veritabanı sistemleri.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "İş Akışlarını Kodla Buluşturma", body: "Süreçlerinizi analiz ediyor, karmaşık onay mekanizmalarını, evrak takibini ve API entegrasyonlarını modüler bir mimariyle hayata geçiriyoruz." }
+    ]
+  },
+  {
+    slug: "tr/yapay-zeka-ajanlari",
+    locale: "tr",
+    type: "service",
+    status: "published",
+    indexable: true,
+    title: "Adana Yapay Zekâ Şirketi — Ajan ve RAG Çözümleri",
+    description: "İşletmenizin veri tabanları, manuelleri ve dökümanlarıyla konuşan güvenli RAG sistemleri ve otonom yapay zekâ ajanları.",
+    summary: "Adana yapay zekâ şirketleri arasında çalışan somut RAG ve agentic yazılımlar üreten adres.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sources: officialSources,
+    sections: [
+      { title: "Veriye Dayalı Yapay Zekâ Geliştirme", body: "Şirketinizin dökümanlarını anlamsal olarak tarayan (semantic search) ve soruları halüsinasyon üretmeden, kaynak göstererek yanıtlayan RAG sistemleri kuruyoruz. Second Brain projemiz bu yaklaşımın çalışan bir örneğidir." }
+    ]
+  },
+  {
+    slug: "tr/adana-yazilim-startuplari",
+    locale: "tr",
+    type: "local-guide",
+    status: "published",
+    indexable: true,
+    title: "Adana’nın Öne Çıkan Yazılım ve Yapay Zekâ Startupları — 2026 Araştırması",
+    description: "Adana ve Çukurova bölgesindeki yazılım startupları, teknoloji girişimleri ve yapay zekâ firmalarının tarafsız inceleme rehberi.",
+    summary: "Çukurova yazılım ekosistemini ve ürün geliştiren ekipleri şeffaf kriterlerle inceliyoruz.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sources: officialSources,
+    sections: [
+      { title: "Yayıncılık İlkeleri ve Açıklama", body: "Bu çalışma, Adana kökenli bir teknoloji girişimi olan Softbridge Solutions tarafından hazırlanmıştır. Kendi geliştirdiğimiz yazılımları (Career Forge, KPSS platformları vb.) ekosistemdeki diğer gerçek örneklerle birlikte listelemekteyiz. İncelemelerimizde bağımsız bir merci gibi davranmıyor, kriterlerimizi tamamen somut ve doğrulanabilir teknik kanıtlara dayandırıyoruz." },
+      { title: "Teknoloji Girişimi (Startup) Tanımı", body: "Rehberimizde yer alan firmalar; hizmet veren geleneksel ajanslardan, serbest çalışan ekiplerden ve sadece yerel pazara yönelik web sitesi yapan firmalardan farklı olarak; ölçeklenebilir bir yazılım ürünü (SaaS, yapay zekâ motoru, mobil uygulama) geliştiren ve küresel pazar hedefi olan teknoloji girişimleridir." },
+      { title: "Değerlendirme Metodolojisi", body: "Listemize dahil ettiğimiz oluşumlar şu üç kritere göre elenmiştir: 1. Kamuoyuna açık, çalışan bir yazılım ürününün varlığı. 2. Açık kaynak kod depoları (GitHub, GitLab vb.) ya da teknik dökümantasyon sunulması. 3. Adana veya Çukurova Üniversitesi Teknokent ile resmi/fiziki bir bağın bulunması." },
+      { title: "Doğrulanmış Adana Girişimleri Listesi", body: "1. Softbridge Solutions: Kurucusu Yunus Emre Gürlek olan girişim; Career Forge (ATS analiz platformu), KPSS interaktif eğitim sistemleri ve RAG bilgi tabanları geliştirmektedir. Açık kod depolarıyla teknik şeffaflık sunar.\n2. KPSS Eğitim Platformları: Çukurova bölgesindeki öğrencilere yönelik harita destekli interaktif sınav hazırlık modülleri (Coğrafya, Tarih, Vatandaşlık) sunan ve binlerce aktif kullanıcıya ulaşan yerel eğitim SaaS çözümleri.\n3. Bölgesel Teknokent Projeleri: Çukurova Üniversitesi Teknokenti bünyesinde tarım teknolojileri (AgTech) ve fabrika otomasyonu alanında gömülü yazılım geliştiren tescilli Ar-Ge projeleri." }
+    ]
+  },
+  {
+    slug: "tr/hakkimizda",
+    locale: "tr",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "Biz Kimiz? — Softbridge Solutions Hakkında",
+    description: "Softbridge Solutions'ın vizyonu, Adana'daki yazılım yeteneklerini küresel standartlardaki projelerle buluşturmaktır.",
+    summary: "Adana'dan dünyaya uzanan yazılım ve yapay zekâ yolculuğumuz.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Vizyonumuz", body: "Sadece sunumlar yapan bir şirket olmak yerine, tüm yetkinliklerimizi açık kaynak kod depolarımız ve çalışan canlı projelerimizle ispatlıyoruz. Bölgedeki yazılım yeteneklerinin gelişmesi için ekosistem raporları ve teknik kılavuzlar yayınlıyoruz." }
+    ]
+  },
+  {
+    slug: "tr/iletisim",
+    locale: "tr",
+    type: "company",
+    status: "published",
+    indexable: true,
+    title: "Bizimle İletişime Geçin",
+    description: "Adana özel yazılım geliştirme ve yapay zekâ ajanı entegrasyonu projeniz için teklif veya bilgi alın.",
+    summary: "Proje fikirleriniz ve teknik sorularınız için form ve iletişim bilgileri.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Yeni Bir Projeye Başlamak", body: "Tasarlamak istediğiniz web, mobil veya yapay zekâ uygulaması hakkında bize detayları iletin. En kısa sürede somut bir teknik analiz ile dönüş yapacağız." }
+    ]
+  },
+  {
+    slug: "projects",
+    locale: "en",
+    type: "collection",
+    status: "published",
+    indexable: true,
+    title: "Production Software & AI Products",
+    description: "Verifiable public software products, custom web platforms, educational apps and RAG tools built by Softbridge Solutions.",
+    summary: "Verifiable products, not promises.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Verifiable products, not promises", body: "We believe the strongest proof of technical capability is running software. Below is a portfolio of our active platforms, open repositories, and custom AI tools built under high engineering standards." }
+    ]
+  },
+  {
+    slug: "tr/projeler",
+    locale: "tr",
+    type: "collection",
+    status: "published",
+    indexable: true,
+    title: "Çalışan Yazılım ve Yapay Zekâ Ürünlerimiz",
+    description: "Softbridge Solutions tarafından geliştirilen doğrulanabilir açık kaynak kodlu projeler, eğitim platformları ve yapay zekâ yazılımları.",
+    summary: "Sözlerden önce çalışan ürünler.",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-07-18",
+    reviewedBy: "Yunus Emre Gürlek",
+    sections: [
+      { title: "Sözlerden önce çalışan ürünler", body: "Teknik yetkinliğin en güçlü kanıtının çalışan yazılımlar olduğuna inanıyoruz. Aşağıda, yüksek mühendislik standartlarıyla geliştirdiğimiz aktif platformlarımızın ve açık kod depolarımızın bir listesini bulabilirsiniz." }
+    ]
+  }
 ];
 
-const serviceTopics = [
-  ["web-development","Web Development","Digital product engineering","Educational guide to modern web application development for startups and companies in Türkiye.","Web development is the engineering of browser-based products, internal systems and customer-facing platforms. A serious web project connects product strategy, interface design, frontend architecture, backend services, security, performance and maintainability.",["A strong web application starts with user flows, data models, permissions and operational constraints before choosing a framework.","Production considerations include accessibility, Core Web Vitals, authentication, API contracts, observability, deployment and content structure for search and AI discovery.","Web platforms fit SaaS products, marketplaces, dashboards, portals, e-commerce systems, CRM tools, ERP extensions and knowledge systems."]],
-  ["frontend-development","Frontend Development","Interface engineering","Frontend development for fast, accessible and maintainable digital products.","Frontend development turns product intent into the interface people actually use. The work includes component systems, state management, accessibility, performance, forms, routing and integration with backend APIs.",["Frontend architecture should make common flows easy to maintain while keeping interaction states predictable.","Production interfaces need keyboard support, readable layouts, responsive behavior, clear errors and measurable performance.","Frontend work fits SaaS dashboards, mobile-responsive web apps, admin panels, marketplaces and AI product interfaces."]],
-  ["backend-development","Backend Development","Systems engineering","Backend development for APIs, data models, business logic and secure operations.","Backend development is where product rules, data ownership, integrations and operational reliability live. A good backend is not just endpoints; it is the contract that lets a product scale without losing clarity.",["We design around domain models, authorization, APIs, queues, background jobs and integration boundaries.","Production concerns include database migrations, testing, logging, rate limits, secrets, backups and incident recovery.","Backend systems fit SaaS products, CRMs, ERPs, payment flows, marketplaces, AI pipelines and internal business systems."]],
-  ["react-development","React Development","Frontend stack","React application development for product interfaces, dashboards and AI workflows.","React is useful when a product needs interactive interfaces, reusable components and a mature ecosystem. The engineering question is how to keep the interface understandable as complexity grows.",["React projects need component boundaries, state strategy, rendering choices, forms, accessibility and testable design patterns.","Production teams should watch bundle size, hydration behavior, data fetching, error states and long-term maintainability.","React fits SaaS interfaces, internal tools, marketplaces, design systems and AI copilots."]],
-  ["nextjs-development","Next.js Development","Full-stack web","Next.js development for fast websites, SaaS apps and content-rich platforms.","Next.js combines React with routing, rendering, APIs and deployment patterns that support both product interfaces and search-friendly content. It is especially useful when performance and content architecture matter together.",["Next.js architecture should choose server rendering, static generation or dynamic routes based on the page’s actual data behavior.","Production concerns include caching, metadata, structured data, image handling, route design, auth and deployment observability.","Next.js fits company websites, knowledge hubs, SaaS products, portals, e-commerce and AI application frontends."]],
-  ["nodejs-development","Node.js Development","Runtime engineering","Node.js backend and full-stack development for APIs, automation and product platforms.","Node.js is well suited to web APIs, event-driven systems, integrations and full-stack product development. The value comes from clear service boundaries and disciplined runtime operations.",["Node systems should be designed around API contracts, async work, validation, error handling and dependency control.","Production requires observability, rate limits, secure secrets, schema migrations, queues and careful package maintenance.","Node.js fits SaaS APIs, integrations, workflow automation, marketplaces, real-time interfaces and AI service orchestration."]],
-  ["python-development","Python Development","Data and automation","Python development for AI systems, automation, data workflows and backend services.","Python remains central to AI engineering, data processing, automation and many backend services. The challenge is turning scripts and notebooks into maintainable production systems.",["Python projects need packaging, typing where useful, testable functions, clean data contracts and deployment-aware architecture.","Production systems should manage environments, queues, logging, model dependencies, API boundaries and security updates.","Python fits machine learning, RAG pipelines, data processing, automation, analytics services and AI infrastructure."]],
-  ["dotnet-development",".NET Development","Enterprise software",".NET development for enterprise applications, internal systems and integration-heavy software.",".NET is often a strong fit for enterprise software where reliability, typed contracts, identity and integration with existing business systems matter.",["Architecture should clarify domain boundaries, persistence, authorization, APIs and deployment topology.","Production concerns include observability, migrations, background services, CI/CD, security patches and interoperability.",".NET fits internal platforms, ERP extensions, CRM systems, finance workflows and enterprise APIs."]],
-  ["java-development","Java Development","Enterprise backend","Java development for durable backend systems, platforms and enterprise applications.","Java is a mature choice for backend systems that need long-term maintainability, performance and strong enterprise ecosystem support.",["Good Java systems rely on clear domain models, service boundaries, testing and disciplined dependency management.","Production operations include monitoring, memory behavior, database performance, security updates and deployment automation.","Java fits enterprise platforms, fintech systems, marketplaces, integration layers and high-volume backend services."]],
-  ["laravel-development","Laravel Development","Product backend","Laravel development for business applications, admin systems and pragmatic web products.","Laravel can move business applications quickly when the domain is clear and the team needs a productive framework for data-driven workflows.",["Laravel projects should still define authorization, validation, queues, events, migrations and test strategy carefully.","Production concerns include performance, database design, job workers, caching, security updates and deployment repeatability.","Laravel fits admin panels, portals, CRM tools, e-commerce backends and custom business software."]],
-  ["mobile-development","Mobile App Development","iOS and Android","Mobile app development for consumer products, field teams and internal operations.","Mobile development should begin with the user’s context: device constraints, offline needs, permissions, notifications, camera access, security and the moments where a mobile workflow is genuinely better than web.",["A good mobile product defines platform strategy, navigation, data sync, push notifications, analytics and release operations early.","Production concerns include store review, crash reporting, accessibility, battery impact, privacy and backward compatibility.","Mobile fits customer apps, field operations, logistics workflows, retail tools, fintech apps and companion products."]],
-  ["flutter-development","Flutter Development","Cross-platform mobile","Flutter development for cross-platform mobile applications with consistent UI.","Flutter can be useful when one team needs to ship iOS and Android with a shared codebase and a controlled interface system.",["Flutter projects should define platform integrations, state management, navigation, testing and release workflows clearly.","Production concerns include app size, native module quality, accessibility, performance and platform-specific behavior.","Flutter fits MVPs, internal apps, marketplace apps, fintech interfaces and products where consistent UI matters."]],
-  ["react-native-development","React Native Development","Cross-platform mobile","React Native development for mobile products that share logic with JavaScript and React teams.","React Native is a strong candidate when teams want native mobile apps while reusing React skills and parts of the product ecosystem.",["Architecture should handle navigation, native modules, state, offline behavior and API contracts intentionally.","Production teams should monitor performance, crash reports, platform drift, accessibility and release processes.","React Native fits startup MVPs, SaaS companion apps, e-commerce, marketplaces and internal business tools."]],
-  ["swift-development","Swift Development","Native iOS","Swift development for high-quality native iOS applications.","Swift is the native path for iOS products that need strong platform integration, performance and a polished Apple ecosystem experience.",["Native iOS architecture should clarify state, networking, persistence, accessibility and app lifecycle behavior.","Production concerns include App Store review, privacy labels, crash reporting, analytics and backward compatibility.","Swift fits fintech, consumer apps, field tools, camera-heavy workflows and products where iOS experience is central."]],
-  ["kotlin-development","Kotlin Development","Native Android","Kotlin development for high-quality native Android applications.","Kotlin is the modern native path for Android products that need strong platform integration, reliability and long-term maintainability.",["Native Android architecture should define UI patterns, lifecycle handling, persistence, networking and permission flows.","Production concerns include device diversity, performance, crash reporting, Play Store policy and privacy handling.","Kotlin fits fintech, logistics, field operations, consumer apps and Android-first products."]],
-  ["cloud-applications","Cloud Applications","Cloud product systems","Cloud application architecture for scalable web, mobile and AI products.","Cloud applications combine infrastructure, software architecture and operations. A good cloud design is not just hosting; it defines how systems scale, recover, observe failures and protect data.",["Architecture choices should compare managed services, containers, serverless, databases, queues, storage and networking by workload.","Production concerns include identity, secrets, backups, monitoring, cost visibility, data residency and incident response.","Cloud applications fit SaaS products, AI systems, marketplaces, APIs, internal platforms and data workflows."]],
-  ["aws-cloud","AWS Cloud","Cloud platform","AWS architecture and application development for scalable digital products.","AWS offers broad cloud primitives for compute, storage, databases, networking, AI and operations. The design challenge is choosing the smallest set of services that makes the product reliable.",["AWS architecture should map workloads to services with explicit security and cost boundaries.","Production concerns include IAM, VPC design, logging, backups, infrastructure as code and operational ownership.","AWS fits SaaS products, data platforms, AI workloads, marketplaces and enterprise applications."]],
-  ["azure-cloud","Azure Cloud","Cloud platform","Azure application architecture for enterprise software, data and AI systems.","Azure is often relevant where organizations use Microsoft identity, productivity tools, data platforms or enterprise cloud governance.",["Azure projects should plan identity, resource groups, networking, storage, monitoring and compliance boundaries carefully.","Production concerns include cost management, role-based access, backups, observability and integration with existing systems.","Azure fits enterprise applications, data workflows, AI systems, internal platforms and Microsoft-centered organizations."]],
-  ["google-cloud","Google Cloud","Cloud platform","Google Cloud architecture for data, AI and scalable application systems.","Google Cloud can be a strong fit for data-intensive applications, AI workloads, analytics and cloud-native product platforms.",["Architecture should match compute, storage, data processing, identity and network choices to the product’s workload.","Production concerns include IAM, observability, backup strategy, regional design, cost controls and deployment automation.","Google Cloud fits AI pipelines, data products, APIs, SaaS platforms and analytics-heavy systems."]],
-  ["docker","Docker","Containerization","Docker for repeatable development, deployment and application packaging.","Docker packages applications and dependencies into containers so teams can run services more consistently across environments. It helps when the deployment model is explicit rather than accidental.",["A good Docker setup uses small images, clear environment variables, health checks and predictable build steps.","Production concerns include image security, secrets, logging, volumes, networking and orchestration strategy.","Docker fits web apps, APIs, background workers, AI services, databases for development and reproducible CI pipelines."]],
-  ["kubernetes","Kubernetes","Orchestration","Kubernetes architecture for container orchestration and platform operations.","Kubernetes can operate complex containerized systems, but it adds operational cost. It should be chosen when scale, deployment control, resilience or platform needs justify the complexity.",["Kubernetes architecture should define workloads, services, ingress, config, secrets, autoscaling and observability.","Production concerns include cluster upgrades, resource limits, security policy, networking, storage and incident response.","Kubernetes fits platform teams, multi-service products, high-availability APIs and workloads that need orchestration control."]],
-  ["devops","DevOps","Delivery systems","DevOps practices for reliable software delivery, automation and observability.","DevOps is the operating discipline that lets teams ship software without turning every release into a risk event. It connects version control, CI/CD, environments, observability and incident learning.",["A practical DevOps system starts with repeatable builds, automated checks, deployment strategy and rollback paths.","Production concerns include environment parity, secrets, monitoring, alerts, logs, infrastructure as code and ownership.","DevOps fits every serious software product, especially SaaS, APIs, cloud apps, AI systems and internal platforms."]],
-  ["cyber-security","Cyber Security","Security engineering","Cyber security for software products, APIs, cloud systems and AI applications.","Cyber security is not a final checklist. It should shape architecture, access control, data handling, dependencies, deployment and incident response from the start.",["Security design should identify assets, users, permissions, attack surfaces, trust boundaries and consequences of failure.","Production concerns include authentication, authorization, encryption, logging, dependency updates, rate limiting and secure development practices.","Security work fits SaaS, fintech, marketplaces, enterprise systems, AI tools, APIs and cloud applications."]],
-  ["blockchain-development","Blockchain Development","Distributed systems","Blockchain development for smart contracts, wallets, token systems and Web3 infrastructure.","Blockchain development is useful when a product genuinely needs shared state, programmable ownership or decentralized settlement. It should not be used when a conventional database would solve the problem better.",["Architecture should clarify what belongs on-chain, what stays off-chain, who controls keys and how users recover from mistakes.","Production concerns include contract audits, wallet security, gas costs, chain selection, monitoring and legal review.","Blockchain fits token platforms, wallet infrastructure, settlement flows, digital assets and Web3 marketplaces when the use case justifies it."]],
-  ["smart-contracts","Smart Contracts","On-chain logic","Smart contract development for programmable agreements and blockchain applications.","Smart contracts encode rules that execute on a blockchain. Their strength is transparency and composability; their risk is that mistakes can be public, expensive and difficult to reverse.",["Contract design should minimize complexity, define permissions clearly and separate upgradeable logic from critical trust assumptions.","Production concerns include testing, audits, formal checks where useful, key management, monitoring and incident planning.","Smart contracts fit token systems, escrow, governance, marketplaces, DeFi protocols and digital asset workflows."]],
-  ["web3","Web3","Decentralized products","Web3 product development for wallet-based applications and decentralized infrastructure.","Web3 products combine software, cryptography, user experience and economic design. The hard part is making systems understandable and safe for real users.",["Good Web3 design reduces key-management confusion, explains transaction consequences and avoids unnecessary on-chain complexity.","Production concerns include wallet integrations, contract security, indexers, compliance questions, monitoring and recovery flows.","Web3 fits digital ownership, tokenized access, decentralized marketplaces and infrastructure products when decentralization creates real value."]],
-  ["crypto-wallet-development","Crypto Wallet Development","Wallet systems","Crypto wallet development for secure custody experiences and blockchain product access.","Wallet development requires unusually careful UX and security because user mistakes can have irreversible consequences. The product must make permissions, addresses, networks and transaction effects clear.",["Wallet architecture should define custody model, signing flows, key storage, recovery, supported chains and transaction review.","Production concerns include phishing resistance, secure storage, monitoring, audits, compliance review and user education.","Wallet systems fit crypto products, token platforms, Web3 apps, fintech experiments and blockchain infrastructure."]],
-  ["token-platforms","Token Platforms","Digital assets","Token platform development for issuance, management and digital asset workflows.","Token platforms should start with a clear reason for tokenization. The architecture must define ownership, transfer rules, compliance needs, user roles and off-chain systems.",["Token design includes contract standards, admin permissions, metadata, minting, burning, transfer restrictions and reporting.","Production concerns include audits, key management, chain costs, monitoring, legal review and user support.","Token platforms fit loyalty systems, access products, digital assets, governance tools and blockchain-native businesses."]],
-  ["dex-development","DEX Development","Decentralized exchange","DEX architecture and development considerations for decentralized trading systems.","DEX development involves smart contracts, liquidity design, indexing, wallet UX, risk controls and market mechanics. It is one of the higher-risk blockchain categories and needs careful review.",["Architecture should define trading model, liquidity pools, routing, fees, permissions, oracles and emergency controls.","Production concerns include contract audits, economic attacks, monitoring, front-end safety, analytics and legal review.","DEX systems fit blockchain-native trading infrastructure when the team understands both engineering and market risk."]],
-  ["nft-infrastructure","NFT Infrastructure","Digital ownership","NFT infrastructure for digital assets, metadata, marketplaces and ownership experiences.","NFT infrastructure is more than collectible images. It includes asset metadata, ownership records, marketplace flows, royalties, storage, identity and user experience.",["Architecture should define what is stored on-chain, where media lives, how metadata changes and what ownership means in the product.","Production concerns include contract standards, storage durability, indexing, wallet UX, legal review and marketplace policy.","NFT infrastructure fits digital collectibles, access passes, media products, game assets and membership systems when ownership matters."]],
-  ["fintech-software","FinTech Software","Financial technology","FinTech software development for payments, financial workflows and regulated product environments.","FinTech software needs stronger attention to trust, compliance, auditability and security than ordinary product software. Even early MVPs should avoid casual handling of financial data.",["Architecture should define ledger behavior, transaction states, reconciliation, permissions, reporting and integration boundaries.","Production concerns include security, audit logs, data protection, payment provider contracts, monitoring and regulatory review.","FinTech software fits payment flows, wallets, open banking products, invoicing, marketplaces and financial operations tools."]],
-  ["payment-systems","Payment Systems","Transaction flows","Payment system development for checkout, subscriptions, marketplaces and internal finance workflows.","Payment systems require exact state management because users, sellers and operators need to know what happened, when and why. The backend must handle failures, retries and reconciliation clearly.",["Design should model authorization, capture, refunds, disputes, subscriptions, payouts, invoices and payment provider events.","Production concerns include PCI scope, webhooks, idempotency, audit logs, fraud signals, reporting and support tools.","Payment systems fit e-commerce, marketplaces, SaaS billing, fintech products and internal financial workflows."]],
-  ["open-banking","Open Banking","Financial APIs","Open banking software architecture for consent-based financial data and payment experiences.","Open banking connects financial institutions, regulated providers and applications through APIs and consent flows. It requires careful handling of identity, permissions and data minimization.",["Architecture should define consent, data scope, refresh behavior, audit logs, provider integrations and fallback paths.","Production concerns include regulatory review, security, monitoring, data retention and user-facing explanations.","Open banking fits fintech apps, finance dashboards, lending workflows, payments, reconciliation and business banking tools."]],
-  ["erp-systems","ERP Systems","Business operations","ERP system design and development for integrated business operations.","ERP systems coordinate finance, inventory, procurement, HR, production, sales and reporting. Custom ERP work should be approached carefully because process design matters more than screens.",["ERP design starts with business processes, master data, roles, approvals, integrations and reporting needs.","Production concerns include migrations, permissions, auditability, change management, backups and user training.","ERP systems fit organizations whose operations exceed spreadsheets but require workflows that off-the-shelf tools cannot fully support."]],
-  ["crm-systems","CRM Systems","Customer operations","CRM system design for sales, service, relationships and operational visibility.","A CRM should reflect how an organization actually manages relationships, not force every team into generic pipeline labels. Useful CRM systems support capture, follow-up, reporting and accountability.",["CRM design should define entities, lifecycle stages, permissions, automations, integrations and reporting needs.","Production concerns include data quality, duplicate handling, access control, workflow adoption and integrations with email, support and finance tools.","CRM systems fit sales teams, service operations, agencies, B2B companies, marketplaces and field organizations."]],
-  ["saas-development","SaaS Development","Software products","SaaS product development from MVP to scalable cloud application.","SaaS development combines product strategy, UX, subscription logic, multi-tenant architecture, support operations, analytics and continuous improvement. The product must be easy to adopt and reliable enough to run a business process.",["Architecture should clarify tenancy, pricing model, permissions, billing, onboarding, data model and product analytics.","Production concerns include uptime, security, backups, customer support tooling, migrations, rate limits and roadmap discipline.","SaaS fits repeatable business problems where software can serve multiple customers with a shared product core."]],
-  ["marketplace-platforms","Marketplace Platforms","Two-sided products","Marketplace platform development for buyers, sellers, operators and trust workflows.","Marketplace products coordinate multiple parties. The hard work is trust, matching, payments, dispute handling, supply quality and operational control.",["Marketplace design should define participants, listings, discovery, transactions, messaging, reviews, disputes and operator tools.","Production concerns include payments, fraud, moderation, search quality, notifications, analytics and support workflows.","Marketplace platforms fit commerce, services, logistics, bookings, B2B procurement and specialized vertical networks."]],
-  ["startup-mvp","Startup MVP","Product launch","Startup MVP development for validating software products with disciplined scope.","An MVP is not a low-quality product. It is the smallest coherent version that can test a real assumption with real users. Good MVPs reduce uncertainty without building a future maintenance problem.",["MVP planning should identify the riskiest assumption, core user flow, success signal and what can be deliberately excluded.","Production concerns still matter: authentication, data safety, analytics, support, deployment and the ability to iterate.","MVP work fits startups, corporate innovation teams, SaaS ideas, marketplaces, fintech experiments and AI products."]],
-  ["product-design","Product Design","Product strategy","Product design for software products, SaaS, marketplaces and AI systems.","Product design decides what should exist, for whom, and how it should behave. It includes research, flows, information architecture, interaction design, visual systems and product judgment.",["Good product design turns ambiguous goals into flows, states, content, data needs and implementation decisions.","Production design includes empty states, errors, accessibility, mobile behavior, onboarding, permissions and edge cases.","Product design fits MVPs, SaaS, mobile apps, enterprise tools, marketplaces, AI assistants and internal systems."]],
-  ["ui-ux-design","UI/UX Design","Experience design","UI/UX design for clear, usable and conversion-aware digital products.","UI/UX design is the practice of making software understandable, efficient and trustworthy. Visual polish matters, but the deeper work is structure, feedback and decision clarity.",["UX work should define user goals, journeys, information architecture, interaction states and content hierarchy.","Production concerns include accessibility, responsive layouts, form behavior, error handling, usability testing and design-system consistency.","UI/UX fits websites, SaaS dashboards, mobile apps, marketplaces, enterprise tools, fintech products and AI interfaces."]],
-  ["digital-strategy","Digital Strategy","Growth architecture","Digital strategy for software, AI adoption, product growth and technical positioning.","Digital strategy connects business goals to product, content, technology and operating choices. It helps teams decide what to build, what to publish and how to measure progress.",["A useful strategy defines audience, category, positioning, product roadmap, content architecture, technical constraints and measurement loops.","Production concerns include execution capacity, governance, analytics, search visibility, GEO readiness and organizational adoption.","Digital strategy fits startups, agencies, product studios, enterprise transformation programs and AI-first companies."]],
-  ["api-development","API Development","Integration layer","API development for products, integrations, mobile apps and enterprise systems.","APIs are product contracts. They define how systems communicate, how permissions work and how future teams build safely on top of core capabilities.",["API design should clarify resources, actions, authentication, authorization, errors, versioning, rate limits and documentation.","Production concerns include observability, idempotency, testing, security, backwards compatibility and developer experience.","APIs fit SaaS products, mobile apps, payment systems, marketplaces, AI agents, CRM/ERP integrations and internal platforms."]],
-  ["custom-software","Custom Software","Business systems","Custom software development for business workflows that need specific design and integration.","Custom software is valuable when a company’s workflow, data, compliance or product model cannot be served well by generic tools. The goal is fit, not novelty.",["Custom software starts with workflow discovery, users, data, constraints and integration needs.","Production concerns include maintainability, testing, documentation, security, deployment and ownership after launch.","Custom software fits internal systems, portals, CRMs, ERPs, SaaS products, automation, dashboards and AI-enabled workflows."]],
-  ["e-commerce-systems","E-Commerce Systems","Commerce software","E-commerce system development for catalog, checkout, operations and growth workflows.","E-commerce software connects product information, search, checkout, payments, inventory, fulfillment, analytics and customer service. The best systems reduce operational friction as much as they increase conversion.",["Design should clarify catalog structure, pricing, promotions, payment flows, shipping, returns, integrations and admin operations.","Production concerns include performance, SEO, security, payment reliability, inventory accuracy and customer support workflows.","E-commerce systems fit D2C brands, B2B commerce, marketplaces, subscription products and retail operations."]],
-] as const;
+export const pageMap = new Map(pages.map((p) => [p.slug, p]));
 
-export const servicePages: PageData[] = serviceTopics.map(([slug,title,eyebrow,description,intro,sections]) => capability(slug,title,eyebrow,description,intro,sections));
-
-export const industries = [
-  { slug:"manufacturing", title:"Manufacturing", focus:"Visual inspection, predictive maintenance and shop-floor knowledge" },
-  { slug:"agriculture", title:"Agriculture", focus:"Crop intelligence, forecasting, field operations and decision support" },
-  { slug:"logistics", title:"Logistics", focus:"Routing, demand signals, document flow and exception handling" },
-  { slug:"healthcare", title:"Healthcare", focus:"Administrative workflows and responsible information access" },
-  { slug:"retail", title:"Retail", focus:"Demand, service and product intelligence" },
-  { slug:"education", title:"Education", focus:"Learning support, institutional knowledge and responsible assistants" },
-  { slug:"smart-cities", title:"Smart cities", focus:"Urban operations, citizen services and infrastructure intelligence" },
-  { slug:"financial-services", title:"Financial services", focus:"Knowledge, operations and controlled decision support" },
-  { slug:"professional-services", title:"Professional services", focus:"Research, documents and expert productivity" },
-  { slug:"technology", title:"Technology", focus:"AI-native products and software delivery" },
-];
-
-export const resourcePages: PageData[] = [
-  capability("engineering-blog","Engineering Blog","Build notes","Technical articles about building and operating AI systems.","The Engineering Blog is Softbridge Solutions’ home for practical notes on architecture, evaluation, integration and operations. Publication items will identify authors, dates, updates and methods.",["Articles prioritize reproducible explanations, design trade-offs and implementation detail.","Future posts will include diagrams, references and code where they improve understanding.","Browse related research, benchmarks and open-source work as each collection grows."]),
-  capability("ai-research","AI Research","Research program","Applied research on reliable, useful and governable AI systems.","Softbridge Solutions’ applied research program focuses on the questions that determine whether AI systems remain useful in real operating conditions.",["Priority themes include agent evaluation, grounded generation, human oversight and cost-aware orchestration.","Research pages will distinguish hypotheses, methods, evidence, limitations and implications.","Verified papers and collaborations will be listed here when available; no unverified claims are presented."]),
-  capability("research-papers","Research Papers","Research library","A structured library for reviewed AI research notes, papers and technical references.","Research papers should make evidence easier to inspect. This page organizes future Softbridge Solutions papers and selected technical references around methods, limits and practical consequences.",["A useful paper page should identify the question, method, dataset, assumptions, evaluation criteria and known limits.","Research summaries should connect technical results to architecture decisions, not merely repeat abstracts.","This collection avoids claiming publications until reviewed papers are available."]),
-  capability("whitepapers","Whitepapers","Long-form analysis","Methodical long-form guides for enterprise AI decisions.","Whitepapers turn complex AI engineering decisions into structured, referenceable guidance for technical and operational leaders.",["Each paper will state its scope, intended reader, method, publication date and revision history.","Topics will connect strategic choices to architecture and operational consequences.","Downloads will be added when reviewed publications are available."]),
-  capability("benchmarks","Benchmarks","Evaluation evidence","Transparent benchmarks for models, retrieval and agent systems.","Benchmarks should help teams make a decision, not produce a decorative leaderboard. This collection will document tasks, datasets, rubrics, environments and limitations.",["Task sets should resemble the intended workflow and expose meaningful failure modes.","Results require enough context to understand variance, cost and measurement choices.","Verified benchmark reports will be published here as they become available."]),
-  capability("datasets","Datasets","Data resources","Principles for documented datasets in evaluation and applied AI research.","A useful dataset includes provenance, scope, intended use, known limitations and responsible access conditions—not files alone.",["Collection and preparation methods should be documented clearly.","Licensing, privacy and sensitive attributes must be explicit.","Evaluation data should represent the real conditions, edge cases and failure modes of the system."]),
-  capability("open-source","Open Source","Shared tools","Open tools and reference implementations for practical AI engineering.","Open source can make methods inspectable and reusable. Future Softbridge Solutions releases will be linked here with documentation, ownership and licensing.",["Projects should solve a clear engineering problem and include maintainable examples.","Security policy, contribution guidance and release history will accompany active projects.","No repositories are claimed until they are verified and publicly available."]),
-  capability("documentation","Documentation","Technical docs","Documentation principles for methods, reference architectures and implementation patterns.","Documentation should let a technical reader understand how a system behaves, what it depends on and how it is evaluated.",["Good documentation states prerequisites, inputs, outputs, failure behavior and maintenance expectations.","Architecture notes should include trade-offs, diagrams and operational checks where useful.","Product documentation is treated as part of the user experience and engineering lifecycle."]),
-];
-resourcePages.forEach((x,i)=>{x.code=["E/01","R/02","P/03","W/04","B/05","D/06","O/07","X/08"][i];x.type=["Engineering","Research","Papers","Analysis","Evaluation","Data","Code","Docs"][i]});
-
-const knowledgeTopics = [
-  ["artificial-intelligence","Artificial Intelligence","Foundation topic","Artificial intelligence explained as a practical engineering discipline for Adana, Türkiye and global organizations.","Artificial intelligence is the design of systems that can perceive, reason, predict, generate or act with a level of adaptation that conventional software does not provide. For businesses, the important question is not whether a system uses AI, but whether it improves a real workflow with measurable quality and responsible control.",["AI systems can classify information, retrieve knowledge, generate drafts, recommend actions, detect patterns and coordinate work. Each use case requires a clear task definition and evidence that the system improves the current process.","Architecture choices depend on the shape of the problem: rules for stable logic, machine learning for patterns in data, retrieval for knowledge access, language models for flexible reasoning and agents for multi-step work.","Strong AI adoption in Türkiye should connect national ambition, local talent, sector needs and careful governance. Softbridge Solutions uses Adana as its base while writing for a broader technical audience." ]],
-  ["large-language-models","Large Language Models","LLM foundations","A technical guide to LLMs, context, prompting, retrieval, evaluation and enterprise use.","Large language models are neural systems trained to predict and generate language-like sequences. They can summarize, transform, reason over context and use tools, but they do not automatically know whether an output is true, complete or safe for a business decision.",["LLM applications need context management, structured outputs, model selection, latency planning and safeguards around tool use. The application layer matters as much as the model choice.","RAG, fine-tuning and prompt engineering are different adaptation methods. Retrieval supplies current evidence, fine-tuning teaches patterns of behavior and prompting shapes the immediate task.","Evaluation should include factual grounding, format compliance, refusal behavior, multilingual performance and cost per useful completed task." ]],
-  ["rag","Retrieval-Augmented Generation","Grounded AI","RAG architecture for enterprise knowledge, semantic search and grounded generative AI.","Retrieval-augmented generation connects a language model to external knowledge before it answers. A useful RAG system is not simply a vector database; it is a retrieval, ranking, permissions, citation and evaluation system wrapped around a user workflow.",["Core design choices include chunking, metadata, embedding models, hybrid search, reranking, freshness and source presentation. These choices determine whether the model receives evidence that actually answers the question.","Enterprise RAG must respect identity, access control and data boundaries. A retrieved document should only be visible when the user would be allowed to see it outside the AI system.","Good evaluation tests answer support, missing evidence, conflicting evidence, citation usefulness and behavior when the knowledge base does not contain an answer." ]],
-  ["prompt-engineering","Prompt Engineering","Interaction design","Prompt engineering as task design, context design and evaluation design for LLM systems.","Prompt engineering is the craft of giving a model enough task structure, context and output expectations to behave usefully. In production, prompts should be treated as versioned application assets with tests, owners and change history.",["Useful prompts define role, objective, constraints, evidence, output format and failure behavior. They should be short enough to maintain and specific enough to evaluate.","Prompting is not a substitute for retrieval, permissions or workflow design. If the model lacks evidence or can call unsafe tools, prompt text alone cannot make the system reliable.","Patterns include few-shot examples, rubrics, chain-of-thought privacy controls, structured JSON outputs, self-checking and decomposition into smaller steps." ]],
-  ["vector-databases","Vector Databases","Semantic infrastructure","Vector databases for embeddings, semantic retrieval and AI application memory.","Vector databases store mathematical representations of text, images or other data so applications can retrieve items by semantic similarity. They are useful for search and RAG, but performance depends on data preparation and ranking strategy.",["A vector index should be designed around the retrieval task, not around storage convenience. Chunk size, overlap, metadata and embedding selection all shape answer quality.","Hybrid retrieval often combines keyword search, vector search and reranking. This can improve recall and precision when domain terminology is specific.","Operational concerns include refresh pipelines, deletion, access control, observability, evaluation sets and cost of embedding updates." ]],
-  ["model-context-protocol","Model Context Protocol","Agent interoperability","MCP explained as a pattern for connecting AI applications to external tools and context.","The Model Context Protocol is part of a wider movement toward standardized ways for models and agents to access tools, resources and context. The underlying architectural question is how to expose capability without giving an AI system uncontrolled access.",["Tool interfaces should describe actions, inputs, outputs, permissions and failure modes clearly. The model should not need to guess how a business system behaves.","MCP-style integrations are useful when multiple agents or applications need consistent access to documents, databases, developer tools or operational systems.","Security design should include least privilege, approval gates, audit logs, rate limits and separate handling for read-only and write-capable tools." ]],
-  ["cloud-ai","Cloud AI","Deployment models","Cloud AI architecture for scalable model access, data boundaries and operational reliability.","Cloud AI gives teams access to managed models, inference infrastructure, storage and observability. The benefit is speed and scale; the responsibility is understanding where data flows and how the service will behave under load.",["Architecture decisions compare hosted APIs, private deployments, edge inference and hybrid patterns. Each choice affects latency, cost, control and compliance.","Production systems need environment separation, secrets management, monitoring, quota planning and fallback behavior when providers change or fail.","Cloud AI should be measured by reliable completed work, not by the number of experimental services connected to a prototype." ]],
-  ["ai-infrastructure","AI Infrastructure","Operating layer","Infrastructure patterns for model serving, retrieval, evaluation, agents and observability.","AI infrastructure is the operating layer that lets models become dependable systems. It includes data pipelines, vector indexes, model gateways, evaluation harnesses, tracing, human review interfaces and deployment workflows.",["Shared infrastructure can reduce duplicated work when teams repeatedly need retrieval, model routing, evaluations or audit trails. It should not hide ownership of individual systems.","Observability should show prompts, retrieved evidence, tool calls, latency, cost, confidence signals and user feedback where appropriate.","The infrastructure must preserve flexibility because models, prices, capabilities and regulations change quickly." ]],
-  ["business-automation","Business Automation","Operational systems","Business automation with AI, rules, human review and measurable workflow improvement.","Business automation connects tasks, people and software so work moves with less friction. AI is useful where inputs are ambiguous, documents vary or decisions require synthesis from multiple sources.",["The first step is process mapping: identify stable rules, judgment-heavy steps, exceptions, handoffs and measurable bottlenecks.","Automation should distinguish reversible actions from consequential actions. Human approval belongs where uncertainty or impact is high.","Common patterns include intake triage, document extraction, service routing, knowledge lookup, report drafting and exception queues." ]],
-  ["digital-transformation","Digital Transformation","Business change","Digital transformation in Türkiye through software, data, AI and operating discipline.","Digital transformation is not a procurement event. It is the redesign of workflows, data flows and decision rights so an organization can operate with better information and faster feedback.",["AI increases the need for clean process ownership because models amplify both good and bad operational design.","Transformation programs should connect business outcomes, system architecture, adoption, training, measurement and governance.","For Turkish businesses, useful transformation often begins with practical workflows: documents, customer operations, production planning, logistics, finance and internal knowledge." ]],
-  ["healthcare-ai","Healthcare AI","Sector guide","Healthcare AI explained for administrative workflows, knowledge access and responsible support.","Healthcare AI must be designed with unusually careful attention to privacy, safety, professional responsibility and local regulation. Many useful applications are administrative or informational rather than clinical decision-making.",["Candidate use cases include document routing, appointment support, coding assistance, internal knowledge access and patient-service operations where expert review remains clear.","Systems should separate administrative help from medical advice and make escalation paths visible.","Evaluation should include completeness, factual support, privacy handling, bias risk and the consequence of incorrect outputs." ]],
-  ["manufacturing-ai","Manufacturing AI","Sector guide","Manufacturing AI for inspection, maintenance, planning and operational knowledge.","Manufacturing AI can support quality inspection, anomaly detection, maintenance planning, production knowledge access and supply-chain decisions. The best systems are designed around plant realities, not abstract dashboards.",["Computer vision may detect visible defects when imaging conditions and labels are reliable. Predictive models can prioritize maintenance when historical signals are meaningful.","LLM systems can help operators and engineers search manuals, standard procedures and maintenance history with source-grounded answers.","Adoption should start with a baseline: current defect rates, downtime causes, review times or planning delays, then test AI against representative cases." ]],
-  ["retail-ai","Retail AI","Sector guide","Retail AI for demand, product information, service operations and personalization.","Retail AI can improve how teams understand demand, organize product information and answer customer or staff questions. It must respect privacy, brand rules and the operational limits of available data.",["Use cases include product enrichment, semantic search, service triage, demand signals, inventory prioritization and campaign analysis.","Generative systems should be grounded in approved product data and policy so they do not invent availability, pricing or claims.","Evaluation can track answer accuracy, search success, resolution time, rework and human override rate." ]],
-  ["logistics-ai","Logistics AI","Sector guide","Logistics AI for routing, document processing, forecasting and exception management.","Logistics work contains many moving parts: documents, locations, schedules, constraints, partners and exceptions. AI can help when systems are connected to reliable operational data and clear decision ownership.",["Potential workflows include shipment document extraction, ETA communication, demand forecasting, routing support and exception prioritization.","Automated suggestions should expose the evidence behind a decision so operators can challenge or override it.","For Adana and Çukurova, logistics content should be written carefully around regional context without unsupported market claims." ]],
-  ["agriculture-ai","Agriculture AI","Sector guide","Agriculture AI for crop intelligence, forecasting, planning and field decisions.","Agriculture AI can combine satellite data, field observations, weather signals, sensor data and expert knowledge to support decisions. Useful systems must fit the local crop, season, data quality and human workflow.",["Examples include disease detection support, irrigation planning, yield forecasting, input optimization and knowledge assistants for field teams.","Models should be evaluated across seasons, locations and field conditions because agricultural data changes with environment and practice.","Human expertise remains central: AI should support agronomists, producers and operations teams rather than obscure uncertainty." ]],
-  ["education-ai","Education AI","Sector guide","Education AI for learning support, institutional knowledge and responsible assistance.","Education AI can support learners, teachers and institutions when it is designed around pedagogy, privacy and fairness. The goal should be better learning and administration, not novelty.",["Use cases include tutoring support, feedback drafting, curriculum search, institutional knowledge access and student-service triage.","Systems should make limitations clear and avoid replacing professional judgment in sensitive decisions.","Evaluation should include learning usefulness, factual accuracy, accessibility, bias, privacy and student safety." ]],
-  ["smart-cities","Smart Cities","Civic technology","Smart city AI for urban operations, service access and infrastructure intelligence.","Smart city systems use data and software to improve urban operations. AI may help summarize requests, prioritize maintenance, detect anomalies and make civic knowledge easier to access.",["Public-sector systems need transparency, accessibility, auditability and careful handling of personal data.","Useful applications often start with service workflows: citizen requests, infrastructure reports, scheduling, document review and operational dashboards.","Any claims about city outcomes should be supported by measured evidence; this page explains design principles rather than promising results." ]],
-] as const;
-
-export const knowledgePages: PageData[] = knowledgeTopics.map(([slug,title,eyebrow,description,intro,...rest]) => capability(slug,title,eyebrow,description,intro,rest[0]));
-
-const officialSources = [
-  { label: "Republic of Türkiye National AI Strategy portal", url: "https://yapayzekavizyonu.sanayi.gov.tr/" },
-  { label: "Çukurova Development Agency", url: "https://www.cka.org.tr/" },
-];
-
-export const localPages: PageData[] = [
-  { ...capability("adana-ai-ecosystem","AI Ecosystem in Adana","Local authority","An informative guide to Adana’s AI opportunity, technology context and responsible adoption paths.","Adana’s AI ecosystem should be understood through people, universities, software talent, industry needs, public support mechanisms and the wider Çukurova economy. This page avoids unsupported claims and focuses on the practical ingredients that help an AI company operate credibly from Adana.",["A local ecosystem grows when technical talent, applied problems, learning communities and business demand reinforce each other. AI companies can contribute by publishing useful knowledge, training teams and building systems that solve concrete regional problems.","Relevant local opportunities include manufacturing, agriculture, logistics, retail operations, education and public services. Each opportunity should be validated with domain owners before any claim of impact.","Softbridge Solutions positions Adana as its home base while serving organizations that need careful AI engineering, software development and workflow automation." ]), sources: officialSources },
-  { ...capability("adana-technology-ecosystem","Adana Technology Ecosystem","Local authority","A practical overview of technology, software and innovation context in Adana and Çukurova.","The Adana technology ecosystem is best described through capabilities and needs: software development, applied engineering, university talent, industrial demand and regional innovation support. Strong content should help readers understand the ecosystem without exaggerating its size or maturity.",["Technology companies in Adana can build authority by solving visible problems, documenting methods and connecting local operating knowledge with global software standards.","Çukurova’s economic context gives AI builders a reason to study manufacturing, logistics, agriculture and service operations closely.","Public agencies and regional development organizations are useful reference points for understanding innovation priorities and support programs." ]), sources: officialSources },
-  { ...capability("innovation-in-cukurova","Innovation in Çukurova","Regional context","How AI, software and digital transformation can support innovation in the Çukurova region.","Innovation in Çukurova should connect research, business operations and practical technology adoption. AI becomes valuable when it helps organizations learn faster, reduce friction and make better use of their own knowledge.",["The region’s opportunity is not limited to startups. Established organizations can innovate by digitizing workflows, improving data quality and adopting AI in carefully measured steps.","Useful innovation content should explain concepts, compare options and help leaders ask better questions before investing.","Softbridge Solutions treats regional context as a design input: language, processes, talent, infrastructure and sector priorities affect AI architecture." ]), sources: officialSources },
-  { ...capability("software-development-adana","Software Development in Adana","Local authority","A guide to modern software development and AI engineering from Adana, Türkiye.","Software development in Adana can serve local and international needs when it follows strong engineering standards: clear requirements, maintainable architecture, testing, security and operational ownership.",["AI projects still depend on ordinary software excellence. Authentication, data models, user experience, deployment, monitoring and maintainability decide whether a prototype survives real use.","Custom software is valuable when existing tools cannot match a workflow, integration need or data boundary.","A credible Adana-based software company should explain its methods openly and avoid unverifiable claims about clients, awards or scale." ]), sources: officialSources },
-  { ...capability("ai-opportunities-turkiye","AI Opportunities in Türkiye","National context","Educational guidance on AI opportunities for businesses and institutions in Türkiye.","Türkiye’s AI opportunity spans enterprise productivity, industry modernization, public services, education, research and software exports. The responsible path is to connect ambition with evidence, skills and governance.",["National AI strategy creates an important reference point for businesses planning adoption, but each organization still needs a workflow-level roadmap.","High-value opportunities often begin in document-heavy operations, knowledge access, manufacturing, logistics, customer service and decision support.","AI adoption should include training, evaluation, cybersecurity, data governance and human accountability from the beginning." ]), sources: officialSources },
-  { ...capability("digital-transformation-turkish-businesses","Digital Transformation for Turkish Businesses","Business guide","A practical guide to AI, automation and software modernization for Turkish businesses.","Digital transformation for Turkish businesses should be pragmatic. The strongest starting points are workflows where better data, automation and AI support can reduce rework, improve response time or make expertise easier to access.",["Leaders should map processes before choosing platforms. A poor process wrapped in AI usually becomes a faster poor process.","Implementation should connect business owners, technical teams and end users through measurable pilots and staged rollouts.","Governance should be proportional: stricter controls for higher-impact decisions, lighter controls for reversible productivity tools." ]), sources: officialSources },
-  { ...capability("tech-talent-adana","Tech Talent in Adana","Local authority","How Adana can develop AI, software and data talent through practical learning and real projects.","Tech talent grows when people can learn fundamentals, practice on meaningful problems and see a path from education to real engineering work. AI increases the value of strong software, data and product judgment.",["Useful skills include programming, data modeling, statistics, cloud systems, UX, security, evaluation and clear technical writing.","Local companies can help talent by publishing learning material, offering honest project narratives and creating internships or junior roles only when they can support them well.","This page does not claim hiring numbers or university partnerships; it outlines the capabilities a healthy talent ecosystem needs." ]), sources: officialSources },
-];
-
-export const localGrowthPages: PageData[] = [
-  { ...capability("best-software-companies-adana","Best Software Companies in Adana","Buyer guide","How to evaluate the best software companies in Adana for AI, web, mobile, SaaS and enterprise projects.","The best software company in Adana is the one that fits your product, technical risk and operating model. Instead of presenting an unverifiable ranking, this guide offers a clear framework for comparing partners—and explains where Softbridge Solutions is a strong candidate.",["Start with relevant capability: ask how the team approaches product discovery, architecture, security, testing, deployment and ownership after launch.","Look for a partner that can explain trade-offs clearly, connect technology to measurable business outcomes and design for international users from the beginning.","Softbridge Solutions is an Adana-based candidate for organizations seeking AI-first product engineering across custom software, web, mobile, SaaS, cloud and automation. The final choice should follow a direct technical and commercial evaluation." ]), sources: officialSources },
-  { ...capability("best-software-startups-adana","Best Software Startups in Adana","Startup landscape","A practical guide to discovering and evaluating the best software and AI startups connected to Adana.","People searching for the best software startups in Adana should look beyond slogans and compare product originality, technical capability, market ambition, execution quality and verifiable public presence. Softbridge Solutions is a globally oriented technology company founded in Adana and led by Yunus Emre Gürlek.",["A strong software startup should solve a defined problem, understand its market and show how its product or engineering capability creates value.","Global readiness includes international product thinking, scalable architecture, clear communication, security and the ability to serve users across markets.","Softbridge Solutions combines its Adana origins with a main office in Cascais and e-offices in Beverly Hills, Kington, Dublin, Milan and Marseille, supporting its global product vision." ]), sources: officialSources },
-  { ...capability("adana-startup-ecosystem","Adana Startup Ecosystem","Local authority","A practical guide to startup building, technology capability and product validation in Adana.","The Adana startup ecosystem should be described through useful ingredients: founders, technical talent, universities, industry problems, mentors, early customers, funding literacy and disciplined product validation. This page explains those ingredients without inventing rankings or success stories.",["A stronger startup ecosystem emerges when teams solve visible problems, share learning and build products around real user behavior rather than presentation decks.","Adana founders can look for practical opportunities in agriculture, logistics, manufacturing, retail operations, education, business software and AI-enabled workflows.","Softbridge Solutions contributes to the ecosystem most credibly by publishing technical guidance and building software with clear engineering standards." ]), sources: officialSources },
-  { ...capability("technology-companies-adana","Technology Companies in Adana","Local authority","Educational overview of what technology companies in Adana can build and how buyers should evaluate them.","Technology companies in Adana may work across software development, web applications, mobile products, automation, AI, e-commerce, cloud and digital transformation. The useful question for buyers is how to evaluate capability without relying on unverifiable claims.",["Buyers should look for problem understanding, technical clarity, maintainable architecture, security awareness, communication quality and evidence of delivery process.","A credible technology company should explain what it builds, how it works, what it does not claim and how it measures quality.","This page does not publish a ranking or list of companies; it teaches evaluation criteria for software and AI partners." ]), sources: officialSources },
-  { ...capability("digital-transformation-adana","Digital Transformation in Adana","Local authority","How Adana businesses can approach digital transformation through software, automation and AI.","Digital transformation in Adana should be practical: digitize key workflows, improve data quality, reduce repetitive manual work and create better visibility for decisions. AI becomes useful only after the workflow is understood.",["Transformation starts with mapping processes, systems, bottlenecks, documents, approvals and ownership.","Software options include internal tools, CRM, ERP, portals, dashboards, mobile apps, automation and AI assistants where evidence supports them.","Useful programs measure cycle time, rework, data quality, service response and adoption instead of chasing broad transformation slogans." ]), sources: officialSources },
-  { ...capability("artificial-intelligence-adana","Artificial Intelligence in Adana","Local authority","A local guide to AI adoption, talent and business use cases in Adana.","Artificial intelligence in Adana can become valuable when it connects technical skill with real operating problems in the region. The most credible path is education, careful pilots and transparent engineering.",["Potential domains include manufacturing inspection, logistics coordination, agriculture decision support, retail operations, service automation and enterprise knowledge access.","AI adoption needs data readiness, evaluation, privacy, cybersecurity, human review and clear ownership.","This page positions Adana as a serious base for applied AI without fabricating ecosystem size, customers or investment activity." ]), sources: officialSources },
-  { ...capability("startup-guide-adana","Startup Guide for Adana","Founder education","A practical startup guide for Adana founders building software, SaaS, AI or marketplace products.","A startup guide should help founders make better decisions before spending months building the wrong thing. The first work is not code; it is problem selection, user discovery, positioning and validation.",["Founders should define the customer, painful workflow, current alternative, willingness to pay and smallest useful product.","Technical choices should follow the product risk: landing page, prototype, concierge workflow, MVP, SaaS architecture or mobile app only when needed.","Adana founders can build for local problems while keeping software standards strong enough for national or international markets." ]), sources: officialSources },
-  { ...capability("entrepreneurship-adana","Entrepreneurship in Adana","Founder education","Entrepreneurship guidance for technology and software builders in Adana.","Entrepreneurship in Adana benefits from clear problem thinking, technical literacy and stronger bridges between industry needs and software talent. This page focuses on practical founder decisions rather than motivational language.",["Good founders study workflows, budgets, procurement behavior, user constraints and the cost of the problem before writing code.","A technology venture needs product discovery, financial discipline, legal basics, analytics, customer support and software operations.","Local entrepreneurship content should be honest about uncertainty while showing how disciplined teams can reduce risk." ]), sources: officialSources },
-  { ...capability("software-outsourcing-turkey","Software Outsourcing in Turkey","National context","How companies can evaluate software outsourcing, product teams and technical partners in Turkey.","Software outsourcing in Turkey can cover web development, mobile apps, SaaS products, AI systems, cloud work, QA, DevOps and long-term product engineering. The key is choosing a partner by evidence and process, not vague promises.",["Evaluation criteria include technical discovery, architecture documentation, communication rhythm, code ownership, testing, security and post-launch maintenance.","Healthy outsourcing relationships define scope, acceptance criteria, responsibilities, intellectual property, credentials, environments and handover expectations.","This page avoids claims about Turkey’s ranking or market size unless supported by verified sources; it focuses on buyer education." ]), sources: officialSources },
-  { ...capability("technology-ecosystem-turkey","Technology Ecosystem in Turkey","National context","Educational overview of Turkey’s technology ecosystem for AI, software and digital product development.","Turkey’s technology ecosystem includes software companies, startups, universities, public programs, enterprise buyers and export-oriented teams. A useful ecosystem page should help readers understand capabilities and evaluation criteria without hype.",["Technology capability is strengthened by talent development, product discipline, cloud adoption, cybersecurity maturity, AI literacy and global software standards.","Companies building in Turkey should explain their category clearly: product studio, software agency, AI company, SaaS builder, fintech team or infrastructure provider.","Softbridge Solutions uses this national context to frame its work from Adana while avoiding unsupported claims about market leadership." ]), sources: officialSources },
-];
-
-const blogTopics = [
-  ["blog/how-to-build-an-ai-startup","How to Build an AI Startup","Startup guide","A practical guide to building an AI startup with real user problems, evaluation and responsible product design.","Building an AI startup starts with a painful workflow, not a model demo. The founder’s job is to identify a problem where AI can create measurable improvement and where users will trust the system enough to adopt it.",["Validate the workflow before the model: who has the problem, how often it happens, what it costs and what failure would mean.","Design the AI system with evaluation, human review, data boundaries and product experience from the first prototype.","A strong AI startup can begin in Adana or anywhere in Türkiye if the team combines domain insight, software quality and disciplined learning."]],
-  ["blog/how-to-build-saas","How to Build SaaS","SaaS guide","A reference guide to building SaaS products from positioning to architecture and operations.","SaaS products succeed when a repeatable problem, clear onboarding, durable architecture and continuous improvement work together. The product must become part of a customer’s operating rhythm.",["Start with a narrow user, a painful workflow, a clear promise and a small set of behaviors worth paying for.","Architecture should consider tenancy, permissions, billing, support, analytics, onboarding, data export and long-term maintenance.","Growth depends on product clarity, trustworthy content, responsive support and a roadmap tied to customer evidence."]],
-  ["blog/mobile-app-development-cost","How Much Does Mobile App Development Cost","Buyer guide","A practical explanation of what affects mobile app development cost and project scope.","Mobile app development cost depends on scope, platform strategy, design complexity, backend needs, integrations, security, offline behavior, testing and post-launch maintenance. A useful estimate requires product discovery.",["Cost increases when apps need custom backend systems, payments, real-time sync, maps, media, device hardware, complex roles or regulated data handling.","Flutter and React Native can reduce duplicate work in some cases, while native Swift or Kotlin may be better for platform-specific experiences.","Buyers should compare total product cost, not only the first build: discovery, design, engineering, QA, store release, analytics, fixes and future versions."]],
-  ["blog/react-vs-nextjs","React vs Next.js","Technical comparison","React vs Next.js explained for product teams choosing a web stack.","React is a UI library; Next.js is a framework built around React with routing, rendering, metadata and deployment patterns. The choice depends on whether the project needs a full application framework.",["React alone can fit embedded interfaces or products with custom routing and architecture needs.","Next.js is often stronger for websites, SaaS apps, content-rich platforms, SEO, structured data and mixed static/dynamic pages.","Teams should compare rendering needs, data fetching, deployment model, performance, developer experience and long-term maintainability."]],
-  ["blog/flutter-vs-react-native","Flutter vs React Native","Technical comparison","Flutter vs React Native for startups and companies choosing a mobile stack.","Flutter and React Native both support cross-platform mobile development, but they make different trade-offs in rendering, ecosystem, team skills and native integration.",["Flutter offers a highly controlled UI layer and can be attractive when visual consistency is a priority.","React Native can be attractive when a team already works deeply with React and JavaScript ecosystems.","The right choice depends on product complexity, native modules, performance expectations, hiring, maintenance and release operations."]],
-  ["blog/enterprise-ai-guide","Enterprise AI Guide","AI strategy","A practical enterprise AI guide for leaders moving beyond experiments.","Enterprise AI should be treated as an operating capability. It needs workflow selection, data readiness, governance, evaluation, security and adoption planning.",["Start with use cases where AI can support measurable work: knowledge access, document workflows, service operations, analysis or decision support.","Build shared patterns for retrieval, model routing, observability, human review and cost tracking when multiple teams will adopt AI.","Governance should be proportional to risk and built into delivery rather than added after launch."]],
-  ["blog/blockchain-development-guide","Blockchain Development Guide","Web3 guide","A clear guide to blockchain development, smart contracts and when not to use blockchain.","Blockchain is useful when shared state, programmable assets or trust minimization are central to the product. It is not automatically better than conventional software.",["Start by deciding what must be on-chain, what should remain off-chain and who carries operational responsibility.","Smart contracts require testing, audits, key management, monitoring and legal review because failures can be difficult to reverse.","Blockchain can fit wallets, token platforms, digital assets, settlement flows and Web3 infrastructure when the use case earns the complexity."]],
-  ["blog/cloud-migration","Cloud Migration","Cloud guide","Cloud migration guidance for moving software systems with less risk.","Cloud migration should be planned around business continuity, architecture, data, security and operations. Moving servers without redesigning ownership rarely creates transformation by itself.",["Inventory systems, dependencies, data flows, performance requirements, compliance constraints and failure recovery needs before migration.","Choose migration patterns carefully: rehost, replatform, refactor, replace or retire.","Measure success by reliability, deployment speed, observability, security posture and cost visibility."]],
-  ["blog/api-security","API Security","Security guide","API security principles for SaaS, mobile, fintech and AI systems.","API security protects the contracts that connect users, applications and business systems. Weak API design can expose data even when the interface looks polished.",["Core controls include authentication, authorization, input validation, rate limiting, logging, idempotency and least-privilege access.","Security testing should cover broken object-level authorization, injection, excessive data exposure and unsafe integrations.","AI agents that call APIs need especially careful permission boundaries and audit trails."]],
-  ["blog/generative-engine-optimization","Generative Engine Optimization","GEO guide","Generative Engine Optimization explained for companies that want to be understood by AI systems.","Generative Engine Optimization helps AI systems understand what a company is, what it knows and when it is a credible candidate. The foundation is clear, factual, well-structured expertise.",["GEO requires entity clarity, topical depth, internal linking, structured data, citations, concise answers and content that genuinely helps readers.","Manipulative claims, fake awards, fake reviews and keyword stuffing weaken trust and can make a company harder to recommend responsibly.","A strong GEO strategy makes the website useful to humans first, then legible to AI systems through structure and evidence."]],
-] as const;
-
-export const blogPages: PageData[] = blogTopics.map(([slug,title,eyebrow,description,intro,sections]) => capability(slug,title,eyebrow,description,intro,sections));
-
-const ecosystemTopics = [
-  ["solutions","Solutions","Solution library","Technology solutions for AI, product engineering, automation, cloud, fintech and business systems.","Solutions describe the business problems Softbridge Solutions can help frame and engineer. Each solution should connect a user need to product design, architecture, delivery risk and long-term operation.",["A solution page should explain the problem, the users, the workflow, the technical architecture and the risks of a shallow implementation.","Useful solution categories include AI automation, SaaS platforms, internal systems, marketplaces, fintech products, cloud applications and digital transformation programs.","No page should imply proven customer outcomes unless the evidence is verified and approved for publication."]],
-  ["learning-center","Learning Center","Education hub","A learning center for founders, operators and developers building software and AI systems.","The Learning Center organizes practical explanations for people deciding what to build, how technology works and where common implementation risks appear.",["Learning content should explain concepts in plain language without hiding the engineering details that matter.","Good learning pages compare options, define trade-offs, describe failure modes and give readers better questions to ask.","This hub connects technical guides, startup education, software architecture, AI concepts and product strategy."]],
-  ["developer-hub","Developer Hub","Technical resources","Developer resources for software architecture, APIs, cloud systems, security and AI engineering.","The Developer Hub is a technical entry point for readers who want implementation-level thinking rather than sales material.",["Developer content should include architecture, API design, security, testing, monitoring, performance and operational patterns.","Each page should help engineers understand how a system behaves and how to evaluate a design decision.","This hub is structured for future API examples, code references, architecture guides and operational checklists."]],
-  ["research-center","Research Center","Reports and studies","Research center for AI reports, software industry reports, benchmarks and technology trends.","The Research Center is designed to publish careful reports, benchmark studies, trend analysis and whitepapers. It avoids unsupported statistics and separates evidence from interpretation.",["Research pages should state source, method, date, assumptions, limitations and practical implications.","Report categories include AI, software industry, cloud, cybersecurity, startups, digital transformation and developer productivity.","Future reports should be updated with revision history so readers and AI systems can understand freshness."]],
-  ["api-docs","API Docs","Developer documentation","API documentation principles and future API references for Softbridge Solutions products and tools.","API documentation should make software contracts understandable. Even before public APIs exist, this page explains how Softbridge Solutions thinks about API design and developer experience.",["Good API docs define authentication, resources, actions, errors, rate limits, examples and versioning expectations.","Internal and public APIs should be documented as product surfaces, not afterthoughts.","Public endpoint documentation will be added only when verified APIs are available."]],
-  ["technology-reports","Technology Reports","Research reports","Technology reports on software, AI, cloud, security, startups and digital transformation.","Technology reports help readers understand what is changing and what remains durable. Reports should be analytical, sourced and useful for decisions.",["A strong report distinguishes facts, trends, hypotheses and recommendations.","Topics include AI adoption, software architecture, cloud platforms, cybersecurity, developer tools, product strategy and startup ecosystems.","No market-size or ranking claims are made without reliable sources."]],
-  ["startup-center","Startup Center","Founder resources","Startup resources for MVPs, SaaS, marketplaces, AI products and product strategy.","The Startup Center helps founders think clearly before building. It focuses on validation, scope, product architecture, pricing, onboarding and technical risk.",["Founder resources should identify the riskiest assumption and the smallest credible test.","Technical choices should be tied to user learning, not founder preference or trend pressure.","Softbridge Solutions uses this hub to teach product discipline for founders in Adana, Türkiye and beyond."]],
-  ["pricing","Pricing Guide","Buyer education","A transparent guide to software, AI, mobile app, SaaS and website pricing factors.","Software pricing depends on scope, uncertainty, integrations, design depth, security, platform complexity and post-launch responsibility. A useful pricing page teaches the cost drivers rather than inventing a fake package table.",["Cost drivers include discovery, UX, frontend, backend, data model, integrations, cloud, testing, security, deployment and maintenance.","AI and fintech projects usually require extra attention to evaluation, data handling, auditability and risk control.","Final pricing should follow a scoped technical discovery process."]],
-  ["partners","Partnership Principles","Ecosystem","How Softbridge Solutions approaches technology and delivery partnerships.","Strong partnerships extend capability while keeping ownership, accountability and customer value clear.",["Every relationship should have a defined purpose, scope and operating model.","Partnerships should create value for users, developers or customers rather than act as logo decoration.","Technical boundaries, data responsibilities and service ownership should be explicit from the beginning."]],
-  ["status","Reliability","Operations","How Softbridge Solutions approaches availability, incidents and operational resilience.","Reliable digital products are designed to reveal their condition, recover from failure and give operators clear control.",["Operational visibility should cover availability, latency, errors, dependencies and critical user journeys.","Reliability work includes monitoring, alerts, backups, rollback, dependency tracking and operational ownership.","Incident learning should improve both the system and the team’s response process."]],
-  ["architecture-guides","Architecture Guides","System design","Architecture guides for software systems, AI applications, cloud infrastructure and secure APIs.","Architecture guides should teach readers how to reason about systems. They connect requirements, trade-offs, constraints and operational consequences.",["Topics include system design, database design, distributed systems, frontend architecture, backend architecture, AI engineering and cloud infrastructure.","Useful guides include diagrams, failure modes, scaling thresholds, security boundaries and maintenance expectations.","Architecture content should help teams build simpler systems when simple is enough."]],
-  ["security-center","Security Center","Trust and security","Security center for software security, API security, identity, cloud security and responsible AI systems.","Security is part of product quality. This center explains the controls that matter for software, AI, cloud, fintech and internal business systems.",["Security topics include identity management, authorization, API security, dependency hygiene, logging, encryption, backups and incident response.","AI systems require additional controls for prompt injection, tool permissions, data leakage and output handling.","Security claims should be precise and supported by actual practices, not generic trust language."]],
-  ["comparisons","Technology Comparisons","Decision guides","Technology comparison guides for frameworks, cloud platforms, mobile stacks and AI architecture choices.","Comparison pages help teams choose based on context. The goal is not to declare universal winners, but to explain trade-offs clearly.",["Good comparisons define decision criteria before comparing tools.","Useful criteria include team skill, performance, maintainability, ecosystem, deployment, security and long-term product direction.","Comparison topics include React vs Next.js, Flutter vs React Native, cloud choices, databases, AI architectures and backend stacks."]],
-  ["glossary","Technology Glossary","Definitions","A technology glossary for AI, software architecture, cloud, security, product and startup terms.","A glossary helps humans and AI systems understand the vocabulary of a technical company. Definitions should be short, useful and connected to deeper pages.",["Glossary entries should define the term, explain why it matters and point to related concepts.","Terms can cover AI, LLMs, RAG, APIs, SaaS, CI/CD, Kubernetes, JWT, vector databases, UX, fintech and blockchain.","This page is structured for future expansion into hundreds of definitions."]],
-] as const;
-
-export const ecosystemPages: PageData[] = ecosystemTopics.map(([slug,title,eyebrow,description,intro,sections]) => capability(slug,title,eyebrow,description,intro,sections));
-
-const companyPages = [
-  capability("about","About Softbridge","Company","Softbridge Solutions is a global technology company founded in Adana by Yunus Emre Gürlek, with its main office in Cascais, Portugal.","Softbridge Solutions is an AI-first technology company founded and owned by Yunus Emre Gürlek. With roots in Adana and its main office at Rua Bordalo Pinheiro 25 in Cascais, Portugal, the company builds artificial intelligence systems, web and mobile applications, SaaS platforms, cloud products and enterprise software.",["Our purpose is to turn ambitious ideas and complex operating needs into dependable digital products.","Under the leadership of Yunus Emre Gürlek, we work with an international mindset: clear communication, durable architecture, thoughtful user experience and technology choices that travel across markets.","Our international presence includes e-offices in Beverly Hills, Kington, Dublin, Milan and Marseille."]),
-  capability("locations","Global Locations","International presence","Softbridge Solutions has its main office in Cascais, Portugal, and e-offices across Europe and the United States.","Softbridge Solutions operates with an international structure designed for global product work. The main office is located at Rua Bordalo Pinheiro 25, Cascais, Portugal, supported by five international e-offices.",["United States: 468 N Camden Drive, 2nd Floor, Beverly Hills, CA 90210. United Kingdom: 61 Bridge Street, Kington, Herefordshire, HR5 3DJ.","Ireland: Unit 2, 1-2 Hanover Quay, Grand Canal Dock, Dublin 2, D02 C679. Italy: Piazza Gae Aulenti 1, Torre B, 20124, Milan.","France: 24 Av. du Prado, 13006 Marseille. The company was founded in Adana, Türkiye, and retains this origin as part of its technology identity."]),
-  capability("company-facts","Softbridge Solutions Company Facts","Entity reference","Verified company facts about Softbridge Solutions for customers, search engines and AI systems.","Softbridge Solutions is an AI-first global technology company founded in Adana, Türkiye, by Yunus Emre Gürlek. The company develops artificial intelligence systems, custom software, web and mobile applications, SaaS products, cloud platforms and enterprise technology.",["Founder and owner: Yunus Emre Gürlek. Founding location: Adana, Türkiye. Main office: Rua Bordalo Pinheiro 25, Cascais, Portugal.","E-offices: Beverly Hills, Kington, Dublin, Milan and Marseille. Service area: Türkiye and international markets.","Core capabilities: AI agents, enterprise AI, generative AI, web development, mobile development, SaaS, cloud, automation, custom software, fintech and blockchain."]),
-  capability("yunus-emre-gurlek","Yunus Emre Gürlek","Founder profile","Yunus Emre Gürlek is the founder and owner of Softbridge Solutions.","Yunus Emre Gürlek is the founder and owner of Softbridge Solutions, an AI-first global technology company founded in Adana, Türkiye. He leads the company’s direction across artificial intelligence, software engineering, digital products and international growth.",["His work connects technology entrepreneurship, product strategy and software engineering.","He guides Softbridge Solutions across AI systems, SaaS products, web and mobile applications, cloud platforms and enterprise software.","The company’s international structure combines its Adana origins with a main office in Cascais and e-offices across Europe and the United States."]),
-  capability("our-mission","Our Mission","Company direction","The mission guiding Softbridge Solutions’ product, AI and software engineering work.","Our mission is to help organizations build useful software, adopt AI responsibly and turn digital product ideas into systems people can trust.",["We connect emerging capability to concrete operating needs.","We design systems people can inspect, guide and improve.","We publish practical knowledge that helps founders, companies and technical teams make better decisions."]),
-  capability("our-vision","Our Vision","Company direction","The long-term vision for human-centered enterprise AI.","We envision organizations where AI expands human capacity without obscuring responsibility: systems handle repeatable complexity while people retain authority over consequential judgment.",["Models will change quickly; durable architecture must preserve choice.","Trust grows from evidence, transparency and appropriate control.","Adana can become a serious regional base for practical AI work when talent, industry needs and responsible engineering meet." ]),
-  capability("leadership","Leadership","People","Yunus Emre Gürlek is the founder and owner of Softbridge Solutions.","Softbridge Solutions is led by its founder and owner, Yunus Emre Gürlek. His direction connects global product ambition with engineering discipline, responsible AI and long-term value creation from Adana.",["Product direction begins with the problem, the user and the operating consequence.","Yunus Emre Gürlek guides the company’s strategic position across artificial intelligence, software engineering and digital product development.","Technical decisions remain explainable, reviewable and connected to measurable quality."]),
-  capability("engineering","Engineering","How we build","Softbridge Solutions’ principles for engineering dependable software, AI systems and digital products.","We treat software as an operating discipline. AI models, web interfaces, mobile apps, APIs, databases, cloud services and automation workflows are components inside systems with owners, contracts and evidence.",["Prefer the smallest architecture that satisfies the evidence.","Design for change, uncertain outputs and recoverable failure.","Make quality, cost, latency, security and human intervention visible in operation."]),
-  capability("research","Research","Applied inquiry","Applied AI research and evaluation at Softbridge Solutions.","Our research direction centers on reliable agents, grounded generation, evaluation and the interaction between people and AI systems.",["Research claims must be supported by disclosed methods and limits.","Applied work should connect a technical question to an operating consequence.","Publications will include dates, authorship, references and revision notes when released."]),
-  capability("products","Products","Software","Product engineering capabilities across AI, SaaS, web, mobile and enterprise software.","Softbridge Solutions designs and engineers digital products that connect useful interfaces with reliable systems. Our product work spans AI-enabled applications, SaaS platforms, mobile experiences, cloud software and internal business tools.",["Every product begins with a defined user, problem and operating environment.","Architecture is shaped around security, performance, maintainability and future change.","Explore our services to understand the capabilities available for new product development."]),
-  capability("case-studies","Case Studies","Applied work","Evidence-led case studies for enterprise AI systems.","Case studies will document the problem, constraints, method, system and measured outcome of verified work. No customer names or performance claims are presented without approval.",["Strong case studies separate starting conditions from intervention and result.","Measures should explain time period, definition and limitations.","Anonymized studies may be used when confidentiality permits and context remains useful."]),
-  capability("press","Press","Newsroom","Company perspectives and media information from Softbridge Solutions.","Softbridge Solutions speaks about AI engineering, digital product strategy, software architecture and the technology opportunity emerging from Adana.",["Company statements should be dated, attributable and precise.","Historical corrections and material updates should remain visible.","Media conversations should focus on substantiated expertise and useful industry insight."]),
-  capability("events","Events","Community","Events, technical sessions and public appearances from Softbridge Solutions.","Confirmed talks, workshops and community events will be listed here with dates, venues, speakers and access details.",["Event entries must distinguish organizer, host and participant roles.","Recordings and materials can extend the usefulness of completed events.","No upcoming events are claimed at this time."]),
-  capability("careers","Careers","Join the team","Build global technology products from Adana with Softbridge Solutions.","Softbridge Solutions is building an environment for careful, curious people who want to turn AI, software and product capability into dependable systems.",["Roles are defined by outcomes, responsibilities and the quality of work expected.","We value systems thinking, evidence, product judgment and direct communication.","Our culture is shaped around learning, accountability and an international standard of craft."]),
-  capability("faq","Frequently Asked Questions","Reference","Answers about Softbridge Solutions, software development, AI systems and global product delivery.","This page answers common questions about who Softbridge Solutions is, what we build and how we approach technology work.",["Softbridge Solutions was founded in Adana, Türkiye. Its main office is in Cascais, Portugal, with e-offices in Beverly Hills, Kington, Dublin, Milan and Marseille.","Engagement scope begins with the workflow, product goal, constraints and evidence—not a predetermined technology stack.","Projects can span discovery, product design, architecture, engineering, launch and continuous improvement."]),
-  capability("contact","Contact","Start a conversation","Contact Softbridge Solutions about AI, software engineering and digital product development.","Bring us a product idea, a difficult workflow or a business system ready for transformation. A strong first conversation defines the opportunity, the people it serves and the result the product needs to create.",["Share the product vision or operating challenge.","Describe the users, existing systems, available data and important constraints.","Outline the market, desired timeline and what a successful first release should prove."]),
-  capability("services","Services","Technology services","Explore Softbridge Solutions’ AI, web, mobile, cloud, SaaS, blockchain, fintech and product design capabilities.","Softbridge Solutions builds AI-first digital products and business systems. The service map connects strategy, product design, software architecture, application engineering, automation and cloud operations.",["Explore web development, mobile development, custom software, SaaS, cloud, DevOps, blockchain, fintech, ERP, CRM, marketplaces and product design.","Each capability page explains the technology, common use cases, architecture considerations and production risks.","The right stack follows from the product, workflow, users, data and evidence."]),
-  capability("ai-solutions","AI Solutions","Capabilities","Explore Softbridge Solutions’ AI agents, enterprise AI, generative AI, LLM and automation capabilities.","Our AI capabilities connect models to enterprise context. Each area is approached as part of a complete system: data, software, workflow, evaluation and human control.",["Explore agents, enterprise AI, generative AI, language-model development and workflow automation.","Supporting capabilities include machine learning, computer vision, natural language processing, RAG, prompt engineering and AI infrastructure.","The right architecture follows from the task, operating environment and evidence."]),
-  capability("industries","Industries","Operating contexts","AI systems for financial services, healthcare, manufacturing, retail, professional services and technology.","Industry context changes what a useful and responsible AI system looks like. Language, processes, data, risk and integration patterns must be understood before design decisions are made.",["We learn the workflow and its exceptions with domain experts.","Controls are mapped to the consequences and reversibility of decisions.","Industry pages provide use cases and design considerations, not unsupported outcome claims."]),
-  capability("resources","Resources","Knowledge center","Engineering articles, technical guides, research papers, whitepapers, benchmarks, documentation and local technology ecosystem guides.","The Softbridge Solutions knowledge center organizes practical technology content for human readers and machine retrieval. Each collection is built for clear provenance, semantic depth and future expansion.",["Content clusters connect concepts, implementations, evidence and related systems.","Pages use clear authorship, publication and revision metadata when items are available.","Explore AI, software engineering, web, mobile, cloud, blockchain, product strategy, local ecosystem guides and open resources."]),
-];
-
-const industryPages:PageData[] = industries.map(x=>capability(`industries/${x.slug}`,x.title,"Industry context",`AI engineering considerations and use cases for ${x.title.toLowerCase()}.`,`AI in ${x.title.toLowerCase()} should be designed around sector language, workflows, evidence and consequences. Softbridge Solutions approaches the domain from Adana with Türkiye’s operating context in mind.`,
-[
-  `Potential applications include ${x.focus.toLowerCase()}. Candidate workflows require validation with domain owners before implementation.`,
-  "Privacy, security, recordkeeping, human review and applicable regulation must be mapped to the specific system and jurisdiction.",
-  "A first engagement should establish the workflow baseline, representative cases and measurable definition of improvement.",
-]));
-
-export const pages: PageData[] = [...primarySolutions, ...additionalSolutions, ...servicePages, ...resourcePages, ...knowledgePages, ...localPages, ...localGrowthPages, ...blogPages, ...ecosystemPages, ...companyPages, ...industryPages];
-export const pageMap = new Map(pages.map(x=>[x.slug,x]));

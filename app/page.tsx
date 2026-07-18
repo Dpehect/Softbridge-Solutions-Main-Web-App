@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader, SiteFooter, Arrow } from "./site-shell";
 import { JsonLd } from "./structured-data";
-import { primarySolutions, servicePages, resourcePages, industries, knowledgePages, localPages, localGrowthPages } from "./content";
+import { pages, realProjects } from "./content";
 
 export const metadata: Metadata = {
-  title: "Global AI & Software Company in Adana, Türkiye",
-  description: "Softbridge Solutions is a global technology company founded in Adana, with its main office in Cascais, engineering AI systems, web and mobile products, SaaS platforms and enterprise software.",
+  title: "Global AI & Software Product Company in Adana, Türkiye",
+  description: "Softbridge Solutions is an AI-first technology company founded in Adana, engineering AI agents, web applications, SaaS platforms, and custom software for global markets.",
   alternates: { canonical: "/" },
 };
 
@@ -18,6 +18,10 @@ const stages = [
 ];
 
 export default function Home() {
+  const enServices = pages.filter((x) => x.locale === "en" && x.type === "service" && ["web-development", "mobile-development", "saas-development", "custom-software", "cloud-applications"].includes(x.slug));
+  const enSolutions = pages.filter((x) => x.locale === "en" && ["ai-agents", "enterprise-ai", "generative-ai"].includes(x.slug));
+  const homeProjects = realProjects.filter((x) => x.locale === "en").slice(0, 3);
+
   return (
     <>
       <JsonLd />
@@ -41,7 +45,39 @@ export default function Home() {
           <h2>Global products begin with clear thinking, rigorous engineering and an uncompromising standard of execution.</h2>
           <div className="statement-copy">
             <p>We unite product strategy, design, software architecture, AI and cloud engineering in one delivery practice. Every system is shaped for international scale, operational clarity and continuous improvement.</p>
-            <Link className="text-link light" href="/engineering">How we engineer AI <Arrow /></Link>
+          </div>
+        </section>
+
+        {/* Verifiable Products Section */}
+        <section className="section solutions" id="portfolio">
+          <div className="section-head">
+            <div><p className="section-kicker">Product Portfolio</p><h2>Public products,<br />not promises.</h2></div>
+            <p>Somut ve çalışan uygulamalarımız. KPSS eğitim platformlarından otonom AI asistanlarına kadar geliştirdiğimiz sistemleri açık depolarla sunuyoruz.</p>
+          </div>
+          <div className="solution-list">
+            {homeProjects.map((project, i) => (
+              <div className="solution-row" key={project.slug} style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "2rem 0", borderBottom: "1px solid var(--border)" }}>
+                <div style={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <span className="row-index">0{i + 1}</span>
+                  <h3 style={{ flex: 1, margin: "0 1.5rem" }}>{project.name}</h3>
+                  <span className="tag" style={{ fontSize: "0.85rem", opacity: 0.7 }}>{project.category}</span>
+                </div>
+                <p style={{ margin: "1rem 0 1rem 3rem", fontSize: "0.95rem", color: "var(--foreground-muted)" }}>{project.problem}</p>
+                <div style={{ margin: "0 0 0 3rem" }}>
+                  <a href={project.homepageUrl} target="_blank" rel="noopener noreferrer" className="text-link" style={{ marginRight: "1.5rem" }}>
+                    Live deployment <Arrow />
+                  </a>
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="text-link">
+                      GitHub repository <Arrow />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+            <div style={{ marginTop: "2rem", paddingLeft: "3rem" }}>
+              <Link className="button dark" href="/projects">View all products <Arrow /></Link>
+            </div>
           </div>
         </section>
 
@@ -51,11 +87,11 @@ export default function Home() {
             <p>End-to-end capabilities for companies building intelligent products, mission-critical platforms and new digital ventures.</p>
           </div>
           <div className="solution-list">
-            {servicePages.slice(0, 6).map((item, i) => (
+            {enServices.map((item, i) => (
               <Link href={`/${item.slug}`} className="solution-row" key={item.slug}>
                 <span className="row-index">0{i + 1}</span>
                 <h3>{item.title}</h3>
-                <p>{item.short}</p>
+                <p>{item.summary}</p>
                 <Arrow />
               </Link>
             ))}
@@ -68,11 +104,11 @@ export default function Home() {
             <p>AI work is treated as product and systems engineering: retrieval, agents, evaluation, interfaces, security and workflow adoption together.</p>
           </div>
           <div className="solution-list">
-            {primarySolutions.map((item, i) => (
+            {enSolutions.map((item, i) => (
               <Link href={`/${item.slug}`} className="solution-row" key={item.slug}>
                 <span className="row-index">0{i + 1}</span>
                 <h3>{item.title}</h3>
-                <p>{item.short}</p>
+                <p>{item.summary}</p>
                 <Arrow />
               </Link>
             ))}
@@ -89,29 +125,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section sectors">
-          <div className="section-head compact">
-            <div><p className="section-kicker">Industries</p><h2>Built around the work.</h2></div>
-            <Link className="text-link" href="/industries">View industries <Arrow /></Link>
-          </div>
-          <div className="sector-grid">
-            {industries.slice(0, 6).map((x, i) => <Link href={`/industries/${x.slug}`} key={x.slug}><span>0{i + 1}</span><h3>{x.title}</h3><p>{x.focus}</p><Arrow /></Link>)}
-          </div>
-        </section>
-
         <section className="section statement global-statement">
           <p className="section-kicker">Global outlook</p>
           <h2>Rooted in Adana.<br />Engineered for the world.</h2>
           <div className="statement-copy">
-            <p>Founded in Adana and headquartered in Cascais, we combine regional insight with global engineering practices. Our e-office network connects Beverly Hills, Kington, Dublin, Milan and Marseille.</p>
+            <p>Founded in Adana, we combine regional engineering and startup experience with a main office in Cascais, Portugal and virtual correspondence addresses across major European hubs.</p>
             <Link className="text-link" href="/about">Discover Softbridge <Arrow /></Link>
           </div>
         </section>
 
         <section className="section office-strip">
-          <p className="section-kicker">International presence</p>
-          <div><strong>Main office</strong><span>Rua Bordalo Pinheiro 25 · Cascais, Portugal</span></div>
-          <div><strong>E-offices</strong><span>Beverly Hills · Kington · Dublin · Milan · Marseille</span></div>
+          <p className="section-kicker">Locations & Correspondence</p>
+          <div><strong>Registered office</strong><span>Rua Bordalo Pinheiro 25 · Cascais, Portugal</span></div>
+          <div><strong>Mailing addresses</strong><span>Beverly Hills · Kington · Dublin · Milan · Marseille</span></div>
           <Link className="text-link" href="/locations">View locations <Arrow /></Link>
         </section>
 
@@ -124,26 +150,6 @@ export default function Home() {
               <article><h3>What happens when it fails?</h3><p>Bounded autonomy, clear escalation paths and human control at consequential decisions.</p></article>
               <article><h3>Can we understand the cost?</h3><p>Model, infrastructure and review costs observed against useful completed work—not token volume alone.</p></article>
             </div>
-          </div>
-        </section>
-
-        <section className="section resources-preview">
-          <div className="section-head compact">
-            <div><p className="section-kicker">Field notes</p><h2>Useful thinking,<br />openly shared.</h2></div>
-            <Link className="text-link" href="/resources">All resources <Arrow /></Link>
-          </div>
-          <div className="resource-grid">
-            {resourcePages.slice(0, 3).map((x, i) => <Link href={`/${x.slug}`} key={x.slug} className="resource-card"><div className={`card-visual v${i + 1}`}><span>{x.code}</span></div><p>{x.type} · Reference hub</p><h3>{x.title}</h3><span className="card-link">Explore the collection <Arrow /></span></Link>)}
-          </div>
-        </section>
-
-        <section className="section sectors local-authority">
-          <div className="section-head compact">
-            <div><p className="section-kicker">Knowledge hub</p><h2>Built for people<br />and AI systems.</h2></div>
-            <Link className="text-link" href="/resources">Explore the hub <Arrow /></Link>
-          </div>
-          <div className="sector-grid">
-            {[...knowledgePages.slice(0, 2), ...localPages.slice(0, 2), ...localGrowthPages.slice(0, 2)].map((x, i) => <Link href={`/${x.slug}`} key={x.slug}><span>0{i + 1}</span><h3>{x.title}</h3><p>{x.description}</p><Arrow /></Link>)}
           </div>
         </section>
 

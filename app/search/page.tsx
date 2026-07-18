@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: "Search Softbridge Solutions",
   description: "Search Softbridge Solutions pages about artificial intelligence, Adana, Türkiye, enterprise AI, agents, LLMs and digital transformation.",
   alternates: { canonical: "/search" },
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Search Softbridge Solutions",
     description: "Search the Softbridge Solutions AI knowledge hub.",
@@ -21,17 +25,45 @@ type Props = { searchParams: Promise<{ q?: string }> };
 export default async function SearchPage({ searchParams }: Props) {
   const { q = "" } = await searchParams;
   const query = q.trim().toLowerCase();
+  
+  // Only indexable pages should be searchable
+  const searchablePages = pages.filter((page) => page.indexable !== false);
+
   const results = query
-    ? pages.filter((page) => [page.title, page.description, page.intro, page.eyebrow].join(" ").toLowerCase().includes(query)).slice(0, 24)
-    : pages.slice(0, 12);
+    ? searchablePages
+        .filter((page) =>
+          [page.title, page.description, page.summary, page.eyebrow]
+            .join(" ")
+            .toLowerCase()
+            .includes(query)
+        )
+        .slice(0, 24)
+    : searchablePages.slice(0, 12);
 
   return (
     <>
-      <JsonLd page={{ title: "Search Softbridge Solutions", description: metadata.description as string, faq: [] }} url={`${siteUrl}/search`} />
+      <JsonLd
+        page={{
+          slug: "search",
+          locale: "en",
+          type: "tool",
+          status: "published",
+          indexable: false,
+          title: "Search Softbridge Solutions",
+          description: metadata.description as string,
+          summary: "Site-wide search utility.",
+          sections: [],
+        }}
+        url={`${siteUrl}/search`}
+      />
       <SiteHeader />
       <main className="article-page">
         <header className="article-hero grid-bg">
-          <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><span>Search</span></nav>
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <span>Search</span>
+          </nav>
           <p className="eyebrow">Knowledge search · Adana, Türkiye</p>
           <h1>Search</h1>
           <p className="article-intro">Find AI, automation, industry and local ecosystem pages across the Softbridge Solutions knowledge hub.</p>
