@@ -14,7 +14,7 @@ export function SiteHeader() {
       <Link href="/services" onClick={() => setOpen(false)}>Services</Link>
       <Link href="/ai-solutions" onClick={() => setOpen(false)}>AI</Link>
       <Link href="/industries" onClick={() => setOpen(false)}>Industries</Link>
-      <Link href="/research" onClick={() => setOpen(false)}>Research</Link>
+      <Link href="/free-tools" onClick={() => setOpen(false)}>Tools</Link>
       <Link href="/resources" onClick={() => setOpen(false)}>Resources</Link>
       <Link href="/about" onClick={() => setOpen(false)}>Company</Link>
     </nav>
@@ -28,7 +28,7 @@ export function SiteFooter() {
     <div className="footer-grid">
       <div><h3>Services</h3><Link href="/web-development">Web Development</Link><Link href="/mobile-development">Mobile Apps</Link><Link href="/saas-development">SaaS Development</Link><Link href="/custom-software">Custom Software</Link><Link href="/cloud-applications">Cloud Applications</Link></div>
       <div><h3>Expertise</h3><Link href="/ai-agents">AI Agents</Link><Link href="/enterprise-ai">Enterprise AI</Link><Link href="/blockchain-development">Blockchain</Link><Link href="/fintech-software">FinTech Software</Link><Link href="/ui-ux-design">UI/UX Design</Link></div>
-      <div><h3>Knowledge</h3><Link href="/engineering-blog">Engineering Blog</Link><Link href="/blog/generative-engine-optimization">GEO Guide</Link><Link href="/blog/how-to-build-saas">SaaS Guide</Link><Link href="/blog/api-security">API Security</Link><Link href="/documentation">Documentation</Link></div>
+      <div><h3>Knowledge</h3><Link href="/free-tools">Free Tools</Link><Link href="/research-center">Research Center</Link><Link href="/developer-hub">Developer Hub</Link><Link href="/blog/api-security">API Security</Link><Link href="/documentation">Documentation</Link></div>
       <div><h3>Company</h3><Link href="/about">About</Link><Link href="/engineering">Engineering</Link><Link href="/leadership">Leadership</Link><Link href="/careers">Careers</Link><Link href="/contact">Contact</Link></div>
       <div><h3>Adana</h3><p>Adana, Türkiye</p><Link href="/adana-startup-ecosystem">Adana startup ecosystem</Link><Link href="/technology-companies-adana">Technology companies in Adana</Link><Link href="/software-outsourcing-turkey">Software outsourcing in Turkey</Link></div>
     </div>
