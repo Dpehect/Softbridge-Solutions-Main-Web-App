@@ -1,61 +1,168 @@
 import type { MetadataRoute } from "next";
+
 import { pages, siteUrl } from "../content";
-import { marketConfigs } from "../content/markets";
+
+import {
+  marketConfigs,
+  routeTranslations,
+} from "../content/markets";
+
+const DEFAULT_LAST_MODIFIED = new Date("2026-07-19");
+
+function getLocalizedSlug(
+  originalSlug: string,
+  marketRoute: string,
+): string {
+  if (marketRoute === "en") {
+    return originalSlug;
+  }
+
+  return (
+    routeTranslations[originalSlug]?.[marketRoute] ??
+    originalSlug
+  );
+}
+
+function getPageLocaleForMarket(
+  defaultLocale: string,
+): string {
+  if (defaultLocale.startsWith("en")) {
+    return "en";
+  }
+
+  return defaultLocale;
+}
+
+function createHomepageAlternates(): Record<
+  string,
+  string
+> {
+  const languages: Record<string, string> = {};
+
+  for (const market of marketConfigs) {
+    languages[market.defaultLocale] =
+      `${siteUrl}/${market.route}`;
+  }
+
+  languages["x-default"] = `${siteUrl}/en`;
+
+  return languages;
+}
+
+function createPageAlternates(
+  originalSlug: string,
+): Record<string, string> {
+  const languages: Record<string, string> = {};
+
+  for (const market of marketConfigs) {
+    const localizedSlug = getLocalizedSlug(
+      originalSlug,
+      market.route,
+    );
+
+    languages[market.defaultLocale] =
+      `${siteUrl}/${market.route}/${localizedSlug}`;
+  }
+
+  languages["x-default"] =
+    `${siteUrl}/en/${originalSlug}`;
+
+  return languages;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const indexablePages = pages.filter(
-    (p) => p.status === "published" && p.indexable !== false
-  );
-
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  // Homepages for each market
-  marketConfigs.forEach(m => {
-    const alternates: Record<string, string> = {};
-    marketConfigs.forEach(altM => {
-      alternates[altM.defaultLocale.replace('-', '_')] = `\${siteUrl}/\${altM.route}`;
-    });
-    alternates["x-default"] = `\${siteUrl}/en`;
+  const indexablePages = pages.filter(
+    (page) =>
+      page.status === "published" &&
+      page.indexable !== false,
+  );
 
+  const homepageAlternates =
+    createHomepageAlternates();
+
+  for (const market of marketConfigs) {
     sitemapEntries.push({
-      url: `\${siteUrl}/\${m.route}`,
-      lastModified: new Date(), // Could be dynamic, but new Date() is fine for build time
+      url: `${siteUrl}/${market.route}`,
+      lastModified: DEFAULT_LAST_MODIFIED,
       changeFrequency: "weekly",
-      priority: 1.0,
-      alternates: { languages: alternates }
+      priority: 1,
+
+      alternates: {
+        languages: homepageAlternates,
+      },
     });
-  });
+  }
 
-  // Tools
   sitemapEntries.push({
-    url: `\${siteUrl}/free-tools`,
-    lastModified: new Date("2026-07-18"),
+    url: `${siteUrl}/free-tools`,
+    lastModified: DEFAULT_LAST_MODIFIED,
     changeFrequency: "monthly",
-    priority: 0.8,
+    priority: 0.7,
   });
 
-  // Pages
-  marketConfigs.forEach(m => {
-    // Only get pages that belong to the default locale of this market
-    // For English markets (US, UK, IE, EN), the locale is 'en', 'en-US', etc.
-    // In our simplified content model, we have 'en' pages. We will map 'en' pages to all English markets.
-    const isEnMarket = m.defaultLocale.startsWith('en');
-    const targetLocale = isEnMarket ? 'en' : m.defaultLocale;
+  for (const market of marketConfigs) {
+    const targetLocale = getPageLocaleForMarket(
+      market.defaultLocale,
+    );
 
-    const marketPages = indexablePages.filter(p => p.locale === targetLocale);
+    const marketPages = indexablePages.filter(
+      (page) => page.locale === targetLocale,
+    );
 
-    marketPages.forEach(p => {
-      // Don't duplicate root slugs as they are handled above
-      if (p.slug === "en" || p.slug === "tr" || p.slug === "pt" || p.slug === "fr" || p.slug === "it" || p.slug === "") return;
+    for (const page of marketPages) {
+      const isHomepage =
+        page.slug === "" ||
+        page.slug === "en" ||
+        page.slug === "tr" ||
+        page.slug === "pt" ||
+        page.slug === "fr" ||
+        page.slug === "it";
+
+      if (isHomepage) {
+        continue;
+      }
+
+      const localizedSlug = getLocalizedSlug(
+        page.slug,
+        market.route,
+      );
+
+      const pageUrl =
+        `${siteUrl}/${market.route}/${localizedSlug}`;
+
+      const isArticle =
+        page.type === "article" ||
+        page.type === "research";
+
+      const isService = page.type === "service";
 
       sitemapEntries.push({
-        url: `\${siteUrl}/\${m.route}/\${p.slug}`,
-        lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date("2026-07-18"),
-        changeFrequency: "monthly",
-        priority: p.slug.includes("/") ? 0.6 : 0.8,
+        url: pageUrl,
+
+        lastModified: page.updatedAt
+          ? new Date(page.updatedAt)
+          : DEFAULT_LAST_MODIFIED,
+
+        changeFrequency: isArticle
+          ? "monthly"
+          : "quarterly",
+
+        priority: isService
+          ? 0.9
+          : page.slug.includes("/")
+            ? 0.6
+            : 0.8,
+
+        alternates: {
+          languages: createPageAlternates(
+            page.slug,
+          ),
+        },
       });
-    });
-  });
+    }
+  }
 
   return sitemapEntries;
 }
