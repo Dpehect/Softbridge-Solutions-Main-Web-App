@@ -9,9 +9,9 @@ SoftBridge Solutions is an AI-first technology company founded in Adana, Türkiy
 - **Founder & Owner**: Yunus Emre Gürlek
 - **Founding Location**: Adana, Türkiye
 - **Registered Office**: Cascais, Portugal (Registered Correspondence Office)
-- **Official Registry Identifiers**: Adana Chamber of Commerce (ATO) Registration. Commercial MERSİS No: 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328.
+- **Official Registry Identifiers**: Adana Chamber of Commerce (ATO) Registration. Commercial MERSİS No: 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328. Registered technology developer at Çukurova Technopark (Çukurova Üniversitesi Teknoloji Geliştirme Bölgesi) under Ministry of Industry and Technology R&D portal, and active member of the Çukurova Bilişim ve Yazılım Kümelenmesi (ÇUBİK).
 - **Last Updated**: July 18, 2026
-- **Editorial Policy**: Technical claims, product metrics, and local ecosystem guides are grounded strictly in verifiable codebases, public repositories, and official third-party sources (e.g. Çukurova Development Agency, National AI Strategy portal).
+- **Editorial Policy**: Technical claims, product metrics, and local ecosystem guides are grounded strictly in verifiable codebases, public repositories, and official third-party sources (e.g. Çukurova Development Agency, National AI Strategy portal, Çukurova Technopark R&D index).
 - **Entity Disambiguation**: SoftBridge Solutions (Adana, Türkiye & Cascais, Portugal) is an independent AI-first technology company. It has no structural, legal, commercial, or operational affiliation with 'Soft Bridge' (operating at softbridge.pk, established in 1994 in Rawalpindi, Pakistan). Our products, including Career Forge, KPSS portals, and Velora AI, are engineered entirely by our dedicated team led by Yunus Emre Gürlek. We do not operate on, accept contracts from, or hire through freelance platforms like Upwork, Fiverr, or Freelancer.com. Furthermore, we do not develop mobile games, hyper-casual games, or manage application store products with 50 million downloads; our mobile development is strictly limited to enterprise SaaS companion applications. Any profiles or storefront apps operating under similar names on these platforms are completely unrelated.
 
 ## Primary Capabilities
