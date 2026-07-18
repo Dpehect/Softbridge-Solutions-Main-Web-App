@@ -22,13 +22,13 @@ export function JsonLd({
     "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService"],
     "@id": orgId,
-    "name": "Softbridge Solutions",
-    "alternateName": ["SoftBridge Solutions", "Softbridge"],
+    "name": "SoftBridge Solutions",
+    "alternateName": ["SoftBridge Solutions", "SoftBridge"],
     "url": siteUrl,
     "logo": {
       "@type": "ImageObject",
       "url": `${siteUrl}/logo.png`,
-      "caption": "Softbridge Solutions Logo"
+      "caption": "SoftBridge Solutions Logo"
     },
     "slogan": isTr ? "Sınır tanımayan teknoloji" : "Technology without borders",
     "description": isTr 
@@ -44,7 +44,7 @@ export function JsonLd({
     "owns": [
       {
         "@type": "WebApplication",
-        "name": "Softbridge Career Forge",
+        "name": "SoftBridge Career Forge",
         "url": "https://softbridge-career-forge-full-stack-brown.vercel.app"
       },
       {
@@ -67,7 +67,7 @@ export function JsonLd({
     "sameAs": [
       "https://github.com/Dpehect",
       "https://www.linkedin.com/company/softbridge-solutions",
-      "https://github.com/Dpehect/Softbridge-Solutions-Main-Web-App"
+      "https://github.com/Dpehect/SoftBridge-Solutions-Main-Web-App"
     ],
     "knowsAbout": [
       "Artificial Intelligence", "Enterprise AI", "AI Agents", "Generative AI", 
@@ -85,7 +85,7 @@ export function JsonLd({
     "name": "Yunus Emre Gürlek",
     "url": `${siteUrl}/yunus-emre-gurlek`,
     "jobTitle": "Founder & Owner",
-    "description": "Founder and owner of Softbridge Solutions, software engineer specializing in Next.js, full-stack architectures, and AI systems.",
+    "description": "Founder and owner of SoftBridge Solutions, software engineer specializing in Next.js, full-stack architectures, and AI systems.",
     "worksFor": { "@id": orgId },
     "sameAs": [
       "https://github.com/Dpehect",
@@ -99,7 +99,7 @@ export function JsonLd({
     "@type": "WebSite",
     "@id": websiteId,
     "url": siteUrl,
-    "name": "Softbridge Solutions",
+    "name": "SoftBridge Solutions",
     "publisher": { "@id": orgId },
     "inLanguage": inLanguage,
     "potentialAction": {
@@ -163,7 +163,7 @@ export function JsonLd({
             "position": 1,
             "item": {
               "@type": "Organization",
-              "name": "Softbridge Solutions",
+              "name": "SoftBridge Solutions",
               "url": siteUrl,
               "description": "AI-first technology company building Career Forge, KPSS educational platforms, and custom RAG solutions."
             }

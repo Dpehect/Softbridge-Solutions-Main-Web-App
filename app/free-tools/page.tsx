@@ -7,10 +7,10 @@ import { ToolsClient } from "./tools-client";
 
 export const metadata: Metadata = {
   title: "Free Developer Tools",
-  description: "Free developer and product tools from Softbridge Solutions: JSON formatter, JWT decoder, Base64 tools, regex tester, password generator, cost calculators and more.",
+  description: "Free developer and product tools from SoftBridge Solutions: JSON formatter, JWT decoder, Base64 tools, regex tester, password generator, cost calculators and more.",
   alternates: { canonical: "/free-tools" },
   openGraph: {
-    title: "Free Developer Tools | Softbridge Solutions",
+    title: "Free Developer Tools | SoftBridge Solutions",
     description: "Useful browser-based tools for developers, founders and product teams.",
     url: "/free-tools",
     type: "website",
@@ -44,7 +44,7 @@ export default function FreeToolsPage() {
         <p className="eyebrow">Developer utilities · Adana, Türkiye</p>
         <h1>Free Developer Tools</h1>
         <p className="article-intro">Small, useful browser tools for developers, founders and product teams: format data, test patterns, generate identifiers, estimate software scope and inspect common technical inputs.</p>
-        <div className="article-meta"><span>Softbridge Solutions</span><span>Reviewed 18 July 2026</span><span>Interactive tools</span></div>
+        <div className="article-meta"><span>SoftBridge Solutions</span><span>Reviewed 18 July 2026</span><span>Interactive tools</span></div>
       </header>
       <section className="tools-intro">
         <p className="section-kicker">Built to be useful</p>
@@ -55,7 +55,7 @@ export default function FreeToolsPage() {
       <section className="cta grid-bg">
         <p className="section-kicker">From utility to product</p>
         <h2>Need the internal version?</h2>
-        <p>Many serious software products start as a small tool that solves one painful workflow. Softbridge Solutions can help turn useful utilities into secure, integrated systems.</p>
+        <p>Many serious software products start as a small tool that solves one painful workflow. SoftBridge Solutions can help turn useful utilities into secure, integrated systems.</p>
         <Link className="button acid" href="/contact">Discuss a system <Arrow /></Link>
       </section>
     </main>

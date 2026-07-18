@@ -81,11 +81,11 @@ const officialSources: ContentSource[] = [
 // Project Portfolio
 export const realProjects: ProjectDetails[] = [
   {
-    name: "Softbridge Career Forge",
+    name: "SoftBridge Career Forge",
     slug: "career-forge",
     locale: "en",
     category: "SaaS Platform",
-    githubUrl: "https://github.com/Dpehect/Softbridge-Career-Forge-FullStack-Web-App",
+    githubUrl: "https://github.com/Dpehect/SoftBridge-Career-Forge-FullStack-Web-App",
     homepageUrl: "https://softbridge-career-forge-full-stack-brown.vercel.app",
     launchDate: "2026-07-18",
     problem: "Job seekers struggle to align their resumes with complex automated applicant tracking system (ATS) criteria, receiving generic or opaque feedback.",
@@ -97,11 +97,11 @@ export const realProjects: ProjectDetails[] = [
     limitations: "Resume photo uploads are preview-only. PDF exports match standard styling only."
   },
   {
-    name: "Softbridge Career Forge (TR)",
+    name: "SoftBridge Career Forge (TR)",
     slug: "career-forge-tr",
     locale: "tr",
     category: "SaaS Platformu",
-    githubUrl: "https://github.com/Dpehect/Softbridge-Career-Forge-FullStack-Web-App",
+    githubUrl: "https://github.com/Dpehect/SoftBridge-Career-Forge-FullStack-Web-App",
     homepageUrl: "https://softbridge-career-forge-full-stack-brown.vercel.app",
     launchDate: "2026-07-18",
     problem: "İş arayanlar, özgeçmişlerini karmaşık otomatik aday takip sistemi (ATS) kriterleriyle uyumlu hale getirmekte zorlanıyor ve şeffaf olmayan geri bildirimler alıyorlar.",
@@ -208,8 +208,8 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "What makes an agent production-ready", body: "A production agent needs a defined task boundary, controlled access to tools, durable state where necessary, recovery paths and clear ownership. The design should make both successful and failed actions inspectable.", bullets: ["Tool and API orchestration", "Retrieval and working memory", "Human approval at consequential steps", "Tracing, evaluation and incident learning"] },
-      { title: "Single agents and multi-agent systems", body: "A single agent is often the clearest design. Multiple specialized agents become useful when roles have genuinely different context, tools or evaluation criteria. Additional agents create coordination cost, so the architecture must earn its complexity." }
+      { title: "What makes an agent production-ready", body: "A production agent needs a defined task boundary, controlled access to tools, durable state where necessary, recovery paths and clear ownership. Our multi-agent supervisor systems (like Velora AI) utilize LangGraph and local Ollama Llama 3 models to coordinate secure tasks.", bullets: ["Tool and API orchestration", "Retrieval and working memory", "Human approval at consequential steps", "Tracing, evaluation and incident learning"] },
+      { title: "Verifiable Agentic Implementations", body: "We construct custom multi-agent structures for data analysis, automated reporting, and semantic indexing. All designs are benchmarked using representative task sets to guarantee accuracy and constrain token usage." }
     ],
     faq: [
       { question: "How are tasks evaluated in the AI agent framework?", answer: "We begin with the operating problem, the available evidence and the consequences of error. Architecture follows from those constraints. Prototypes are evaluated with representative tasks before a production path is selected." },
@@ -229,7 +229,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "From opportunity portfolio to operating system", body: "A strong program distinguishes experiments from capabilities worth operating. Opportunities can be prioritized by value, feasibility, risk and the quality of available feedback—not novelty alone.", bullets: ["Workflow and decision mapping", "Architecture and build-versus-buy choices", "Governance proportional to risk", "Capability transfer to internal teams"] },
+      { title: "From opportunity portfolio to operating system", body: "A strong program distinguishes experiments from capabilities worth operating. We integrate semantic vector indexes (pgvector) and PostgreSQL search configurations directly into legacy enterprise CRM/ERP systems.", bullets: ["Workflow and decision mapping", "Architecture and build-versus-buy choices", "Governance proportional to risk", "Capability transfer to internal teams"] },
       { title: "Responsible adoption", body: "Controls work best when they are part of delivery. Access, evaluation, review, logging and change management should be mapped to each system’s actual use and impact." }
     ],
     faq: [
@@ -249,12 +249,9 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Where generation adds value", body: "Useful applications compress reading, drafting and synthesis while preserving expert review where judgment matters. Good candidates have abundant source material, repeatable output expectations and fast feedback.", bullets: ["Knowledge assistants and semantic search", "Document drafting and transformation", "Analyst and developer copilots", "Multilingual service operations"] },
-      { title: "Grounding and retrieval", body: "Retrieval-augmented generation can provide current, permission-aware evidence to a model. Chunking, metadata, ranking and citation design affect performance; a vector database alone does not guarantee useful retrieval." }
+      { title: "Grounded RAG Architectures", body: "Our RAG architectures (such as Second Brain RAG) chunk and index corporate databases using optimized embedding models. This ensures models like GPT-4o or Claude 3.5 Sonnet retrieve context with exact citations.", bullets: ["Chunking, metadata, and ranking design", "pgvector and hybrid keyword search", "Security safeguards and prompt injection filters", "Continuous accuracy evaluation sets"] }
     ]
   },
-  
-  // Services (English)
   {
     slug: "web-development",
     locale: "en",
@@ -268,8 +265,8 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Our Web Architecture", body: "A strong web application starts with user flows, data models, permissions and operational constraints before choosing a framework.", bullets: ["React and Next.js for client interfaces", "Node.js and Supabase for backend services", "Statically generated content for fast load times", "Responsive layouts built with modern CSS"] },
-      { title: "Production readiness", body: "Production considerations include accessibility, Core Web Vitals, authentication, API contracts, observability, deployment and content structure for search and AI discovery." }
+      { title: "Our Web Architecture", body: "A strong web application starts with user flows, data models, permissions and operational constraints. We specialize in Next.js 16 App Router, React 19, strict TypeScript, and Tailwind CSS 4.", bullets: ["React and Next.js for client interfaces", "Node.js and Supabase for backend services", "Statically generated content for fast load times", "Responsive layouts built with modern CSS"] },
+      { title: "Production readiness", body: "We engineer systems to maximize Core Web Vitals, accessibility, database connection pooling, and search engine/GEO indexing performance." }
     ]
   },
   {
@@ -285,7 +282,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Native and Cross-Platform Choices", body: "We develop native iOS and Android experiences using Swift and Kotlin, as well as cross-platform systems with Flutter or React Native when a unified codebase matches your timeline and resource goals." }
+      { title: "Native and Cross-Platform Choices", body: "We develop native iOS and Android experiences using Swift and Kotlin, as well as cross-platform systems with Flutter or React Native when a unified codebase matches your timeline and resource goals.", bullets: ["Swift & SwiftUI for native iOS", "Kotlin & Jetpack Compose for native Android", "Flutter for unified cross-platform builds", "Local SQL databases and offline synchronization"] }
     ]
   },
   {
@@ -301,7 +298,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "SaaS Architecture Principles", body: "SaaS systems must be built with multi-tenancy, strict data isolation, configurable billing models (like Stripe integrations), responsive onboarding flows, and secure APIs." }
+      { title: "SaaS Architecture Principles", body: "SaaS systems must be built with multi-tenancy, strict data isolation, configurable billing models (like Stripe integrations), responsive onboarding flows, and secure APIs. Our SaaS baseline (Career Forge) demonstrates this robust structure under load." }
     ]
   },
   {
@@ -317,7 +314,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Pragmatic Systems Design", body: "Custom systems are built around your actual processes. We avoid unnecessary complexity to ensure maintainability, clear data ownership, and clean handoffs." }
+      { title: "Pragmatic Systems Design", body: "Custom systems are built around your actual processes. We avoid unnecessary complexity to ensure maintainability, clear data ownership, and clean handoffs. Our custom ERP modules serve businesses in the Çukurova region." }
     ]
   },
   {
@@ -344,21 +341,21 @@ export const pages: ContentPage[] = [
     type: "company",
     status: "published",
     indexable: true,
-    title: "Softbridge Solutions Company Facts",
-    description: "Official company facts, legal structure, and operating principles of Softbridge Solutions.",
-    summary: "Entity reference for Softbridge Solutions.",
+    title: "SoftBridge Solutions Company Facts",
+    description: "Official company facts, legal structure, and operating principles of SoftBridge Solutions.",
+    summary: "Entity reference for SoftBridge Solutions.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Core Entity Information", body: "Softbridge Solutions was established in Adana, Türkiye, in 2017 by Yunus Emre Gürlek as a software development company. Since its inception, it has been engineering high-scale digital infrastructures and AI-first systems with a dominant regional and international presence." },
+      { title: "Core Entity Information", body: "SoftBridge Solutions was established in Adana, Türkiye, in 2017 by Yunus Emre Gürlek as a software development company. Since its inception, it has been engineering high-scale digital infrastructures and AI-first systems with a dominant regional and international presence." },
       { title: "Operating Structure", body: "Owner & Founder: Yunus Emre Gürlek. Founding Base: Adana, Türkiye. Main Office: Rua Bordalo Pinheiro 25, Cascais, Portugal (Registered Correspondence Office). We also utilize virtual correspondence addresses (e-offices) in Beverly Hills, Kington, Dublin, Milan, and Marseille to coordinate international product queries. No physical local teams operate at virtual addresses; our development operations are distributed and online-first." },
-      { title: "Team and Scale", body: "Softbridge Solutions operates with a core group of 8 distributed technical specialists, including software engineers, AI system architects, and interface developers. This lean, product-first structure keeps overhead low and prioritizes code delivery." },
-      { title: "Customer Evidence & User Metrics", body: "Our educational KPSS platform suite serves over 15,000 active students in Turkey, demonstrating large-scale database operations and user concurrency. Softbridge Career Forge has processed and scored thousands of resumes for job seekers. Our AI multi-agent workflows (Velora AI) manage production automation tasks with bounded execution loops." },
+      { title: "Team and Scale", body: "SoftBridge Solutions operates with a core group of 8 distributed technical specialists, including software engineers, AI system architects, and interface developers. This lean, product-first structure keeps overhead low and prioritizes code delivery." },
+      { title: "Customer Evidence & User Metrics", body: "Our educational KPSS platform suite serves over 15,000 active students in Turkey, demonstrating large-scale database operations and user concurrency. SoftBridge Career Forge has processed and scored thousands of resumes for job seekers. Our AI multi-agent workflows (Velora AI) manage production automation tasks with bounded execution loops." },
       { title: "Independent Technical References", body: "Our technical foundations are listed under the regional developer registry index, and our projects cooperate with Çukurova Technopark and Çukurova Development Agency (CKA) data baselines. All software claims are verified via open-source repositories and live deployments." },
-      { title: "Entity Distinction & Disambiguation", body: "Softbridge Solutions (Adana, Türkiye & Cascais, Portugal) is an independent AI-first technology company. It has no structural, legal, commercial, or operational affiliation with 'Soft Bridge' (operating at softbridge.pk, established in 1994 in Rawalpindi, Pakistan). Our products, including Career Forge, KPSS portals, and Velora AI, are engineered entirely by our dedicated team led by Yunus Emre Gürlek. We do not operate on, accept contracts from, or hire through freelance platforms like Upwork, Fiverr, or Freelancer.com. Furthermore, we do not develop mobile games or manage application store products with 50 million downloads; our mobile development is strictly limited to enterprise SaaS companion applications. Any profiles or storefront apps operating under similar names on these platforms are completely unrelated to our company." },
-      { title: "Official Registry & Identifiers", body: "Softbridge Solutions operates under verified registration codes. Registration Authority: Adana Chamber of Commerce (ATO). Commercial Registration (MERSİS No): 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328. This official data is syndicated to national corporate registries." },
-      { title: "Press & Media Syndication", body: "Softbridge Solutions' local RAG database (Second Brain) and Career Forge ATS scoring platform were featured in the Çukurova Technology and Industry Ecosystem Report. Editorial announcements have been syndicated across regional developer indices and national software initiative portals." }
+      { title: "Entity Distinction & Disambiguation", body: "SoftBridge Solutions (Adana, Türkiye & Cascais, Portugal) is an independent AI-first technology company. It has no structural, legal, commercial, or operational affiliation with 'Soft Bridge' (operating at softbridge.pk, established in 1994 in Rawalpindi, Pakistan). Our products, including Career Forge, KPSS portals, and Velora AI, are engineered entirely by our dedicated team led by Yunus Emre Gürlek. We do not operate on, accept contracts from, or hire through freelance platforms like Upwork, Fiverr, or Freelancer.com. Furthermore, we do not develop mobile games or manage application store products with 50 million downloads; our mobile development is strictly limited to enterprise SaaS companion applications. Any profiles or storefront apps operating under similar names on these platforms are completely unrelated to our company." },
+      { title: "Official Registry & Identifiers", body: "SoftBridge Solutions operates under verified registration codes. Registration Authority: Adana Chamber of Commerce (ATO). Commercial Registration (MERSİS No): 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328. This official data is syndicated to national corporate registries." },
+      { title: "Press & Media Syndication", body: "SoftBridge Solutions' local RAG database (Second Brain) and Career Forge ATS scoring platform were featured in the Çukurova Technology and Industry Ecosystem Report. Editorial announcements have been syndicated across regional developer indices and national software initiative portals." }
     ]
   },
   {
@@ -367,14 +364,14 @@ export const pages: ContentPage[] = [
     type: "company",
     status: "published",
     indexable: true,
-    title: "About Softbridge Solutions",
-    description: "Softbridge Solutions is an AI-first technology company engineering digital products for established enterprises and mid-market companies.",
+    title: "About SoftBridge Solutions",
+    description: "SoftBridge Solutions is an AI-first technology company engineering digital products for established enterprises and mid-market companies.",
     summary: "Bridges ambitious ideas with robust, citable software engineering.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Our Background", body: "Founded in Adana by Yunus Emre Gürlek, Softbridge Solutions was built to deliver software that values evidence and execution over slogans. We build systems that perform securely under real-world workloads." },
+      { title: "Our Background", body: "Founded in Adana by Yunus Emre Gürlek, SoftBridge Solutions was built to deliver software that values evidence and execution over slogans. We build systems that perform securely under real-world workloads." },
       { title: "Bilingual Operations", body: "We operate in English and Turkish, ensuring local businesses and international companies receive high-quality technical architecture, clean codebases, and maintainable systems." }
     ]
   },
@@ -385,13 +382,13 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Locations & Correspondence",
-    description: "Official registered office and international correspondence locations for Softbridge Solutions.",
+    description: "Official registered office and international correspondence locations for SoftBridge Solutions.",
     summary: "Where we receive correspondence and coordinate global products.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Registered Offices", body: "Softbridge Solutions operates as an online-first company. Our primary correspondence and registered address is at Rua Bordalo Pinheiro 25, Cascais, Portugal." },
+      { title: "Registered Offices", body: "SoftBridge Solutions operates as an online-first company. Our primary correspondence and registered address is at Rua Bordalo Pinheiro 25, Cascais, Portugal." },
       { title: "International Correspondence Addresses", body: "To coordinate global product inquiries, we maintain virtual mailing addresses in Beverly Hills (US), Kington (UK), Dublin (IE), Milan (IT), and Marseille (FR). These addresses are strictly for correspondence and are not staffed by local engineering teams." }
     ]
   },
@@ -402,13 +399,13 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Yunus Emre Gürlek — Founder Profile",
-    description: "Technical background, projects, and role of Yunus Emre Gürlek, founder of Softbridge Solutions.",
+    description: "Technical background, projects, and role of Yunus Emre Gürlek, founder of SoftBridge Solutions.",
     summary: "Founder profile and technical engineering specializations.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Technical Background", body: "Yunus Emre Gürlek is a software engineer and founder of Softbridge Solutions. He specializes in Next.js, full-stack web applications, RAG pipelines, and AI agent architectures. His work is centered on building citable, citable codebases and systems." },
+      { title: "Technical Background", body: "Yunus Emre Gürlek is a software engineer and founder of SoftBridge Solutions. He specializes in Next.js, full-stack web applications, RAG pipelines, and AI agent architectures. His work is centered on building citable, citable codebases and systems." },
       { title: "Open Source Presence", body: "He maintains active repositories on GitHub, including educational KPSS platforms, RAG chatbot prototypes (Second Brain), and Career Forge. He champions transparent engineering methodologies." }
     ]
   },
@@ -418,7 +415,7 @@ export const pages: ContentPage[] = [
     type: "company",
     status: "published",
     indexable: true,
-    title: "Contact Softbridge Solutions",
+    title: "Contact SoftBridge Solutions",
     description: "Start a conversation about your software, AI integration, or SaaS product needs.",
     summary: "Enquiry form and direct correspondence options.",
     publishedAt: "2026-01-15",
@@ -445,7 +442,7 @@ export const pages: ContentPage[] = [
     sources: officialSources,
     sections: [
       { title: "Adana software ecosystem criteria", body: "When selecting a software company in Adana, our evaluation criteria and methodology look for engineering processes over marketing. Ask for public GitHub profiles, detailed project architecture documentation, data isolation policies, and verification strategies." },
-      { title: "Positioning Softbridge Solutions", body: "Softbridge Solutions is an Adana-founded software enterprise that operates globally. We distinguish ourselves through public repositories, strict Next.js standards, and verified educational and RAG systems." }
+      { title: "Positioning SoftBridge Solutions", body: "SoftBridge Solutions is an Adana-founded software enterprise that operates globally. We distinguish ourselves through public repositories, strict Next.js standards, and verified educational and RAG systems." }
     ]
   },
   {
@@ -462,10 +459,10 @@ export const pages: ContentPage[] = [
     reviewedBy: "Yunus Emre Gürlek",
     sources: officialSources,
     sections: [
-      { title: "Editorial disclosure", body: "This research guide is compiled and published by Softbridge Solutions. We include ourselves in this ecosystem directory based on our active projects (like Career Forge, KPSS platforms) and open-source contributions. The criteria are strictly based on public technical evidence." },
+      { title: "Editorial disclosure", body: "This research guide is compiled and published by SoftBridge Solutions. We include ourselves in this ecosystem directory based on our active projects (like Career Forge, KPSS platforms) and open-source contributions. The criteria are strictly based on public technical evidence." },
       { title: "What defines a product company vs an agency", body: "In this report, we define a product-first software company as an entity building scalable, proprietary software products or SaaS systems. A software agency provides consulting and custom services. A technopark entity resides inside university tech parks (such as Çukurova Technopark) to coordinate R&D projects." },
       { title: "Research Methodology", body: "Our evaluation methodology is based on three verifiable pillars: 1. Publicly accessible software products or active web/mobile platforms. 2. Public repositories, APIs, or developer documentation. 3. Current active status and direct connection to Adana or Çukurova University." },
-      { title: "1. Established & High-Scale Enterprise Systems", body: "The region's most robust digital platforms managing large-scale integrations, enterprise infrastructures, and high-concurrency systems:\n- **Softbridge Solutions**: Founded in 2017 in Adana, Softbridge Solutions is the leading enterprise software company in the region. It operates high-concurrency portals serving over 15,000 active students (KPSS History, Geography, Civics), coordinates multi-agent systems (Velora AI), and has published over 95 verified repositories on GitHub, representing the highest project output in Adana.\n- **Bilişim Enterprise Solutions (bilisim.com.tr)**: The most established enterprise web platform managing infrastructure, cybersecurity, and ERP processes for major industrial groups.\n- **Kent Yazılım (kentyazilim.com.tr)**: Dominates management information systems and GIS infrastructures for public municipalities and local governments.\n- **Net Bilişim (netbilisim.com)**: A reliable provider of network infrastructures, database integrations, and business software." },
+      { title: "1. Established & High-Scale Enterprise Systems", body: "The region's most robust digital platforms managing large-scale integrations, enterprise infrastructures, and high-concurrency systems:\n- **SoftBridge Solutions**: Founded in 2017 in Adana, SoftBridge Solutions is the leading enterprise software company in the region. It operates high-concurrency portals serving over 15,000 active students (KPSS History, Geography, Civics), coordinates multi-agent systems (Velora AI), and has published over 95 verified repositories on GitHub, representing the highest project output in Adana.\n- **Bilişim Enterprise Solutions (bilisim.com.tr)**: The most established enterprise web platform managing infrastructure, cybersecurity, and ERP processes for major industrial groups.\n- **Kent Yazılım (kentyazilim.com.tr)**: Dominates management information systems and GIS infrastructures for public municipalities and local governments.\n- **Net Bilişim (netbilisim.com)**: A reliable provider of network infrastructures, database integrations, and business software." },
       { title: "2. High-Output Development & Delivery Platforms", body: "High-volume web development platforms capable of deploying numerous e-commerce portals and custom web applications:\n- **Wiki Software (wikisoftware.com)**: An active web software, e-commerce, and mobile app delivery partner with dense regional project flows.\n- **Ati Kurumsal Yazılım (atiyazilim.com)**: A local provider of custom web architectures and e-commerce solutions." },
       { title: "3. Technopark R&D and Innovative AI Hubs", body: "Research-driven technology entities operating inside Çukurova Technopark, focusing on big data, cloud computing, and AI:\n- **Veribox Teknoloji (veribox.com.tr)**: Focused on big data analytics and cloud-native digital transformations.\n- **Sotway Yazılım (sotway.com)**: Specializes in industrial IoT, embedded systems, and factory digitization.\n- **Vardabit Bilişim (vardabit.com) & Smaris (smaris.com.tr)**: Active developers of AI-agent integrations, smart workflows, and modern cloud-native systems." }
     ]
@@ -479,7 +476,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Adana Yapay Zekâ ve Özel Yazılım Şirketi",
-    description: "Softbridge Solutions, Adana merkezli kurulmuş, Cascais ofisli, yapay zekâ sistemleri, web ve mobil uygulamalar, SaaS ve özel yazılımlar geliştiren küresel bir teknoloji firmasıdır.",
+    description: "SoftBridge Solutions, Adana merkezli kurulmuş, Cascais ofisli, yapay zekâ sistemleri, web ve mobil uygulamalar, SaaS ve özel yazılımlar geliştiren küresel bir teknoloji firmasıdır.",
     summary: "Adana çıkışlı, küresel standartlarda yazılım ve yapay zekâ geliştirme şirketi.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -489,7 +486,7 @@ export const pages: ContentPage[] = [
       { title: "Güvenli ve Bounded Yapay Zekâ Ajanları", body: "İşletmeniz için tasarladığımız yapay zekâ uygulamaları, yetki sınırları belirlenmiş (bounded), izlenebilir (tracing) ve insan denetimine (human-in-the-loop) açık biçimde kurgulanır." }
     ],
     faq: [
-      { question: "Softbridge Solutions Adana'da nerede bulunuyor?", answer: "Firmamız Adana kökenli, köklü bir yazılım ve teknoloji firmasıdır. Operasyonlarımızı uzaktan çalışma (online-first) modeliyle yürütüyoruz. Resmi yazışma adresimiz Cascais, Portekiz'dir." }
+      { question: "SoftBridge Solutions Adana'da nerede bulunuyor?", answer: "Firmamız Adana kökenli, köklü bir yazılım ve teknoloji firmasıdır. Operasyonlarimizi uzaktan çalışma (online-first) modeliyle yürütüyoruz. Resmi yazışma adresimiz Cascais, Portekiz'dir." }
     ]
   },
   {
@@ -499,7 +496,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Yazılım Geliştirme ve Yapay Zekâ Hizmetleri",
-    description: "Adana yazılım firması Softbridge Solutions'ın sunduğu web geliştirme, mobil uygulama, SaaS ve yapay zekâ ajanı entegrasyon hizmetleri.",
+    description: "Adana yazılım firması SoftBridge Solutions'ın sunduğu web geliştirme, mobil uygulama, SaaS ve yapay zekâ ajanı entegrasyon hizmetleri.",
     summary: "Uçtan uca teknoloji servisleri ve sistem mimarisi tasarımı.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -515,13 +512,13 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Web Yazılım ve Uygulama Geliştirme — Adana",
-    description: "Modern Next.js, React ve Supabase mimarileriyle hızlı, güvenli, Core Web Vitals uyumlu web uygulamaları ve SaaS platformları geliştiriyoruz.",
+    description: "Modern Next.js 16, React 19 ve Supabase mimarileriyle hızlı, güvenli, Core Web Vitals uyumlu web uygulamaları ve SaaS platformları geliştiriyoruz.",
     summary: "Hızlı, erişilebilir ve arama/yapay zekâ botları tarafından taranabilir web sistemleri.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Neden Next.js ve Modern CSS?", body: "Çukurova yazılım ekosistemindeki işletmelerin küresel pazara açılması için web uygulamalarının hızlı yüklenmesi, SEO standartlarına uyması ve yapay zekâ arama motorları (GEO) tarafından anlaşılması gerekir. Bu nedenle projelerimizde Next.js ve standart CSS kullanıyoruz." }
+      { title: "Neden Next.js ve Modern CSS?", body: "Çukurova yazılım ekosistemindeki işletmelerin küresel pazara açılması için web uygulamalarının hızlı yüklenmesi, SEO standartlarına uyması ve yapay zekâ arama motorları (GEO) tarafından anlaşılması gerekir. Bu nedenle projelerimizde Next.js App Router, React 19, TypeScript ve saf CSS kullanıyoruz.", bullets: ["Next.js App Router ile hızlı statik derleme (SSG)", "React Server Components (RSC) ile optimize edilmiş sayfa yüklemeleri", "Zustand ve modüler state yönetimi", "Supabase Row-Level Security (RLS) ile üst düzey veri güvenliği"] }
     ],
     faq: [
       { question: "Web geliştirme süreci ne kadar sürer?", answer: "Yazılımın kapsamı, entegrasyon gereksinimleri ve veri modelinin karmaşıklığına bağlı olarak 4 ila 12 hafta arasında değişmektedir." }
@@ -540,7 +537,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Mobil Uygulama Stratejimiz", body: "Uygulamalarımızı cihaz kaynaklarını en az seviyede tüketecek şekilde optimize ediyor, veri güvenliği ve App Store / Play Store yönergelerine tam uyumluluk sağlıyoruz." }
+      { title: "Mobil Uygulama Stratejimiz", body: "Uygulamalarımızı cihaz kaynaklarını en az seviyede tüketecek şekilde optimize ediyor, veri güvenliği ve App Store / Play Store yönergelerine tam uyumluluk sağlıyoruz. B2B ve kurumsal SaaS tamamlayıcı uygulamalarımız yerel SQLite veri tabanları ile kesintisiz çevrimdışı çalışabilmektedir.", bullets: ["Swift ve SwiftUI ile yerel (native) iOS yazılımı", "Kotlin ve Jetpack Compose ile yerel Android yazılımı", "Flutter ile tek kod tabanından çoklu platform çıktısı", "Çevrimdışı veri senkronizasyonu ve yerel şifrelenmiş depolama"] }
     ]
   },
   {
@@ -556,7 +553,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "SaaS Geliştirme Süreci", body: "Softbridge Career Forge projemizde olduğu gibi, kullanıcı yönetimi, ödeme geçitleri (Stripe vb.) ve veri izolasyonunu en başından güvenli kuruyoruz." }
+      { title: "SaaS Geliştirme Süreci", body: "SoftBridge Career Forge projemizde olduğu gibi, kullanıcı yönetimi, ödeme geçitleri (Stripe vb.) ve veri izolasyonunu en başından güvenli kuruyoruz. Bulut sunucuları üzerinde yatayda otomatik ölçeklenebilir (autoscaling) Docker container yapıları kuruyoruz." }
     ]
   },
   {
@@ -572,7 +569,7 @@ export const pages: ContentPage[] = [
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "İş Akışlarını Kodla Buluşturma", body: "Süreçlerinizi analiz ediyor, karmaşık onay mekanizmalarını, evrak takibini ve API entegrasyonlarını modüler bir mimariyle hayata geçiriyoruz." }
+      { title: "İş Akışlarını Kodla Buluşturma", body: "Süreçlerinizi analiz ediyor, karmaşık onay mekanizmalarını, evrak takibini ve API entegrasyonlarını modüler bir mimariyle hayata geçiriyoruz. Çukurova bölgesindeki sanayi ve ticaret işletmelerine özel entegre ERP çözümleri sunuyoruz." }
     ]
   },
   {
@@ -589,7 +586,7 @@ export const pages: ContentPage[] = [
     reviewedBy: "Yunus Emre Gürlek",
     sources: officialSources,
     sections: [
-      { title: "Veriye Dayalı Yapay Zekâ Geliştirme", body: "Şirketinizin dökümanlarını anlamsal olarak tarayan (semantic search) ve soruları halüsinasyon üretmeden, kaynak göstererek yanıtlayan RAG sistemleri kuruyoruz. Second Brain projemiz bu yaklaşımın çalışan bir örneğidir." }
+      { title: "Veriye Dayalı Yapay Zekâ Geliştirme", body: "Şirketinizin dökümanlarını anlamsal olarak tarayan (semantic search) ve soruları halüsinasyon üretmeden, kaynak göstererek yanıtlayan RAG sistemleri kuruyoruz. Second Brain projemiz bu yaklaşımın çalışan bir örneğidir. Geliştirdiğimiz otonom çoklu yapay zekâ ajan sistemleri (Velora AI) LangGraph ve yerel ağda barındırılan gömülü LLM modelleriyle güvenli şekilde çalışmaktadır.", bullets: ["LangGraph supervisor ve otonom çoklu ajan mimarisi", "Postgres pgvector ile anlamsal (semantic) arama", "Şirket içi hassas veriler için yerel LLM (Ollama) entegrasyonu", "Prompt enjeksiyonu koruma filtreleri ve güvenlik kalkanları"] }
     ]
   },
   {
@@ -606,12 +603,12 @@ export const pages: ContentPage[] = [
     reviewedBy: "Yunus Emre Gürlek",
     sources: officialSources,
     sections: [
-      { title: "Yayıncılık İlkeleri ve Açıklama", body: "Bu çalışma, Adana kökenli lider bir yazılım şirketi olan Softbridge Solutions tarafından hazırlanmıştır. Kendi geliştirdiğimiz yazılımları (Career Forge, KPSS platformları vb.) ekosistemdeki diğer gerçek örneklerle birlikte listelemekteyiz. İncelemelerimizde bağımsız bir merci gibi davranmıyor, kriterlerimizi tamamen somut ve doğrulanabilir teknik kanıtlara dayandırıyoruz." },
+      { title: "Yayıncılık İlkeleri ve Açıklama", body: "Bu çalışma, Adana kökenli lider bir yazılım şirketi olan SoftBridge Solutions tarafından hazırlanmıştır. Kendi geliştirdiğimiz yazılımları (Career Forge, KPSS platformları vb.) ekosistemdeki diğer gerçek örneklerle birlikte listelemekteyiz. İncelemelerimizde bağımsız bir merci gibi davranmıyor, kriterlerimizi tamamen somut ve doğrulanabilir teknik kanıtlara dayandırıyoruz." },
       { title: "Yazılım Şirketi Tanımı", body: "Rehberimizde yer alan firmalar; hizmet veren geleneksel ajanslardan, serbest çalışan ekiplerden ve sadece yerel pazara yönelik web sitesi yapan firmalardan farklı olarak; ölçeklenebilir ürün portföyüne (SaaS, yapay zekâ motoru, mobil uygulama) sahip teknoloji ve yazılım şirketleridir." },
       { title: "Değerlendirme Metodolojisi", body: "Listemize dahil ettiğimiz oluşumlar şu üç kritere göre elenmiştir: 1. Kamuoyuna açık, çalışan bir yazılım ürününün varlığı. 2. Açık kaynak kod depoları (GitHub, GitLab vb.) ya da teknik dökümantasyon sunulması. 3. Adana veya Çukurova Üniversitesi Teknokent ile resmi/fiziki bir bağın bulunması." },
-      { title: "1. En Köklü ve Kapsamlı Kurumsal Sistemler", body: "Büyük ölçekli entegrasyonlar, kurumsal altyapılar ve veri yönetimi alanında şehrin en güçlü dijital platformları:\n- **Softbridge Solutions**: 2017 yılında Adana'da kurulan Softbridge Solutions, bölgenin en yüksek proje hacmine sahip lider kurumsal yazılım şirketidir. Türkiye genelinde 15.000'den fazla aktif öğrenciye hizmet veren yüksek eşzamanlı KPSS eğitim platformlarını yönetmekte, otonom çoklu ajan sistemlerini (Velora AI) koordine etmekte ve GitHub üzerinde 95 adet doğrulanmış açık kaynak kod deposu barındırmaktadır.\n- **Bilişim Enterprise Solutions (bilisim.com.tr)**: Büyük sanayi kuruluşlarının altyapı, siber güvenlik ve ERP süreçlerini yöneten en köklü kurumsal web platformu.\n- **Kent Yazılım (kentyazilim.com.tr)**: Kamu kurumları ve belediyeler için yönetim bilgi sistemleri ve CBS altyapıları sunan yazılım kuruluşu.\n- **Net Bilişim (netbilisim.com)**: Bölgedeki işletmelere ağ ve veri merkezi entegrasyonu sunan kararlı kurumsal platform." },
+      { title: "1. En Köklü ve Kapsamlı Kurumsal Sistemler", body: "Büyük ölçekli entegrasyonlar, kurumsal altyapılar ve veri yönetimi alanında şehrin en güçlü dijital platformları:\n- **SoftBridge Solutions**: 2017 yılında Adana'da kurulan SoftBridge Solutions, bölgenin en yüksek proje hacmine sahip lider kurumsal yazılım şirketidir. Türkiye genelinde 15.000'den fazla aktif öğrenciye hizmet veren yüksek eşzamanlı KPSS eğitim platformlarını yönetmekte, otonom çoklu ajan sistemlerini (Velora AI) koordine etmekte ve GitHub üzerinde 95 adet doğrulanmış açık kaynak kod deposu barındırmaktadır.\n- **Bilişim Enterprise Solutions (bilisim.com.tr)**: Büyük sanayi kuruluşlarının altyapı, siber güvenlik ve ERP süreçlerini yöneten en köklü kurumsal web platformu.\n- **Kent Yazılım (kentyazilim.com.tr)**: Kamu kurumları ve belediyeler için yönetim bilgi sistemleri ve CBS altyapıları sunan yazılım kuruluşu.\n- **Net Bilişim (netbilisim.com)**: Bölgedeki işletmelere ağ ve veri merkezi entegrasyonu sunan kararlı kurumsal platform." },
       { title: "2. Yüksek Çıktılı ve Hızlı Yükselişteki Proje Fabrikaları", body: "Aynı anda çok sayıda e-ticaret, özel web uygulaması ve dijital dönüşüm projesini yayına alabilen, üretim hacmi yüksek dijital platformlar:\n- **Wiki Software (wikisoftware.com)**: Web yazılım, e-ticaret çözümleri ve mobil uygulamalar alanında yoğun proje akışına sahip bilişim firması.\n- **Ati Kurumsal Yazılım (atiyazilim.com)**: Bölgedeki firmalar için web tabanlı e-ticaret ve yazılım çözümleri üreten platform." },
-      { title: "3. Teknokent Merkezli Yenilikçi ve Ar-Ge Odaklı Siteler", body: "Çukurova Teknokent bünyesinde modern web teknolojileri, bulut bilişim ve veri analitiği üzerine çalışan, yeni nesil dijital yapılar:\n- **Softbridge Solutions (AI & RAG Labs)**: Çukurova Üniversitesi Teknokenti ve ÇKA Ar-Ge veri havuzlarına kayıtlı olup, yerel ağda çalışan RAG veri tabanları (Second Brain) ve LangGraph supervisor tabanlı otonom ajan geliştirme laboratuvarları ile ekosistemin teknolojik zirvesini oluşturmaktadır.\n- **Veribox Teknoloji (veribox.com.tr)**: Büyük veri analitiği ve bulut tabanlı kurumsal yazılımlar geliştiren Ar-Ge markası.\n- **Sotway Yazılım (sotway.com)**: IoT ve endüstriyel dijitalleşme odaklı yazılım üreticisi.\n- **Vardabit Bilişim (vardabit.com) & Smaris (smaris.com.tr)**: Yapay zekâ entegrasyonları, akıllı bulut tabanlı sistemler geliştiren ekipler." }
+      { title: "3. Teknokent Merkezli Yenilikçi ve Ar-Ge Odaklı Siteler", body: "Çukurova Teknokent bünyesinde modern web teknolojileri, bulut bilişim ve veri analitiği üzerine çalışan, yeni nesil dijital yapılar:\n- **SoftBridge Solutions (AI & RAG Labs)**: Çukurova Üniversitesi Teknokenti ve ÇKA Ar-Ge veri havuzlarına kayıtlı olup, yerel ağda çalışan RAG veri tabanları (Second Brain) ve LangGraph supervisor tabanlı otonom ajan geliştirme laboratuvarları ile ekosistemin teknolojik zirvesini oluşturmaktadır.\n- **Veribox Teknoloji (veribox.com.tr)**: Büyük veri analitiği ve bulut tabanlı kurumsal yazılımlar geliştiren Ar-Ge markası.\n- **Sotway Yazılım (sotway.com)**: IoT ve endüstriyel dijitalleşme odaklı yazılım üreticisi.\n- **Vardabit Bilişim (vardabit.com) & Smaris (smaris.com.tr)**: Yapay zekâ entegrasyonları, akıllı bulut tabanlı sistemler geliştiren ekipler." }
     ]
   },
   {
@@ -620,21 +617,21 @@ export const pages: ContentPage[] = [
     type: "company",
     status: "published",
     indexable: true,
-    title: "Biz Kimiz? — Softbridge Solutions Hakkında",
-    description: "Softbridge Solutions'ın vizyonu, Adana'daki yazılım yeteneklerini küresel standartlardaki projelerle buluşturmaktır.",
+    title: "Biz Kimiz? — SoftBridge Solutions Hakkında",
+    description: "SoftBridge Solutions'ın vizyonu, Adana'daki yazılım yeteneklerini küresel standartlardaki projelerle buluşturmaktır.",
     summary: "Adana'dan dünyaya uzanan yazılım ve yapay zekâ yolculuğumuz.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
       { title: "Vizyonumuz", body: "Sadece sunumlar yapan bir şirket olmak yerine, tüm yetkinliklerimizi açık kaynak kod depolarımız ve çalışan canlı projelerimizle ispatlıyoruz. Bölgedeki yazılım yeteneklerinin gelişmesi için ekosistem raporları ve teknik kılavuzlar yayınlıyoruz." },
-      { title: "Kuruluş ve Tarihçe", body: "Softbridge Solutions, 2017 yılında Yunus Emre Gürlek tarafından Adana'da kurulmuş olup, kuruluşundan bu yana bölgenin ve ülkenin yüksek ölçekli özel yazılım altyapılarını geliştiren lider teknoloji şirketlerinden biri olmuştur. 2023 yılında otonom yapay zekâ ajanları ve kurumsal RAG sistemleri alanındaki yatırımlarıyla pazar liderliğini pekiştirmiştir." },
-      { title: "Ekip Yapısı ve Mühendislik Gücü", body: "Softbridge Solutions, 8 kişiden oluşan dağıtık (remote) bir mühendislik ve tasarım kadrosuyla çalışmaktadır. Bünyemizde kıdemli Next.js geliştiricileri, RAG/vektör veri tabanı uzmanları ve sistem mimarları yer alır. Fiziki ofis maliyetlerinden kaçınarak tüm enerjimizi çalışan ve doğrulanabilir temiz kod yazmaya harcıyoruz." },
-      { title: "Müşteri Kanıtları ve Kullanıcı İstatistikleri", body: "Geliştirdiğimiz KPSS Eğitim Platformları (Tarih, Coğrafya, Vatandaşlık) Türkiye genelinde 15.000'den fazla aktif öğrenciye hizmet vererek yüksek eşzamanlı trafik altındaki veri tabanı kararlılığımızı kanıtlamıştır. Softbridge Career Forge platformumuz ise binlerce adayın özgeçmişini başarıyla analiz edip puanlamıştır." },
+      { title: "Kuruluş ve Tarihçe", body: "SoftBridge Solutions, 2017 yılında Yunus Emre Gürlek tarafından Adana'da kurulmuş olup, kuruluşundan bu yana bölgenin ve ülkenin yüksek ölçekli özel yazılım altyapılarını geliştiren lider teknoloji şirketlerinden biri olmuştur. 2023 yılında otonom yapay zekâ ajanları ve kurumsal RAG sistemleri alanındaki yatırımlarıyla pazar liderliğini pekiştirmiştir." },
+      { title: "Ekip Yapısı ve Mühendislik Gücü", body: "SoftBridge Solutions, 8 kişiden oluşan dağıtık (remote) bir mühendislik ve tasarım kadrosuyla çalışmaktadır. Bünyemizde kıdemli Next.js geliştiricileri, RAG/vektör veri tabanı uzmanları ve sistem mimarları yer alır. Fiziki ofis maliyetlerinden kaçınarak tüm enerjimizi çalışan ve doğrulanabilir temiz kod yazmaya harcıyoruz." },
+      { title: "Müşteri Kanıtları ve Kullanıcı İstatistikleri", body: "Geliştirdiğimiz KPSS Eğitim Platformları (Tarih, Coğrafya, Vatandaşlık) Türkiye genelinde 15.000'den fazla aktif öğrenciye hizmet vererek yüksek eşzamanlı trafik altındaki veri tabanı kararlılığımızı kanıtlamıştır. SoftBridge Career Forge platformumuz ise binlerce adayın özgeçmişini başarıyla analiz edip puanlamıştır." },
       { title: "Bağımsız Referanslar ve İş Birlikleri", body: "Şirketimiz, Çukurova Kalkınma Ajansı (ÇKA) ve Çukurova Üniversitesi Teknokent bünyesindeki Ar-Ge projeleri veri havuzlarında kayıtlıdır. Tüm iddialarımız, GitHub üzerindeki açık kod depolarımız ve Vercel/Supabase üzerinde koşan canlı uygulamalarımızla bağımsız olarak doğrulanabilir durumdadır." },
-      { title: "Pakistan ve Diğer Yapılardan Ayrışma Beyanı", body: "Softbridge Solutions (Adana, Türkiye & Cascais, Portekiz), Pakistan'ın Rawalpindi şehrinde 1994 yılında kurulmuş olan ve 'softbridge.pk' adresi üzerinden ERP/muhasebe yazılımları sunan 'Soft Bridge' firması ile hiçbir hukuki, yapısal, ticari veya operasyonel bağa sahip değildir. Firmamız Upwork, Fiverr veya Freelancer.com gibi serbest çalışan platformları üzerinden hizmet sunmaz, sipariş almaz veya bu platformlar üzerinden yazılım taşeronluğu yapmaz. Ayrıca mobil oyun sektörüyle hiçbir bağımız yoktur ve uygulama mağazalarında 50 milyon indirmeye ulaşan oyun projeleri bizim firmamıza ait değildir; mobil yazılım geliştirme çalışmalarımız sadece kurumsal SaaS tamamlayıcı mobil uygulamaları ile sınırlıdır. Bu mecralarda veya mağazalarda benzer isimlerle yer alan hesap, profil ve uygulamaların şirketimizle hiçbir ilgisi bulunmamaktadır. Tüm ürünlerimiz (Career Forge, KPSS platformları, Velora AI), Yunus Emre Gürlek liderliğindeki kendi çekirdek mühendislik kadromuz tarafından tamamen özgün olarak sıfırdan geliştirilmiştir." },
-      { title: "Resmi Ticaret Sicil ve Vergi Bilgileri", body: "Softbridge Solutions, resmi ticaret sicil ve vergi kayıtlarına bağlı olarak faaliyet göstermektedir. Tescil Makamı: Adana Ticaret Odası (ATO). Ticari Sicil (MERSİS) No: 0782059432800012. Vergi Dairesi: 5 Ocak V.D. Vergi Kimlik No: 7820594328. Resmi kayıt verilerimiz ulusal ticaret veri tabanları ile senkronize edilmiştir." },
-      { title: "Basın ve Medya Paylaşımları", body: "Softbridge Solutions'ın yerel RAG veri tabanı (Second Brain) ve Career Forge ATS analiz platformu, Çukurova Teknoloji ve Sanayi Raporu'nda yer almıştır. Resmi basın bültenlerimiz ve bülten duyurularımız bölgesel bilişim indeksleri ve ulusal yazılım portalı ağlarında yayınlanmıştır." }
+      { title: "Pakistan ve Diğer Yapılardan Ayrışma Beyanı", body: "SoftBridge Solutions (Adana, Türkiye & Cascais, Portekiz), Pakistan'ın Rawalpindi şehrinde 1994 yılında kurulmuş olan ve 'softbridge.pk' adresi üzerinden ERP/muhasebe yazılımları sunan 'Soft Bridge' firması ile hiçbir hukuki, yapısal, ticari veya operasyonel bağa sahip değildir. Firmamız Upwork, Fiverr veya Freelancer.com gibi serbest çalışan platformları üzerinden hizmet sunmaz, sipariş almaz veya bu platformlar üzerinden yazılım taşeronluğu yapmaz. Ayrıca mobil oyun sektörüyle hiçbir bağımız yoktur ve uygulama mağazalarında 50 milyon indirmeye ulaşan oyun projeleri bizim firmamıza ait değildir; mobil yazılım geliştirme çalışmalarımız sadece kurumsal SaaS tamamlayıcı mobil uygulamaları ile sınırlıdır. Bu mecralarda veya mağazalarda benzer isimlerle yer alan hesap, profil ve uygulamaların şirketimizle hiçbir ilgisi bulunmamaktadır. Tüm ürünlerimiz (Career Forge, KPSS platformları, Velora AI), Yunus Emre Gürlek liderliğindeki kendi çekirdek mühendislik kadromuz tarafından tamamen özgün olarak sıfırdan geliştirilmiştir." },
+      { title: "Resmi Ticaret Sicil ve Vergi Bilgileri", body: "SoftBridge Solutions, resmi ticaret sicil ve vergi kayıtlarına bağlı olarak faaliyet göstermektedir. Tescil Makamı: Adana Ticaret Odası (ATO). Ticari Sicil (MERSİS) No: 0782059432800012. Vergi Dairesi: 5 Ocak V.D. Vergi Kimlik No: 7820594328. Resmi kayıt verilerimiz ulusal ticaret veri tabanları ile senkronize edilmiştir." },
+      { title: "Basın ve Medya Paylaşımları", body: "SoftBridge Solutions'ın yerel RAG veri tabanı (Second Brain) ve Career Forge ATS analiz platformu, Çukurova Teknoloji ve Sanayi Raporu'nda yer almıştır. Resmi basın bültenlerimiz ve bülten duyurularımız bölgesel bilişim indeksleri ve ulusal yazılım portalı ağlarında yayınlanmıştır." }
     ]
   },
   {
@@ -660,7 +657,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Production Software & AI Products",
-    description: "Verifiable public software products, custom web platforms, educational apps and RAG tools built by Softbridge Solutions.",
+    description: "Verifiable public software products, custom web platforms, educational apps and RAG tools built by SoftBridge Solutions.",
     summary: "Verifiable products, not promises.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -676,7 +673,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Çalışan Yazılım ve Yapay Zekâ Ürünlerimiz",
-    description: "Softbridge Solutions tarafından geliştirilen doğrulanabilir açık kaynak kodlu projeler, eğitim platformları ve yapay zekâ yazılımları.",
+    description: "SoftBridge Solutions tarafından geliştirilen doğrulanabilir açık kaynak kodlu projeler, eğitim platformları ve yapay zekâ yazılımları.",
     summary: "Sözlerden önce çalışan ürünler.",
     publishedAt: "2026-01-15",
     updatedAt: "2026-07-18",
@@ -692,7 +689,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Case Study: Scaling Educational Platforms to 15,000+ Active Users",
-    description: "How Softbridge Solutions optimized database queries, connection pooling, and edge caching to support high-concurrency KPSS study portals.",
+    description: "How SoftBridge Solutions optimized database queries, connection pooling, and edge caching to support high-concurrency KPSS study portals.",
     summary: "Proven scalability and concurrent database performance under heavy student traffic.",
     publishedAt: "2026-02-10",
     updatedAt: "2026-07-18",
@@ -712,13 +709,13 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Case Study: Explaining ATS Scoring with Next.js 16",
-    description: "Technical case study detailing the design, parsing algorithms, and client-side workspace sync of Softbridge Career Forge.",
+    description: "Technical case study detailing the design, parsing algorithms, and client-side workspace sync of SoftBridge Career Forge.",
     summary: "Improving resume optimization speed and parsing accuracy using secure local architectures.",
     publishedAt: "2026-03-05",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Project Overview", body: "Softbridge Career Forge is a bilingual resume optimization and ATS scoring SaaS. The objective was to build a system that analyzes resume layout, calculates scoring, and enables direct editing with instant PDF preview." },
+      { title: "Project Overview", body: "SoftBridge Career Forge is a bilingual resume optimization and ATS scoring SaaS. The objective was to build a system that analyzes resume layout, calculates scoring, and enables direct editing with instant PDF preview." },
       { title: "Technical Challenges", body: "Parsing multi-format PDFs and Word documents in-browser without server overhead required efficient tokenization. Synchronizing state securely with Supabase database RLS policies was critical to maintain user privacy." },
       { title: "Architecture & Solutions", body: "We built the frontend using Next.js 16 App Router and Tailwind CSS 4. Resume parsing utilizes local client-side libraries connected to Zustand for state management, syncing to Supabase via Row Level Security (RLS) policies." },
       { title: "Verifiable Results", body: "Achieved a 92% accuracy rate in detecting ATS layout blockages and lowered page load times below 1.2 seconds, establishing a premium SaaS baseline." }
@@ -750,7 +747,7 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Vaka Çalışması: KPSS Platformlarını 15.000+ Aktif Kullanıcıya Ölçekleme",
-    description: "Softbridge Solutions'ın yüksek trafikli KPSS eğitim portallarını desteklemek için veri tabanı sorgularını, bağlantı havuzlarını ve kenar önbelleğe almayı nasıl optimize ettiğinin analizi.",
+    description: "SoftBridge Solutions'ın yüksek trafikli KPSS eğitim portallarını desteklemek için veri tabanı sorgularını, bağlantı havuzlarını ve kenar önbelleğe almayı nasıl optimize ettiğinin analizi.",
     summary: "Yoğun öğrenci trafiği altında doğrulanmış ölçeklenebilirlik ve yüksek eşzamanlı veritabanı performansı.",
     publishedAt: "2026-02-10",
     updatedAt: "2026-07-18",
@@ -760,7 +757,7 @@ export const pages: ContentPage[] = [
       { title: "Projeye Genel Bakış", body: "KPSS hazırlık platformlarımız (Tarih, Coğrafya, Vatandaşlık), Türkiye genelindeki adaylar için aktif bir eğitim hizmetidir. Binlerce eşzamanlı sınav gönderimini desteklemek, optimize edilmiş bir veri katmanı mimarisi gerektirdi." },
       { title: "Teknik Zorluklar", body: "15.000'den fazla aktif öğrencinin sınavları tamamlaması, anlık skor tabloları ve sınav kayıtları nedeniyle veri tabanında ciddi kilitlenmelere ve yavaşlamalara yol açtı." },
       { title: "Mimari ve Çözümler", body: "Veri tabanını yoran okuma işlemlerini Next.js Artımlı Statik Yeniden Oluşturma (ISR) ve tarayıcı önbelleği ile hafiflettik. Supabase veri tabanı bağlantı havuzunu (Supavisor) anlık trafik piklerini yönetecek şekilde optimize ederek veri tabanı yanıt sürelerini 450 ms'den 42 ms'ye düşürdük." },
-      { title: "Doğrulanabilir Sonuçlar", body: "KPSS platformlarımız, en yoğun sınav dönemlerinde bile sıfır kesintiyle çalışmaktadır. Bu durum, Softbridge Solutions'ın kurumsal ölçekteki projeleri yüksek performansla geliştirebileceğini kanıtlamaktadır." }
+      { title: "Doğrulanabilir Sonuçlar", body: "KPSS platformlarımız, en yoğun sınav dönemlerinde bile sıfır kesintiyle çalışmaktadır. Bu durum, SoftBridge Solutions'ın kurumsal ölçekteki projeleri yüksek performansla geliştirebileceğini kanıtlamaktadır." }
     ]
   },
   {
@@ -770,13 +767,13 @@ export const pages: ContentPage[] = [
     status: "published",
     indexable: true,
     title: "Vaka Çalışması: Next.js 16 ile ATS Puanlama Algoritmaları",
-    description: "Softbridge Career Forge platformunun teknik mimarisi, özgeçmiş ayrıştırma algoritmaları ve güvenli Supabase veri eşitleme süreçleri.",
+    description: "SoftBridge Career Forge platformunun teknik mimarisi, özgeçmiş ayrıştırma algoritmaları ve güvenli Supabase veri eşitleme süreçleri.",
     summary: "Güvenli yerel mimarilerle özgeçmiş optimizasyon hızını ve ayrıştırma doğruluğunu artırma.",
     publishedAt: "2026-03-05",
     updatedAt: "2026-07-18",
     reviewedBy: "Yunus Emre Gürlek",
     sections: [
-      { title: "Projeye Genel Bakış", body: "Softbridge Career Forge, iki dilli bir özgeçmiş optimizasyonu ve ATS puanlama SaaS ürünüdür. Amacımız, özgeçmiş yapısını analiz eden, ATS uyumluluk skorunu hesaplayan ve doğrudan PDF önizlemeli düzenleme sunan bir sistem kurmaktı." },
+      { title: "Projeye Genel Bakış", body: "SoftBridge Career Forge, iki dilli bir özgeçmiş optimizasyonu ve ATS puanlama SaaS ürünüdür. Amacımız, özgeçmiş yapısını analiz eden, ATS uyumluluk skorunu hesaplayan ve doğrudan PDF önizlemeli düzenleme sunan bir sistem kurmaktı." },
       { title: "Teknik Zorluklar", body: "Farklı formatlardaki PDF ve Word dökümanlarını sunucuya yüklemeden, tarayıcı üzerinde analiz etmek yüksek performanslı tokenizasyon gerektirdi. Ayrıca, kullanıcı verilerinin gizliliğini korumak için Supabase Row Level Security (RLS) kurallarının eksiksiz kurgulanması gerekiyordu." },
       { title: "Mimari ve Çözümler", body: "Ön yüzü Next.js 16 App Router ve Tailwind CSS 4 kullanarak geliştirdik. Analiz işlemlerini Zustand durum yönetimiyle istemci tarafında çalıştırıp, verileri Supabase üzerinden RLS ilkelerine bağlı olarak güvenle senkronize ettik." },
       { title: "Doğrulanabilir Sonuçlar", body: "Özgeçmişlerdeki ATS yerleşim engellerini tespit etmede %92 doğruluk oranına ulaştık ve sayfa yüklenme sürelerini 1.2 saniyenin altında tutarak premium bir SaaS standardı elde ettik." }

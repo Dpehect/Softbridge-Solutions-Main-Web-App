@@ -42,9 +42,9 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link href={isTr ? "/tr" : "/"} className="brand" aria-label="Softbridge Solutions home">
+      <Link href={isTr ? "/tr" : "/"} className="brand" aria-label="SoftBridge Solutions home">
         <span className="brand-mark">S/B</span>
-        <span>Softbridge<br />Solutions</span>
+        <span>SoftBridge<br />Solutions</span>
       </Link>
       <button
         className="menu-toggle"
@@ -94,7 +94,7 @@ export function SiteFooter() {
       <div className="footer-top">
         <Link href={isTr ? "/tr" : "/"} className="brand footer-brand">
           <span className="brand-mark">S/B</span>
-          <span>Softbridge<br />Solutions</span>
+          <span>SoftBridge<br />Solutions</span>
         </Link>
         <p>
           {isTr 
@@ -167,7 +167,7 @@ export function SiteFooter() {
         )}
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} Softbridge Solutions</span>
+        <span>© {new Date().getFullYear()} SoftBridge Solutions</span>
         <Link href="/yunus-emre-gurlek">
           {isTr ? "Yunus Emre Gürlek Tarafından Kuruldu" : "Founded by Yunus Emre Gürlek"}
         </Link>

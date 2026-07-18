@@ -6,7 +6,7 @@ import { pages, realProjects } from "../content";
 
 export const metadata: Metadata = {
   title: "Yazılım Geliştirme ve Yapay Zekâ Şirketi — Adana",
-  description: "Softbridge Solutions, Adana merkezli kurulmuş, otonom yapay zekâ ajanları, web yazılım, SaaS platformları ve özel kurumsal yazılımlar geliştiren küresel bir teknoloji firmasıdır.",
+  description: "SoftBridge Solutions, Adana merkezli kurulmuş, otonom yapay zekâ ajanları, web yazılım, SaaS platformları ve özel kurumsal yazılımlar geliştiren küresel bir teknoloji firmasıdır.",
   alternates: { canonical: "/tr" },
 };
 
@@ -33,7 +33,7 @@ export default function TurkishHome() {
           <div className="eyebrow reveal">Adana, Türkiye · Küresel pazarlar için geliştirildi</div>
           <h1 className="display reveal delay-1">Sınırlar olmadan<br />teknoloji.</h1>
           <div className="hero-lower reveal delay-2">
-            <p className="lede">Softbridge Solutions, işletmeler için otonom yapay zekâ ajanları ve özel dijital ürünler geliştiren bir teknoloji şirketidir. Adana kökenli yapımızla, uluslararası kullanıcılar, karmaşık operasyonlar ve uzun vadeli büyüme hedefleri için yazılım tasarlıyoruz.</p>
+            <p className="lede">SoftBridge Solutions, işletmeler için otonom yapay zekâ ajanları ve özel dijital ürünler geliştiren bir teknoloji şirketidir. Adana kökenli yapımızla, uluslararası kullanıcılar, karmaşık operasyonlar ve uzun vadeli büyüme hedefleri için yazılım tasarlıyoruz.</p>
             <div className="hero-actions">
               <Link className="button dark" href="/tr/iletisim">Projenizi görüşün <Arrow /></Link>
               <Link className="text-link" href="/tr/hizmetler">Hizmetleri keşfedin <Arrow /></Link>

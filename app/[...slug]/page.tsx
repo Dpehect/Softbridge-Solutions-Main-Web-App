@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       }
     },
     openGraph: {
-      title: `${p.title} | Softbridge Solutions`,
+      title: `${p.title} | SoftBridge Solutions`,
       description: p.description,
       url: `${siteUrl}/${p.slug}`,
       type: "website",
@@ -85,7 +85,7 @@ export default async function TopicPage({ params }: Props) {
           <h1>{p.title}</h1>
           <p className="article-intro">{p.summary}</p>
           <div className="article-meta">
-            <span>Softbridge Solutions</span>
+            <span>SoftBridge Solutions</span>
             {p.updatedAt && <span>{isTr ? "Güncelleme:" : "Updated:"} {p.updatedAt}</span>}
             <span>{isTr ? "Resmi Sayfa" : "Reference page"}</span>
           </div>

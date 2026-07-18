@@ -70,11 +70,11 @@ function makePassword(length: number) {
 }
 
 export function ToolsClient() {
-  const [jsonInput, setJsonInput] = useState('{"company":"Softbridge Solutions","city":"Adana"}');
-  const [text, setText] = useState("Softbridge Solutions builds AI-first digital products in Adana, Türkiye.");
+  const [jsonInput, setJsonInput] = useState('{"company":"SoftBridge Solutions","city":"Adana"}');
+  const [text, setText] = useState("SoftBridge Solutions builds AI-first digital products in Adana, Türkiye.");
   const [pattern, setPattern] = useState("\\bAI\\b");
   const [jwt, setJwt] = useState("");
-  const [base64, setBase64] = useState("Softbridge Solutions");
+  const [base64, setBase64] = useState("SoftBridge Solutions");
   const [passwordLength, setPasswordLength] = useState(18);
   const [scope, setScope] = useState(3);
   const [complexity, setComplexity] = useState(3);

@@ -6,7 +6,7 @@ import { pages, realProjects } from "./content";
 
 export const metadata: Metadata = {
   title: "Global AI & Software Product Company in Adana, Türkiye",
-  description: "Softbridge Solutions is an AI-first technology company founded in Adana, engineering AI agents, web applications, SaaS platforms, and custom software for global markets.",
+  description: "SoftBridge Solutions is an AI-first technology company founded in Adana, engineering AI agents, web applications, SaaS platforms, and custom software for global markets.",
   alternates: { canonical: "/" },
 };
 
@@ -31,7 +31,7 @@ export default function Home() {
           <div className="eyebrow reveal">Adana, Türkiye · Built for global markets</div>
           <h1 className="display reveal delay-1">Technology without<br />borders.</h1>
           <div className="hero-lower reveal delay-2">
-            <p className="lede">Softbridge Solutions is an AI-first technology company engineering digital products for ambitious organizations. From our base in Adana, we design software for international users, complex operations and long-term growth.</p>
+            <p className="lede">SoftBridge Solutions is an AI-first technology company engineering digital products for ambitious organizations. From our base in Adana, we design software for international users, complex operations and long-term growth.</p>
             <div className="hero-actions">
               <Link className="button dark" href="/contact">Discuss a product <Arrow /></Link>
               <Link className="text-link" href="/services">Explore services <Arrow /></Link>
@@ -130,7 +130,7 @@ export default function Home() {
           <h2>Rooted in Adana.<br />Engineered for the world.</h2>
           <div className="statement-copy">
             <p>Founded in Adana, we combine regional engineering and startup experience with a main office in Cascais, Portugal and virtual correspondence addresses across major European hubs.</p>
-            <Link className="text-link" href="/about">Discover Softbridge <Arrow /></Link>
+            <Link className="text-link" href="/about">Discover SoftBridge <Arrow /></Link>
           </div>
         </section>
 

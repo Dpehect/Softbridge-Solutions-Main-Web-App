@@ -5,16 +5,16 @@ import { pages, siteUrl } from "../content";
 import { JsonLd } from "../structured-data";
 
 export const metadata: Metadata = {
-  title: "Search Softbridge Solutions",
-  description: "Search Softbridge Solutions pages about artificial intelligence, Adana, Türkiye, enterprise AI, agents, LLMs and digital transformation.",
+  title: "Search SoftBridge Solutions",
+  description: "Search SoftBridge Solutions pages about artificial intelligence, Adana, Türkiye, enterprise AI, agents, LLMs and digital transformation.",
   alternates: { canonical: "/search" },
   robots: {
     index: false,
     follow: true,
   },
   openGraph: {
-    title: "Search Softbridge Solutions",
-    description: "Search the Softbridge Solutions AI knowledge hub.",
+    title: "Search SoftBridge Solutions",
+    description: "Search the SoftBridge Solutions AI knowledge hub.",
     url: "/search",
     type: "website",
   },
@@ -49,7 +49,7 @@ export default async function SearchPage({ searchParams }: Props) {
           type: "tool",
           status: "published",
           indexable: false,
-          title: "Search Softbridge Solutions",
+          title: "Search SoftBridge Solutions",
           description: metadata.description as string,
           summary: "Site-wide search utility.",
           sections: [],
@@ -66,7 +66,7 @@ export default async function SearchPage({ searchParams }: Props) {
           </nav>
           <p className="eyebrow">Knowledge search · Adana, Türkiye</p>
           <h1>Search</h1>
-          <p className="article-intro">Find AI, automation, industry and local ecosystem pages across the Softbridge Solutions knowledge hub.</p>
+          <p className="article-intro">Find AI, automation, industry and local ecosystem pages across the SoftBridge Solutions knowledge hub.</p>
         </header>
         <section className="search-section">
           <form action="/search" className="search-form">
