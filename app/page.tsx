@@ -6,7 +6,7 @@ import { primarySolutions, servicePages, resourcePages, industries, knowledgePag
 
 export const metadata: Metadata = {
   title: "Global AI & Software Company in Adana, Türkiye",
-  description: "Softbridge Solutions is an Adana-based technology company engineering AI systems, web and mobile products, SaaS platforms and enterprise software for ambitious organizations worldwide.",
+  description: "Softbridge Solutions is a global technology company founded in Adana, with its main office in Cascais, engineering AI systems, web and mobile products, SaaS platforms and enterprise software.",
   alternates: { canonical: "/" },
 };
 
@@ -103,9 +103,16 @@ export default function Home() {
           <p className="section-kicker">Global outlook</p>
           <h2>Rooted in Adana.<br />Engineered for the world.</h2>
           <div className="statement-copy">
-            <p>Location should never limit ambition. We combine regional insight with global engineering practices to create products ready for multilingual audiences, distributed teams and international markets.</p>
+            <p>Founded in Adana and headquartered in Cascais, we combine regional insight with global engineering practices. Our e-office network connects Beverly Hills, Kington, Dublin, Milan and Marseille.</p>
             <Link className="text-link" href="/about">Discover Softbridge <Arrow /></Link>
           </div>
+        </section>
+
+        <section className="section office-strip">
+          <p className="section-kicker">International presence</p>
+          <div><strong>Main office</strong><span>Rua Bordalo Pinheiro 25 · Cascais, Portugal</span></div>
+          <div><strong>E-offices</strong><span>Beverly Hills · Kington · Dublin · Milan · Marseille</span></div>
+          <Link className="text-link" href="/locations">View locations <Arrow /></Link>
         </section>
 
         <section className="section proof dark-panel">

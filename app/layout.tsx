@@ -9,11 +9,11 @@ const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Softbridge Solutions | Global AI & Software Company", template: "%s | Softbridge Solutions" },
-  description: "Adana-based global technology company engineering AI systems, web and mobile products, SaaS platforms, cloud applications and enterprise software.",
+  description: "Global technology company founded in Adana, with its main office in Cascais, engineering AI systems, web and mobile products, SaaS platforms and enterprise software.",
   applicationName: "Softbridge Solutions",
   keywords: ["software company in Adana", "AI company in Adana", "software agency Turkey", "web development", "mobile app development", "SaaS development", "enterprise AI", "AI agents", "Adana", "Türkiye"],
-  openGraph: { type: "website", locale: "en_US", siteName: "Softbridge Solutions", title: "Softbridge Solutions — Technology without borders", description: "Global software, AI systems, SaaS, web and mobile products engineered from Adana, Türkiye.", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Softbridge Solutions — Technology without borders" }] },
-  twitter: { card: "summary_large_image", title: "Softbridge Solutions — Technology without borders", description: "Global software, AI systems, SaaS, web and mobile products engineered from Adana, Türkiye.", images: ["/og.png"] },
+  openGraph: { type: "website", locale: "en_US", siteName: "Softbridge Solutions", title: "Softbridge Solutions — Technology without borders", description: "Global software, AI systems, SaaS, web and mobile products from Adana to international markets.", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Softbridge Solutions — Technology without borders" }] },
+  twitter: { card: "summary_large_image", title: "Softbridge Solutions — Technology without borders", description: "Global software, AI systems, SaaS, web and mobile products from Adana to international markets.", images: ["/og.png"] },
   robots: { index: true, follow: true },
 };
 
