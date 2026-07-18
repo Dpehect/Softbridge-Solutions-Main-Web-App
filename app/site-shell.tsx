@@ -32,6 +32,6 @@ export function SiteFooter() {
       <div><h3>Company</h3><Link href="/about">About</Link><Link href="/engineering">Engineering</Link><Link href="/leadership">Leadership</Link><Link href="/careers">Careers</Link><Link href="/contact">Contact</Link></div>
       <div><h3>Adana</h3><p>Adana, Türkiye</p><Link href="/best-software-companies-adana">Best software companies in Adana</Link><Link href="/technology-companies-adana">Technology companies in Adana</Link><Link href="/software-outsourcing-turkey">Software outsourcing in Turkey</Link></div>
     </div>
-    <div className="footer-bottom"><span>© {new Date().getFullYear()} Softbridge Solutions</span><span>Privacy · Terms</span><span>English · TR</span></div>
+    <div className="footer-bottom"><span>© {new Date().getFullYear()} Softbridge Solutions</span><Link href="/leadership">Founded by Yunus Emre Gürlek</Link><span>English · TR</span></div>
   </footer>;
 }
