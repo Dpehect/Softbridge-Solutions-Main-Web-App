@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader, SiteFooter, Arrow } from "./site-shell";
 import { JsonLd } from "./structured-data";
-import { primarySolutions, resourcePages, industries, knowledgePages, localPages } from "./content";
+import { primarySolutions, servicePages, resourcePages, industries, knowledgePages, localPages, localGrowthPages } from "./content";
 
 export const metadata: Metadata = {
-  title: "Artificial intelligence company in Adana, Türkiye",
-  description: "Softbridge Solutions is an AI engineering company in Adana, Türkiye. We design enterprise AI systems, agents, LLM applications and workflow automation.",
+  title: "AI-first digital product studio in Adana, Türkiye",
+  description: "Softbridge Solutions is an AI-first digital product studio and software agency in Adana, Türkiye, building AI systems, web apps, mobile apps, SaaS and cloud software.",
   alternates: { canonical: "/" },
 };
 
@@ -24,13 +24,13 @@ export default function Home() {
       <SiteHeader />
       <main>
         <section className="hero grid-bg">
-          <div className="eyebrow reveal">AI engineering · Adana, Türkiye</div>
-          <h1 className="display reveal delay-1">AI that moves<br />work forward.</h1>
+          <div className="eyebrow reveal">AI-first product studio · Adana, Türkiye</div>
+          <h1 className="display reveal delay-1">Software that moves<br />companies forward.</h1>
           <div className="hero-lower reveal delay-2">
-            <p className="lede">Softbridge Solutions designs and engineers enterprise AI systems—from grounded language-model applications to agents that operate inside real workflows.</p>
+            <p className="lede">Softbridge Solutions designs and engineers AI systems, web applications, mobile apps, SaaS products, cloud platforms and internal business software for teams that need technology to become real operations.</p>
             <div className="hero-actions">
-              <Link className="button dark" href="/contact">Discuss a system <Arrow /></Link>
-              <Link className="text-link" href="/ai-solutions">Explore our work <Arrow /></Link>
+              <Link className="button dark" href="/contact">Discuss a product <Arrow /></Link>
+              <Link className="text-link" href="/services">Explore services <Arrow /></Link>
             </div>
           </div>
           <div className="signal-path" aria-hidden="true"><i /><span>strategy</span><i /><span>systems</span><i /><span>operations</span><b /></div>
@@ -38,17 +38,34 @@ export default function Home() {
 
         <section className="statement section dark-panel">
           <p className="section-kicker">Our position</p>
-          <h2>Enterprise AI is not a model demo. It is a dependable operating system for a specific kind of work.</h2>
+          <h2>A serious technology company does not sell screens. It builds systems people can operate, trust and improve.</h2>
           <div className="statement-copy">
-            <p>We connect strategy, data, models, software and human judgment. The result is designed to be useful in production: observable, governed and legible to the people responsible for it.</p>
+            <p>We connect strategy, product design, software architecture, AI, cloud infrastructure and human judgment. The result is designed to be useful in production: secure, observable, readable and maintainable.</p>
             <Link className="text-link light" href="/engineering">How we engineer AI <Arrow /></Link>
           </div>
         </section>
 
         <section className="section solutions" id="capabilities">
           <div className="section-head">
-            <div><p className="section-kicker">Capabilities</p><h2>From model to<br />operating context.</h2></div>
-            <p>Focused capabilities for organizations moving from AI exploration to reliable, integrated systems.</p>
+            <div><p className="section-kicker">Services</p><h2>From idea to<br />operating product.</h2></div>
+            <p>Focused capabilities for startups and companies building AI-first products, internal systems, SaaS platforms and modern software.</p>
+          </div>
+          <div className="solution-list">
+            {servicePages.slice(0, 6).map((item, i) => (
+              <Link href={`/${item.slug}`} className="solution-row" key={item.slug}>
+                <span className="row-index">0{i + 1}</span>
+                <h3>{item.title}</h3>
+                <p>{item.short}</p>
+                <Arrow />
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="section solutions" id="ai">
+          <div className="section-head">
+            <div><p className="section-kicker">AI systems</p><h2>Models inside<br />real software.</h2></div>
+            <p>AI work is treated as product and systems engineering: retrieval, agents, evaluation, interfaces, security and workflow adoption together.</p>
           </div>
           <div className="solution-list">
             {primarySolutions.map((item, i) => (
@@ -110,14 +127,14 @@ export default function Home() {
             <Link className="text-link" href="/resources">Explore the hub <Arrow /></Link>
           </div>
           <div className="sector-grid">
-            {[...knowledgePages.slice(0, 3), ...localPages.slice(0, 3)].map((x, i) => <Link href={`/${x.slug}`} key={x.slug}><span>0{i + 1}</span><h3>{x.title}</h3><p>{x.description}</p><Arrow /></Link>)}
+            {[...knowledgePages.slice(0, 2), ...localPages.slice(0, 2), ...localGrowthPages.slice(0, 2)].map((x, i) => <Link href={`/${x.slug}`} key={x.slug}><span>0{i + 1}</span><h3>{x.title}</h3><p>{x.description}</p><Arrow /></Link>)}
           </div>
         </section>
 
         <section className="cta grid-bg">
           <p className="section-kicker">Start with the system</p>
-          <h2>Bring us the difficult<br />part of the workflow.</h2>
-          <p>Tell us where decisions slow down, knowledge fragments or repetitive work consumes expert attention. We will help frame what AI should—and should not—do.</p>
+          <h2>Bring us the difficult<br />part of the product.</h2>
+          <p>Tell us what you want to build, automate or modernize. We will help frame the product, the architecture and the parts where AI should or should not be involved.</p>
           <Link className="button acid" href="/contact">Start a conversation <Arrow /></Link>
         </section>
       </main>

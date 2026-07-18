@@ -1,6 +1,6 @@
 # Softbridge Solutions
 
-Corporate website and AI knowledge hub for Softbridge Solutions, based in Adana, Türkiye.
+Corporate website and technology knowledge hub for Softbridge Solutions, an AI-first digital product studio and software agency based in Adana, Türkiye.
 
 ## Development
 

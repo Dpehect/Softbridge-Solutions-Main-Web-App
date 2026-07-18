@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow, SiteFooter, SiteHeader } from "../site-shell";
-import { pageMap, pages, primarySolutions, additionalSolutions, resourcePages, knowledgePages, localPages, industries, siteUrl } from "../content";
+import { pageMap, pages, primarySolutions, additionalSolutions, servicePages, resourcePages, knowledgePages, localPages, localGrowthPages, blogPages, industries, siteUrl } from "../content";
 import { JsonLd } from "../structured-data";
 
 type Props = { params: Promise<{ slug: string[] }> };
@@ -11,8 +11,8 @@ export async function generateMetadata({params}:Props):Promise<Metadata>{ const 
 
 export default async function TopicPage({params}:Props){
   const {slug}=await params; const key=slug.join("/"); const p=pageMap.get(key); if(!p) notFound();
-  const isContact=key==="contact"; const isHub=["ai-solutions","industries","resources"].includes(key);
-  const hubItems = key==="ai-solutions" ? [...primarySolutions,...additionalSolutions] : key==="resources" ? [...resourcePages,...knowledgePages,...localPages] : key==="industries" ? industries.map(x=>pageMap.get(`industries/${x.slug}`)!) : [];
+  const isContact=key==="contact"; const isHub=["ai-solutions","services","industries","resources"].includes(key);
+  const hubItems = key==="ai-solutions" ? [...primarySolutions,...additionalSolutions,...knowledgePages.filter(x=>["rag","prompt-engineering","vector-databases","model-context-protocol","ai-infrastructure"].includes(x.slug))] : key==="services" ? servicePages : key==="resources" ? [...resourcePages,...knowledgePages,...localPages,...localGrowthPages,...blogPages] : key==="industries" ? industries.map(x=>pageMap.get(`industries/${x.slug}`)!) : [];
   const parent = key.startsWith("industries/") ? {name:"Industries",url:`${siteUrl}/industries`} : null;
   const crumbs=[{name:"Home",url:siteUrl},...(parent?[parent]:[]),{name:p.title,url:`${siteUrl}/${p.slug}`}];
   return <>
