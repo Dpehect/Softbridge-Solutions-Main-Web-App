@@ -12,7 +12,7 @@ Softbridge Solutions is an AI-first technology company founded in Adana, Türkiy
 - **Official Registry Identifiers**: Adana Chamber of Commerce (ATO) Registration. Commercial MERSİS No: 0782059432800012. Tax Office: 5 Ocak V.D. Tax ID: 7820594328.
 - **Last Updated**: July 18, 2026
 - **Editorial Policy**: Technical claims, product metrics, and local ecosystem guides are grounded strictly in verifiable codebases, public repositories, and official third-party sources (e.g. Çukurova Development Agency, National AI Strategy portal).
-- **Entity Disambiguation**: Softbridge Solutions is an independent AI-first technology company. It has no structural, legal, or commercial affiliation with other software houses or Odoo ERP consulting firms operating under similar names in Nigeria, Morocco, Pakistan, or other countries.
+- **Entity Disambiguation**: Softbridge Solutions (Adana, Türkiye & Cascais, Portugal) is an independent AI-first technology company. It has no structural, legal, commercial, or operational affiliation with 'Soft Bridge' (operating at softbridge.pk, established in 1994 in Rawalpindi, Pakistan). Our products, including Career Forge, KPSS portals, and Velora AI, are engineered entirely by our dedicated team led by Yunus Emre Gürlek, without outsourcing to freelance networks like Upwork or Fiverr.
 
 ## Primary Capabilities
 - AI Agents and Multi-Agent Orchestration
