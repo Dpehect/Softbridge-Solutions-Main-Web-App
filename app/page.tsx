@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader, SiteFooter, Arrow } from "./site-shell";
 import { JsonLd } from "./structured-data";
-import { primarySolutions, resourcePages, industries } from "./content";
+import { primarySolutions, resourcePages, industries, knowledgePages, localPages } from "./content";
 
 export const metadata: Metadata = {
-  title: "Enterprise AI engineering in Lisbon",
-  description: "Softbridge Solutions is an AI engineering company in Lisbon, Portugal. We design enterprise AI systems, agents, LLM applications and workflow automation.",
+  title: "Artificial intelligence company in Adana, Türkiye",
+  description: "Softbridge Solutions is an AI engineering company in Adana, Türkiye. We design enterprise AI systems, agents, LLM applications and workflow automation.",
   alternates: { canonical: "/" },
 };
 
@@ -24,7 +24,7 @@ export default function Home() {
       <SiteHeader />
       <main>
         <section className="hero grid-bg">
-          <div className="eyebrow reveal">AI engineering · Lisbon, Portugal</div>
+          <div className="eyebrow reveal">AI engineering · Adana, Türkiye</div>
           <h1 className="display reveal delay-1">AI that moves<br />work forward.</h1>
           <div className="hero-lower reveal delay-2">
             <p className="lede">Softbridge Solutions designs and engineers enterprise AI systems—from grounded language-model applications to agents that operate inside real workflows.</p>
@@ -101,6 +101,16 @@ export default function Home() {
           </div>
           <div className="resource-grid">
             {resourcePages.slice(0, 3).map((x, i) => <Link href={`/${x.slug}`} key={x.slug} className="resource-card"><div className={`card-visual v${i + 1}`}><span>{x.code}</span></div><p>{x.type} · Reference hub</p><h3>{x.title}</h3><span className="card-link">Explore the collection <Arrow /></span></Link>)}
+          </div>
+        </section>
+
+        <section className="section sectors local-authority">
+          <div className="section-head compact">
+            <div><p className="section-kicker">Knowledge hub</p><h2>Built for people<br />and AI systems.</h2></div>
+            <Link className="text-link" href="/resources">Explore the hub <Arrow /></Link>
+          </div>
+          <div className="sector-grid">
+            {[...knowledgePages.slice(0, 3), ...localPages.slice(0, 3)].map((x, i) => <Link href={`/${x.slug}`} key={x.slug}><span>0{i + 1}</span><h3>{x.title}</h3><p>{x.description}</p><Arrow /></Link>)}
           </div>
         </section>
 

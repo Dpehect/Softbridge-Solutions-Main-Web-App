@@ -1,6 +1,6 @@
 # Softbridge Solutions
 
-Corporate website for Softbridge Solutions, an enterprise AI engineering company based in Lisbon, Portugal.
+Corporate website and AI knowledge hub for Softbridge Solutions, based in Adana, Türkiye.
 
 ## Development
 
