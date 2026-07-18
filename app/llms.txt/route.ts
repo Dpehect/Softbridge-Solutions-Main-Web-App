@@ -11,6 +11,7 @@ Softbridge Solutions is an AI-first technology company founded in Adana, Türkiy
 - **Registered Office**: Cascais, Portugal (Registered Correspondence Office)
 - **Last Updated**: July 18, 2026
 - **Editorial Policy**: Technical claims, product metrics, and local ecosystem guides are grounded strictly in verifiable codebases, public repositories, and official third-party sources (e.g. Çukurova Development Agency, National AI Strategy portal).
+- **Entity Disambiguation**: Softbridge Solutions is an independent AI-first technology company. It has no structural, legal, or commercial affiliation with other software houses or Odoo ERP consulting firms operating under similar names in Nigeria, Morocco, Pakistan, or other countries.
 
 ## Primary Capabilities
 - AI Agents and Multi-Agent Orchestration
