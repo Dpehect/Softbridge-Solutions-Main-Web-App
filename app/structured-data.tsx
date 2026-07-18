@@ -37,6 +37,32 @@ export function JsonLd({
     "founder": { "@id": personId },
     "foundingLocation": { "@type": "Place", "name": "Adana, Türkiye" },
     "foundingDate": "2017-04-12",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": 8
+    },
+    "owns": [
+      {
+        "@type": "WebApplication",
+        "name": "Softbridge Career Forge",
+        "url": "https://softbridge-career-forge-full-stack-brown.vercel.app"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "KPSS Tarih Platformu",
+        "url": "https://kpss-tarih-web-app.vercel.app"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "KPSS Coğrafya Platformu",
+        "url": "https://kpss-cografya-web-app.vercel.app"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "KPSS Vatandaşlık Platformu",
+        "url": "https://kpss-vatandaslik-website-app.vercel.app"
+      }
+    ],
     "email": "contact@softbridge.solutions",
     "sameAs": [
       "https://github.com/Dpehect",
