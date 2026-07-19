@@ -1,7 +1,13 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type {
+  Metadata,
+  Viewport,
+} from "next";
 
-import { EntityIdentitySchema } from "../entity-identity-schema";
+import {
+  Geist,
+  Geist_Mono,
+} from "next/font/google";
+
 import { CompanyEntitySchema } from "../company-entity-schema";
 
 import {
@@ -24,81 +30,114 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(companyProfile.website),
+  metadataBase:
+    new URL(companyProfile.website),
 
   title: {
-    default: "SoftBridge Solutions | Global AI & Software Company",
-    template: "%s | SoftBridge Solutions",
+    default:
+      "SoftBridge Solutions | AI & Software Startup",
+
+    template:
+      "%s | SoftBridge Solutions",
   },
 
-  description: companyProfile.description,
+  description:
+    companyProfile.description,
 
-  applicationName: companyProfile.name,
+  applicationName:
+    companyProfile.name,
 
   authors: [
     {
       name: companyProfile.name,
       url: companyProfile.website,
     },
+
     {
-      name: "Yunus Emre Gürlek",
-      url: `${companyProfile.website}/en/yunus-emre-gurlek`,
+      name:
+        companyProfile.founder.name,
+
+      url:
+        `${companyProfile.website}${companyProfile.founder.profilePath}`,
     },
   ],
 
-  creator: "Yunus Emre Gürlek",
-  publisher: companyProfile.name,
+  creator:
+    companyProfile.founder.name,
+
+  publisher:
+    companyProfile.name,
+
   category: "Technology",
 
   keywords: [
     "SoftBridge Solutions",
     "SoftBridge Solutions Yunus Emre Gürlek",
     "Yunus Emre Gürlek software company",
-    "Yunus Emre Gürlek SoftBridge",
+    "Yunus Emre Gürlek startup",
     "Adana software startup",
-    "Adana artificial intelligence company",
+    "Adana AI startup",
     "Adana technology startup",
     "Türkiye artificial intelligence startup",
-    "AI software company",
-    "AI agent development company",
-    "artificial intelligence startup",
+    "emerging European AI startup",
+    "European software startup",
+    "product-led software startup",
+    "international AI software company",
+    "AI agent development startup",
+    "SaaS product development",
     "custom software development",
-    "SaaS development",
-    "web application development",
-    "mobile application development",
-    "enterprise automation",
     "retrieval augmented generation",
-    "European software company",
-    "international software engineering company",
+    "education technology startup",
   ],
 
   openGraph: {
     type: "website",
-    siteName: companyProfile.name,
-    title: `${companyProfile.name} — ${companyProfile.slogan}`,
-    description: companyProfile.shortDescription,
-    url: companyProfile.website,
+
+    siteName:
+      companyProfile.name,
+
+    title:
+      `${companyProfile.name} — ${companyProfile.slogan}`,
+
+    description:
+      companyProfile.shortDescription,
+
+    url:
+      companyProfile.website,
 
     images: [
       {
-        url: companyProfile.socialImagePath,
+        url:
+          companyProfile.socialImagePath,
+
         width: 1200,
         height: 630,
-        alt: `${companyProfile.name} — ${companyProfile.slogan}`,
+
+        alt:
+          `${companyProfile.name} — ${companyProfile.slogan}`,
       },
     ],
   },
 
   twitter: {
-    card: "summary_large_image",
-    title: `${companyProfile.name} — ${companyProfile.slogan}`,
-    description: companyProfile.shortDescription,
-    images: [companyProfile.socialImagePath],
+    card:
+      "summary_large_image",
+
+    title:
+      `${companyProfile.name} — ${companyProfile.slogan}`,
+
+    description:
+      companyProfile.shortDescription,
+
+    images: [
+      companyProfile.socialImagePath,
+    ],
   },
 
   alternates: {
     types: {
-      "text/plain": `${companyProfile.website}/llms.txt`,
+      "text/plain":
+        `${companyProfile.website}/llms.txt`,
 
       "application/json":
         `${companyProfile.website}/.well-known/company-profile.json`,
@@ -114,6 +153,7 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       noimageindex: false,
+
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -157,8 +197,11 @@ export default async function RootLayout({
 }: RootLayoutProps) {
   const { market } = await params;
 
-  const routeMarket = getMarketByRoute(market);
-  const companyMarket = getCompanyMarket(market);
+  const routeMarket =
+    getMarketByRoute(market);
+
+  const companyMarket =
+    getCompanyMarket(market);
 
   const htmlLang =
     companyMarket?.locale ??
@@ -171,11 +214,6 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang}>
       <head>
-        <EntityIdentitySchema
-          currentUrl={canonicalUrl}
-          language={htmlLang}
-        />
-
         <CompanyEntitySchema
           market={market}
           currentUrl={canonicalUrl}
@@ -209,9 +247,16 @@ export default async function RootLayout({
           href={`${companyProfile.website}/api/entity-identity`}
           title="SoftBridge Solutions canonical entity identity"
         />
+
+        <link
+          rel="author"
+          href={`${companyProfile.website}${companyProfile.founder.profilePath}`}
+        />
       </head>
 
-      <body className={`${geist.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geist.variable} ${geistMono.variable}`}
+      >
         {children}
       </body>
     </html>
