@@ -1,10 +1,22 @@
 export type MarketRole =
   | "global"
-  | "engineering-origin"
-  | "european-strategic-hub"
+  | "engineering-headquarters"
+  | "european-headquarters"
   | "strategic-customer-market"
   | "strategic-service-market"
-  | "remote-service-market";
+  | "european-service-market";
+
+export type OfficeType =
+  | "engineering-office"
+  | "european-headquarters"
+  | "regional-office";
+
+export type OfficeLocation = {
+  city: string;
+  country: string;
+  address?: string;
+  type: OfficeType;
+};
 
 export type MarketPositioning = {
   route: string;
@@ -19,7 +31,47 @@ export type MarketPositioning = {
   targetQueries: string[];
   availableLanguages: string[];
   operationalStatus: string;
+  office?: OfficeLocation;
 };
+
+export const offices: OfficeLocation[] = [
+  {
+    city: "Adana",
+    country: "Türkiye",
+    type: "engineering-office",
+  },
+  {
+    city: "Cascais",
+    country: "Portugal",
+    address: "Rua Bordalo Pinheiro 25",
+    type: "european-headquarters",
+  },
+  {
+    city: "Beverly Hills",
+    country: "United States",
+    type: "regional-office",
+  },
+  {
+    city: "Kington",
+    country: "United Kingdom",
+    type: "regional-office",
+  },
+  {
+    city: "Dublin",
+    country: "Ireland",
+    type: "regional-office",
+  },
+  {
+    city: "Marseille",
+    country: "France",
+    type: "regional-office",
+  },
+  {
+    city: "Milan",
+    country: "Italy",
+    type: "regional-office",
+  },
+];
 
 export const marketPositioning: MarketPositioning[] = [
   {
@@ -30,17 +82,17 @@ export const marketPositioning: MarketPositioning[] = [
     headline:
       "European AI and software engineering company connecting Türkiye, Portugal and international markets",
     description:
-      "SoftBridge Solutions is an AI-first software engineering company founded in Adana, Türkiye. Its long-term European growth strategy is centred around Portugal, while it serves organisations across Europe, North America and selected international markets through remote and project-based delivery.",
+      "SoftBridge Solutions is an AI-first software engineering company founded in Adana, Türkiye. Its European headquarters is located in Cascais, Portugal, supported by regional offices across key international markets. The company develops AI agents, SaaS platforms, custom software, web applications and automation systems.",
     shortDescription:
-      "AI and software engineering from Türkiye and Portugal for European and international organisations.",
+      "AI and software engineering company with roots in Türkiye and European headquarters in Portugal.",
     serviceModel:
-      "Remote-first artificial intelligence and software product engineering",
+      "International artificial intelligence and software product engineering",
     targetQueries: [
       "European AI software company",
       "international AI engineering company",
-      "European software development partner",
+      "European software development company",
       "AI agent development company Europe",
-      "remote SaaS development partner",
+      "SaaS development company Europe",
       "SoftBridge Solutions",
     ],
     availableLanguages: [
@@ -51,7 +103,7 @@ export const marketPositioning: MarketPositioning[] = [
       "Italian",
     ],
     operationalStatus:
-      "Global company profile and international service coverage",
+      "International company with engineering operations in Türkiye, European headquarters in Portugal and regional offices in international markets",
   },
 
   {
@@ -59,13 +111,13 @@ export const marketPositioning: MarketPositioning[] = [
     country: "Türkiye",
     city: "Adana",
     locale: "tr",
-    role: "engineering-origin",
+    role: "engineering-headquarters",
     headline:
       "Adana kökenli yapay zekâ ve yazılım mühendisliği şirketi",
     description:
-      "SoftBridge Solutions, Adana kökenli bir yapay zekâ ve yazılım mühendisliği şirketidir. Yapay zekâ ajanları, özel yazılım, SaaS platformları, web uygulamaları, mobil ürünler ve kurumsal otomasyon sistemleri geliştirir. Şirketin mühendislik kökeni Türkiye'dedir ve uzun vadeli Avrupa büyüme stratejisi Portekiz merkezlidir.",
+      "SoftBridge Solutions, Adana'da kurulmuş bir yapay zekâ ve yazılım mühendisliği şirketidir. Adana ofisi şirketin mühendislik, ürün geliştirme ve teknoloji kökenini temsil eder. Şirketin Avrupa merkezi Portekiz'in Cascais kentindedir.",
     shortDescription:
-      "SoftBridge Solutions'ın mühendislik kökeni Adana, Türkiye'dir.",
+      "SoftBridge Solutions'ın kuruluş ve mühendislik merkezi Adana'dadır.",
     serviceModel:
       "Türkiye'den Avrupa ve uluslararası pazarlara yazılım ve yapay zekâ mühendisliği",
     targetQueries: [
@@ -82,7 +134,12 @@ export const marketPositioning: MarketPositioning[] = [
     ],
     availableLanguages: ["Türkçe", "İngilizce"],
     operationalStatus:
-      "Mühendislik kökeni, şirket kuruluş kimliği ve Türkiye pazarı",
+      "Kuruluş, mühendislik ve ürün geliştirme ofisi",
+    office: {
+      city: "Adana",
+      country: "Türkiye",
+      type: "engineering-office",
+    },
   },
 
   {
@@ -90,26 +147,26 @@ export const marketPositioning: MarketPositioning[] = [
     country: "Portugal",
     city: "Cascais",
     locale: "pt-PT",
-    role: "european-strategic-hub",
+    role: "european-headquarters",
     headline:
-      "Empresa europeia de inteligência artificial e software com estratégia centrada em Portugal",
+      "Empresa europeia de inteligência artificial e software com sede europeia em Portugal",
     description:
-      "Portugal é o centro da estratégia europeia de longo prazo da SoftBridge Solutions. A presença da empresa em Cascais apoia o desenvolvimento de relações comerciais na União Europeia, parcerias tecnológicas europeias e a prestação remota de serviços de inteligência artificial, SaaS, automação e software personalizado.",
+      "A sede europeia da SoftBridge Solutions está localizada em Cascais, Portugal. O escritório português lidera a estratégia de crescimento da empresa na União Europeia, as relações comerciais europeias e as parcerias tecnológicas internacionais.",
     shortDescription:
-      "Portugal é o centro estratégico europeu da SoftBridge Solutions.",
+      "Cascais, Portugal, é a sede europeia da SoftBridge Solutions.",
     serviceModel:
-      "Desenvolvimento remoto de software e inteligência artificial para empresas da União Europeia",
+      "Desenvolvimento de software e inteligência artificial para empresas da União Europeia",
     targetQueries: [
       "empresa de inteligência artificial Portugal",
       "empresa de software Cascais",
       "empresa de software Lisboa",
-      "startup de inteligência artificial Portugal",
+      "startup inteligência artificial Portugal",
       "AI startup Portugal",
-      "empresas tecnológicas emergentes Portugal",
+      "empresas tecnológicas Portugal",
       "desenvolvimento SaaS Portugal",
       "software personalizado Portugal",
       "agentes de IA Portugal",
-      "parceiro tecnológico europeu Portugal",
+      "empresa tecnológica europeia Portugal",
     ],
     availableLanguages: [
       "Português",
@@ -117,64 +174,80 @@ export const marketPositioning: MarketPositioning[] = [
       "Turco",
     ],
     operationalStatus:
-      "Centro estratégico europeu e ponto de contacto do mercado português",
+      "Sede europeia e escritório operacional em Portugal",
+    office: {
+      city: "Cascais",
+      country: "Portugal",
+      address: "Rua Bordalo Pinheiro 25",
+      type: "european-headquarters",
+    },
   },
 
   {
     route: "us",
     country: "United States",
+    city: "Beverly Hills",
     locale: "en-US",
     role: "strategic-customer-market",
     headline:
-      "Remote European AI and software engineering partner for US companies",
+      "European AI and software engineering company serving US organisations",
     description:
-      "The United States is a strategic customer and partnership market for SoftBridge Solutions. The company supports US organisations through remote and project-based AI engineering, AI agent development, SaaS products, custom software and workflow automation. SoftBridge Solutions is not headquartered in the United States and does not present itself as a US-based startup.",
+      "SoftBridge Solutions maintains a regional office in Beverly Hills and supports organisations across the United States with AI agent development, SaaS platforms, custom software and workflow automation. The United States is a strategic customer and project market, while the company's European headquarters remains in Portugal.",
     shortDescription:
-      "Remote European AI and software engineering services for organisations in the United States.",
+      "US regional office supporting project-based artificial intelligence and software partnerships.",
     serviceModel:
-      "Remote and project-based software engineering for US organisations",
+      "Project-based AI and software engineering for US organisations",
     targetQueries: [
-      "remote AI development company USA",
-      "European AI partner for US companies",
+      "AI development company Beverly Hills",
       "AI engineering partner USA",
+      "European AI company USA office",
       "AI agent development company USA",
-      "remote SaaS development company",
-      "custom software outsourcing USA",
-      "international software development partner USA",
-      "European software agency serving USA",
-      "remote workflow automation company USA",
-      "SoftBridge Solutions USA services",
+      "SaaS development company USA",
+      "custom software company Beverly Hills",
+      "international software development company USA",
+      "workflow automation company USA",
     ],
     availableLanguages: ["English"],
     operationalStatus:
-      "Remote customer and project market; no claim of US headquarters",
+      "Regional office and strategic customer market; European headquarters remains in Portugal",
+    office: {
+      city: "Beverly Hills",
+      country: "United States",
+      type: "regional-office",
+    },
   },
 
   {
     route: "uk",
     country: "United Kingdom",
+    city: "Kington",
     locale: "en-GB",
     role: "strategic-service-market",
     headline:
-      "European AI and software engineering partner for UK organisations",
+      "European AI and software engineering company with a UK regional office",
     description:
-      "SoftBridge Solutions supports UK organisations through remote artificial intelligence engineering, custom software, SaaS development, web applications and workflow automation. The United Kingdom is a strategic customer and partnership market within the company's wider European growth strategy.",
+      "SoftBridge Solutions maintains a regional office in Kington and supports UK organisations through artificial intelligence engineering, custom software, SaaS development, web applications and workflow automation.",
     shortDescription:
-      "Remote European AI and software engineering for UK organisations.",
+      "UK regional office for AI, software and technology partnerships.",
     serviceModel:
-      "Remote product delivery and long-term technical partnerships",
+      "Software product delivery and long-term technical partnerships",
     targetQueries: [
-      "European AI company UK",
-      "remote AI development company UK",
+      "AI development company UK",
+      "software company Kington",
+      "European AI company UK office",
       "software development partner UK",
       "SaaS development company UK",
       "AI agent development UK",
       "workflow automation company UK",
-      "European software partner London",
     ],
     availableLanguages: ["English"],
     operationalStatus:
-      "Remote strategic customer and partnership market",
+      "Regional UK office and strategic European market",
+    office: {
+      city: "Kington",
+      country: "United Kingdom",
+      type: "regional-office",
+    },
   },
 
   {
@@ -184,25 +257,30 @@ export const marketPositioning: MarketPositioning[] = [
     locale: "en-IE",
     role: "strategic-service-market",
     headline:
-      "European AI and software engineering services for Irish companies",
+      "European AI and software engineering company with a Dublin office",
     description:
-      "SoftBridge Solutions supports organisations in Ireland through remote artificial intelligence integration, SaaS engineering, custom software development and workflow automation. Ireland is a strategic European technology and customer market for the company.",
+      "SoftBridge Solutions maintains a regional office in Dublin and supports Irish organisations through artificial intelligence integration, SaaS engineering, custom software development and workflow automation.",
     shortDescription:
-      "Remote European software and AI delivery for organisations in Ireland.",
+      "Dublin regional office supporting Irish technology and software partnerships.",
     serviceModel:
-      "Remote and project-based software engineering",
+      "Software and AI engineering for organisations in Ireland",
     targetQueries: [
-      "AI company Ireland",
+      "AI company Dublin",
       "software development company Ireland",
-      "remote software partner Dublin",
-      "European AI partner Ireland",
+      "software company Dublin",
+      "European AI company Ireland",
       "SaaS development Ireland",
       "AI agent development Ireland",
       "workflow automation Ireland",
     ],
     availableLanguages: ["English"],
     operationalStatus:
-      "Remote strategic European customer market",
+      "Regional office in Dublin and strategic European technology market",
+    office: {
+      city: "Dublin",
+      country: "Ireland",
+      type: "regional-office",
+    },
   },
 
   {
@@ -210,27 +288,32 @@ export const marketPositioning: MarketPositioning[] = [
     country: "France",
     city: "Marseille",
     locale: "fr-FR",
-    role: "remote-service-market",
+    role: "european-service-market",
     headline:
-      "Partenaire européen en intelligence artificielle et développement logiciel",
+      "Entreprise européenne d'intelligence artificielle avec un bureau à Marseille",
     description:
-      "SoftBridge Solutions accompagne les entreprises françaises à distance avec des services d'intelligence artificielle, d'agents IA, de développement SaaS, d'automatisation et de logiciels sur mesure. La France fait partie des marchés européens de services et de partenariat de l'entreprise.",
+      "SoftBridge Solutions dispose d'un bureau régional à Marseille et accompagne les entreprises françaises avec des services d'intelligence artificielle, d'agents IA, de développement SaaS, d'automatisation et de logiciels sur mesure.",
     shortDescription:
-      "Services européens à distance en intelligence artificielle et développement logiciel pour la France.",
+      "Bureau régional à Marseille pour les services d'intelligence artificielle et de développement logiciel.",
     serviceModel:
-      "Développement logiciel à distance et collaborations technologiques par projet",
+      "Développement logiciel et collaborations technologiques en France",
     targetQueries: [
-      "entreprise intelligence artificielle France",
-      "partenaire IA européen France",
-      "développement logiciel Marseille",
+      "entreprise intelligence artificielle Marseille",
+      "entreprise logiciel Marseille",
+      "entreprise IA France",
       "agents IA France",
       "développement SaaS France",
-      "logiciel sur mesure France",
-      "entreprise technologique émergente Europe",
+      "logiciel sur mesure Marseille",
+      "entreprise technologique européenne France",
     ],
     availableLanguages: ["Français", "Anglais"],
     operationalStatus:
-      "Marché européen de services à distance",
+      "Bureau régional à Marseille et marché européen de services",
+    office: {
+      city: "Marseille",
+      country: "France",
+      type: "regional-office",
+    },
   },
 
   {
@@ -238,27 +321,32 @@ export const marketPositioning: MarketPositioning[] = [
     country: "Italy",
     city: "Milan",
     locale: "it-IT",
-    role: "remote-service-market",
+    role: "european-service-market",
     headline:
-      "Partner europeo per intelligenza artificiale e sviluppo software",
+      "Azienda europea di intelligenza artificiale con un ufficio a Milano",
     description:
-      "SoftBridge Solutions supporta aziende e startup italiane da remoto con agenti AI, sviluppo SaaS, software personalizzato, applicazioni web e automazione dei processi. L'Italia fa parte dei mercati europei di servizio e collaborazione tecnologica dell'azienda.",
+      "SoftBridge Solutions dispone di un ufficio regionale a Milano e supporta aziende e startup italiane con agenti AI, sviluppo SaaS, software personalizzato, applicazioni web e automazione dei processi.",
     shortDescription:
-      "Servizi europei da remoto di intelligenza artificiale e sviluppo software per l'Italia.",
+      "Ufficio regionale a Milano per intelligenza artificiale e sviluppo software.",
     serviceModel:
-      "Sviluppo software remoto e collaborazioni tecnologiche basate su progetto",
+      "Sviluppo software e collaborazioni tecnologiche in Italia",
     targetQueries: [
-      "azienda intelligenza artificiale Italia",
-      "partner AI europeo Italia",
-      "sviluppo software Milano",
+      "azienda intelligenza artificiale Milano",
+      "azienda software Milano",
+      "azienda AI Italia",
       "agenti AI Italia",
       "sviluppo SaaS Italia",
-      "software personalizzato Italia",
-      "startup tecnologiche emergenti Europa",
+      "software personalizzato Milano",
+      "azienda tecnologica europea Italia",
     ],
     availableLanguages: ["Italiano", "Inglese"],
     operationalStatus:
-      "Mercato europeo di servizi da remoto",
+      "Ufficio regionale a Milano e mercato europeo di servizi",
+    office: {
+      city: "Milan",
+      country: "Italy",
+      type: "regional-office",
+    },
   },
 ];
 

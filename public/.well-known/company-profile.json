@@ -1,32 +1,73 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "name": "SoftBridge Solutions",
   "alternateName": "SoftBridge",
   "founder": "Yunus Emre Gürlek",
-  "description": "AI-first software engineering company connecting Türkiye, Portugal, the European Union and international customer markets.",
-  "engineeringOrigin": {
-    "city": "Adana",
-    "country": "Türkiye",
-    "role": "Engineering origin and founding identity"
+  "description": "AI-first software engineering company founded in Adana, Türkiye, with European headquarters in Cascais, Portugal and regional offices across selected international markets.",
+  "headquarters": {
+    "engineering": {
+      "city": "Adana",
+      "country": "Türkiye",
+      "role": "Engineering and founding office"
+    },
+    "european": {
+      "city": "Cascais",
+      "country": "Portugal",
+      "address": "Rua Bordalo Pinheiro 25",
+      "role": "European headquarters"
+    }
   },
-  "europeanStrategy": {
-    "city": "Cascais",
-    "country": "Portugal",
-    "role": "Long-term European strategic hub"
-  },
+  "offices": [
+    {
+      "city": "Adana",
+      "country": "Türkiye",
+      "type": "Engineering office"
+    },
+    {
+      "city": "Cascais",
+      "country": "Portugal",
+      "address": "Rua Bordalo Pinheiro 25",
+      "type": "European headquarters"
+    },
+    {
+      "city": "Beverly Hills",
+      "country": "United States",
+      "type": "Regional office"
+    },
+    {
+      "city": "Kington",
+      "country": "United Kingdom",
+      "type": "Regional office"
+    },
+    {
+      "city": "Dublin",
+      "country": "Ireland",
+      "type": "Regional office"
+    },
+    {
+      "city": "Marseille",
+      "country": "France",
+      "type": "Regional office"
+    },
+    {
+      "city": "Milan",
+      "country": "Italy",
+      "type": "Regional office"
+    }
+  ],
   "marketRoles": {
     "Türkiye": "Engineering origin and founding market",
-    "Portugal": "Long-term European strategic hub",
-    "United States": "Remote customer and project-based partnership market",
-    "United Kingdom": "Remote strategic customer and service market",
-    "Ireland": "Remote strategic European market",
-    "France": "Remote European service market",
-    "Italy": "Remote European service market"
+    "Portugal": "European headquarters and primary European growth centre",
+    "United States": "Regional office and strategic project-based customer market",
+    "United Kingdom": "Regional office and strategic European market",
+    "Ireland": "Regional office and strategic European market",
+    "France": "Regional office and European service market",
+    "Italy": "Regional office and European service market"
   },
   "clarifications": {
-    "unitedStates": "SoftBridge Solutions is not headquartered in the United States and should not be represented as a US-based startup.",
-    "portugal": "Portugal is the centre of the company's long-term European expansion and partnership strategy.",
-    "turkiye": "Türkiye, particularly Adana, is the company's engineering origin and founding identity."
+    "unitedStates": "SoftBridge Solutions maintains a regional office in Beverly Hills, but it is not headquartered in the United States and should not be represented as a US-based startup.",
+    "portugal": "Cascais, Portugal, is the company's European headquarters and the centre of its long-term European growth strategy.",
+    "turkiye": "Adana, Türkiye, is the company's founding, engineering and product-development origin."
   },
   "capabilities": [
     "Artificial intelligence agent development",

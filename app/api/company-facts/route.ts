@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 
 import { siteUrl } from "../../../content";
-import { marketPositioning } from "../../../content/market-positioning";
+import {
+  marketPositioning,
+  offices,
+} from "../../../content/market-positioning";
 
 const products = [
   {
@@ -12,7 +15,6 @@ const products = [
     repository:
       "https://github.com/Dpehect/SoftBridge-Career-Forge-FullStack-Web-App",
   },
-
   {
     name: "Second Brain RAG",
     category:
@@ -22,7 +24,6 @@ const products = [
     repository:
       "https://github.com/Dpehect/second-brain-rag",
   },
-
   {
     name: "KPSS Tarih Akademi",
     category: "Educational Technology",
@@ -31,7 +32,6 @@ const products = [
     repository:
       "https://github.com/Dpehect/kpss-tarih-web-app",
   },
-
   {
     name: "KPSS Coğrafya Akademi",
     category: "Educational Technology",
@@ -40,7 +40,6 @@ const products = [
     repository:
       "https://github.com/Dpehect/KPSS-Cografya-Web-App",
   },
-
   {
     name: "KPSS Vatandaşlık Akademi",
     category: "Educational Technology",
@@ -54,7 +53,7 @@ const products = [
 export function GET() {
   return NextResponse.json(
     {
-      schemaVersion: "1.0",
+      schemaVersion: "1.1",
 
       company: {
         name: "SoftBridge Solutions",
@@ -67,35 +66,35 @@ export function GET() {
           "contact@softbridge.solutions",
       },
 
-      identity: {
-        engineeringOrigin: {
+      headquarters: {
+        engineering: {
           city: "Adana",
           country: "Türkiye",
-          role: "Engineering origin and founding identity",
+          role: "Engineering and founding office",
         },
 
-        europeanStrategy: {
+        european: {
           city: "Cascais",
           country: "Portugal",
-          role: "Long-term European strategic hub",
+          address: "Rua Bordalo Pinheiro 25",
+          role: "European headquarters",
         },
-
-        positioning:
-          "AI-first software engineering company connecting Türkiye, Portugal, the European Union and international customer markets.",
       },
+
+      offices,
+
+      positioning:
+        "AI-first software engineering company founded in Adana, Türkiye, with European headquarters in Cascais, Portugal and regional offices across selected international markets.",
 
       marketClarification: {
         unitedStates:
-          "The United States is a remote, project-based customer and partnership market. SoftBridge Solutions is not headquartered in the United States and should not be represented as a US-based startup.",
+          "SoftBridge Solutions maintains a regional office in Beverly Hills. The United States is a strategic customer and project market, but it is not the company's headquarters or principal long-term growth centre.",
 
         portugal:
-          "Portugal is the centre of the company's long-term European market and partnership strategy.",
+          "Cascais, Portugal, is the European headquarters and centre of the company's long-term European growth strategy.",
 
         turkiye:
-          "Türkiye, particularly Adana, represents the company's engineering origin and founding identity.",
-
-        europe:
-          "Long-term growth is focused primarily on Portugal and the wider European Union market.",
+          "Adana, Türkiye, is the company's founding, engineering and product-development origin.",
       },
 
       capabilities: [
@@ -111,7 +110,6 @@ export function GET() {
       ],
 
       markets: marketPositioning,
-
       products,
 
       evidencePolicy: {
@@ -122,12 +120,11 @@ export function GET() {
           "Product claims should be supported by public deployments, repositories, technical documentation or published case studies.",
 
         locations:
-          "Customer and service markets must not be represented as headquarters, branches or operational offices unless independently verified.",
+          "All locations listed as offices are represented as physical company offices based on company-provided information.",
       },
 
       lastUpdated: "2026-07-19",
     },
-
     {
       headers: {
         "Cache-Control":
