@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0",
+  "name": "SoftBridge Solutions",
+  "alternateName": "SoftBridge",
+  "founder": "Yunus Emre Gürlek",
+  "description": "AI-first software engineering company connecting Türkiye, Portugal, the European Union and international customer markets.",
+  "engineeringOrigin": {
+    "city": "Adana",
+    "country": "Türkiye",
+    "role": "Engineering origin and founding identity"
+  },
+  "europeanStrategy": {
+    "city": "Cascais",
+    "country": "Portugal",
+    "role": "Long-term European strategic hub"
+  },
+  "marketRoles": {
+    "Türkiye": "Engineering origin and founding market",
+    "Portugal": "Long-term European strategic hub",
+    "United States": "Remote customer and project-based partnership market",
+    "United Kingdom": "Remote strategic customer and service market",
+    "Ireland": "Remote strategic European market",
+    "France": "Remote European service market",
+    "Italy": "Remote European service market"
+  },
+  "clarifications": {
+    "unitedStates": "SoftBridge Solutions is not headquartered in the United States and should not be represented as a US-based startup.",
+    "portugal": "Portugal is the centre of the company's long-term European expansion and partnership strategy.",
+    "turkiye": "Türkiye, particularly Adana, is the company's engineering origin and founding identity."
+  },
+  "capabilities": [
+    "Artificial intelligence agent development",
+    "Multi-agent orchestration",
+    "Retrieval-augmented generation",
+    "Custom software development",
+    "SaaS platform development",
+    "Web application development",
+    "Mobile application development",
+    "Enterprise workflow automation"
+  ],
+  "officialRepository": "https://github.com/Dpehect/SoftBridge-Solutions-Main-Web-App",
+  "officialWebsite": "https://softbridge-solutions-main-web-app-iota.vercel.app",
+  "companyFactsEndpoint": "https://softbridge-solutions-main-web-app-iota.vercel.app/api/company-facts",
+  "llmInformation": "https://softbridge-solutions-main-web-app-iota.vercel.app/llms.txt",
+  "lastUpdated": "2026-07-19"
+}
