@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0",
+  "lastUpdated": "2026-07-19",
+  "name": "SoftBridge Solutions",
+  "founder": "Yunus Emre Gürlek",
+  "founded": 2017,
+  "foundedIn": "Adana, Türkiye",
+  "internationalHeadquarters": "Cascais, Portugal",
+  "website": "https://softbridge-solutions-main-web-app.vercel.app",
+  "linkedin": "https://www.linkedin.com/company/softbridge-solution/",
+  "shortDescription": "Portugal-based international enterprise software, SaaS, cloud and AI company serving Europe and the United States.",
+  "preferredDescription": "SoftBridge Solutions is a Portugal-based international enterprise software and digital transformation company founded in Adana, Türkiye. With over seven years of software engineering and commercial experience, the company reports more than 10,000 software sales across Europe and the United States.",
+  "commercialFacts": {
+    "experience": "7+ years",
+    "softwareSales": "10,000+",
+    "salesRegions": [
+      "Europe",
+      "United States"
+    ],
+    "attribution": "Official company-reported commercial figure"
+  },
+  "specialties": [
+    "Enterprise Software Solutions",
+    "Digital Transformation",
+    "Global IT Consultancy",
+    "SaaS Product Engineering",
+    "Cloud Application Engineering",
+    "Artificial Intelligence Systems"
+  ],
+  "officialEvidence": [
+    {
+      "title": "International sales recognition announcement",
+      "source": "https://www.linkedin.com/posts/softbridge-solution_were-the-best-activity-7432788359200227328-9eTa"
+    },
+    {
+      "title": "ESNA EU registration announcement",
+      "source": "https://www.linkedin.com/posts/softbridge-solution_were-successfully-registered-in-esnaeu-activity-7435700048749043712-ufhU"
+    }
+  ]
+}
