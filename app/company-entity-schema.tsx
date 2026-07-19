@@ -6,6 +6,10 @@ import {
   unrelatedSoftbridgeEntities,
   verifiedCompanyLocations,
 } from "../content/company-profile";
+import {
+  aggregateSalesFact,
+  companyEvidence,
+} from "../content/company-evidence";
 
 type CompanyEntitySchemaProps = {
   market?: string;
@@ -23,116 +27,74 @@ export function CompanyEntitySchema({
   language = "en",
 }: CompanyEntitySchemaProps) {
   const siteUrl = companyProfile.website;
-
   const organizationId = `${siteUrl}/#organization`;
   const founderId = `${siteUrl}/#founder`;
   const websiteId = `${siteUrl}/#website`;
-  const productsId = `${siteUrl}/#products`;
-
   const pageUrl =
-    currentUrl ??
-    (market ? `${siteUrl}/${market}` : siteUrl);
-
+    currentUrl ?? (market ? `${siteUrl}/${market}` : siteUrl);
   const selectedMarket = market
-    ? companyMarkets.find(
-        (item) => item.route === market,
-      )
+    ? companyMarkets.find((item) => item.route === market)
     : undefined;
 
-  const locationSchemas =
-    verifiedCompanyLocations.map((location) => ({
-      "@type": "Place",
-      "@id": `${siteUrl}/#location-${location.id}`,
-
-      name:
-        location.type === "founding-location"
-          ? `SoftBridge Solutions founding location — ${location.city}`
-          : `SoftBridge Solutions correspondence location — ${location.city}`,
-
-      description: location.description,
-
-      address: {
-        "@type": "PostalAddress",
-
-        ...(location.address?.streetAddress
-          ? {
-              streetAddress:
-                location.address.streetAddress,
-            }
-          : {}),
-
-        addressLocality:
-          location.address?.addressLocality ??
-          location.city,
-
-        addressCountry: location.countryCode,
-      },
-    }));
-
   const organizationSchema = {
-    "@type": [
-      "Organization",
-      "SoftwareCompany",
-      "ProfessionalService",
-    ],
-
+    "@type": ["Organization", "SoftwareCompany", "ProfessionalService"],
     "@id": organizationId,
-
     name: companyProfile.name,
     legalName: companyProfile.legalName,
-
-    alternateName:
-      companyProfile.alternateNames,
-
+    alternateName: companyProfile.alternateNames,
     url: siteUrl,
     email: companyProfile.email,
-
+    foundingDate: String(companyProfile.foundedYear),
     slogan: companyProfile.slogan,
-
     description: companyProfile.description,
-
     disambiguatingDescription:
       companyProfile.disambiguatingDescription,
-
-    founder: {
-      "@id": founderId,
-    },
-
+    founder: { "@id": founderId },
     foundingLocation: {
-      "@id": `${siteUrl}/#location-adana`,
+      "@type": "Place",
+      name: `${companyProfile.foundedIn.city}, ${companyProfile.foundedIn.country}`,
     },
-
-    location: verifiedCompanyLocations.map(
-      (location) => ({
-        "@id": `${siteUrl}/#location-${location.id}`,
-      }),
-    ),
-
-    areaServed: companyMarkets.map(
-      (companyMarket) => ({
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Rua Bordalo Pinheiro 25",
+      addressLocality: companyProfile.headquarters.city,
+      addressCountry: companyProfile.headquarters.countryCode,
+    },
+    location: verifiedCompanyLocations.map((location) => ({
+      "@type": "Place",
+      "@id": `${siteUrl}/#location-${location.id}`,
+      name: `${location.city}, ${location.country}`,
+      description: location.description,
+      address: {
+        "@type": "PostalAddress",
+        ...(location.address?.streetAddress
+          ? { streetAddress: location.address.streetAddress }
+          : {}),
+        addressLocality:
+          location.address?.addressLocality ?? location.city,
+        addressCountry: location.countryCode,
+      },
+    })),
+    areaServed: companyMarkets
+      .filter((item) => item.countryCode !== "INT")
+      .map((item) => ({
         "@type": "Country",
-        name: companyMarket.country,
-        identifier: companyMarket.countryCode,
-      }),
-    ),
-
+        name: item.country,
+        identifier: item.countryCode,
+      })),
     logo: {
       "@type": "ImageObject",
       "@id": `${siteUrl}/#logo`,
       url: `${siteUrl}${companyProfile.logoPath}`,
-      contentUrl:
-        `${siteUrl}${companyProfile.logoPath}`,
+      contentUrl: `${siteUrl}${companyProfile.logoPath}`,
       caption: `${companyProfile.name} logo`,
     },
-
     image: {
       "@type": "ImageObject",
-      url:
-        `${siteUrl}${companyProfile.socialImagePath}`,
+      url: `${siteUrl}${companyProfile.socialImagePath}`,
       width: 1200,
       height: 630,
     },
-
     sameAs: [
       companyProfile.companyLinkedin,
       companyProfile.github,
@@ -140,71 +102,34 @@ export function CompanyEntitySchema({
       companyProfile.founder.linkedin,
       companyProfile.founder.github,
     ],
-
     knowsAbout: [
       ...companyProfile.capabilities,
       ...companyProfile.industries,
     ],
-
-    contactPoint: companyMarkets.map(
-      (companyMarket) => ({
-        "@type": "ContactPoint",
-
-        contactType:
-          `${companyMarket.country} market enquiries`,
-
-        email: companyProfile.email,
-
-        areaServed: {
-          "@type": "Country",
-          name: companyMarket.country,
-          identifier: companyMarket.countryCode,
-        },
-
-        availableLanguage: [
-          companyMarket.locale,
-        ],
-      }),
-    ),
-
+    numberOfEmployees: undefined,
+    award: companyEvidence
+      .filter((item) => item.type === "sales-recognition")
+      .map((item) => item.title),
     subjectOf: [
       {
         "@type": "WebPage",
-        url: `${siteUrl}/en/company-facts`,
-        name:
-          "SoftBridge Solutions Company Facts",
+        url: `${siteUrl}/en/evidence`,
+        name: "SoftBridge Solutions Evidence and Company Facts",
       },
-
       {
         "@type": "DigitalDocument",
         url: `${siteUrl}/llms.txt`,
-        name:
-          "SoftBridge Solutions LLM Information",
+        name: "SoftBridge Solutions LLM Information",
       },
-
       {
         "@type": "DataCatalog",
-        url:
-          `${siteUrl}/.well-known/company-profile.json`,
-
-        name:
-          "SoftBridge Solutions Machine-Readable Company Profile",
+        url: `${siteUrl}/.well-known/company-profile.json`,
+        name: "SoftBridge Solutions Machine-Readable Company Profile",
       },
-
       {
-        "@type": "DataCatalog",
-        url:
-          `${siteUrl}/.well-known/entity-disambiguation.json`,
-
-        name:
-          "SoftBridge Solutions Entity Disambiguation Record",
-      },
-
-      {
-        "@type": "WebAPI",
-        url: `${siteUrl}/api/entity-identity`,
-        name:
-          "SoftBridge Solutions Entity Identity API",
+        "@type": "Dataset",
+        url: `${siteUrl}/.well-known/company-evidence.json`,
+        name: "SoftBridge Solutions Public Evidence Records",
       },
     ],
   };
@@ -212,247 +137,127 @@ export function CompanyEntitySchema({
   const founderSchema = {
     "@type": "Person",
     "@id": founderId,
-
     name: companyProfile.founder.name,
-
-    jobTitle:
-      companyProfile.founder.jobTitle,
-
-    url:
-      `${siteUrl}${companyProfile.founder.profilePath}`,
-
-    worksFor: {
-      "@id": organizationId,
-    },
-
+    jobTitle: companyProfile.founder.jobTitle,
+    url: `${siteUrl}${companyProfile.founder.profilePath}`,
+    worksFor: { "@id": organizationId },
     sameAs: [
       companyProfile.founder.github,
       companyProfile.founder.linkedin,
     ],
-
-    knowsAbout: [
-      "Software Engineering",
-      "Artificial Intelligence",
-      "AI Agents",
-      "Retrieval-Augmented Generation",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "SaaS Development",
-      "Web Application Development",
-      "Mobile Application Development",
-    ],
+    knowsAbout: companyProfile.capabilities,
   };
 
   const websiteSchema = {
     "@type": "WebSite",
     "@id": websiteId,
-
     url: siteUrl,
     name: companyProfile.name,
-
-    alternateName:
-      companyProfile.alternateNames,
-
-    description:
-      companyProfile.shortDescription,
-
-    publisher: {
-      "@id": organizationId,
-    },
-
-    inLanguage: companyMarkets.map(
-      (companyMarket) => companyMarket.locale,
-    ),
-
+    alternateName: companyProfile.alternateNames,
+    description: companyProfile.shortDescription,
+    publisher: { "@id": organizationId },
+    inLanguage: [...new Set(companyMarkets.map((item) => item.locale))],
     potentialAction: {
       "@type": "SearchAction",
-
       target: {
         "@type": "EntryPoint",
-        urlTemplate:
-          `${siteUrl}/search?q={search_term_string}`,
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
       },
-
-      "query-input":
-        "required name=search_term_string",
+      "query-input": "required name=search_term_string",
     },
   };
 
   const productsSchema = {
     "@type": "ItemList",
-    "@id": productsId,
-
-    name:
-      "SoftBridge Solutions Public Software Products",
-
-    description:
-      "Publicly accessible products and technical projects developed under the SoftBridge Solutions identity.",
-
+    "@id": `${siteUrl}/#products`,
+    name: "SoftBridge Solutions Public Software Products",
     numberOfItems: publicProducts.length,
-
-    itemListElement: publicProducts.map(
-      (product, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-
-        item: {
-          "@type": [
-            "SoftwareApplication",
-            "WebApplication",
-          ],
-
-          "@id":
-            `${siteUrl}/#product-${product.slug}`,
-
-          name: product.name,
-          description: product.description,
-
-          applicationCategory:
-            product.category,
-
-          operatingSystem: "Web",
-
-          url: product.liveUrl,
-
-          codeRepository:
-            product.repositoryUrl,
-
-          author: {
-            "@id": organizationId,
-          },
-
-          creator: {
-            "@id": organizationId,
-          },
-        },
-      }),
-    ),
+    itemListElement: publicProducts.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": ["SoftwareApplication", "WebApplication"],
+        "@id": `${siteUrl}/#product-${product.slug}`,
+        name: product.name,
+        description: product.description,
+        applicationCategory: product.category,
+        operatingSystem: "Web",
+        url: product.liveUrl,
+        codeRepository: product.repositoryUrl,
+        author: { "@id": organizationId },
+      },
+    })),
   };
 
-  const marketPresenceSchema = {
-    "@type": "ItemList",
-
-    "@id":
-      `${siteUrl}/#international-market-presence`,
-
-    name:
-      "SoftBridge Solutions International Market Presence",
-
+  const evidenceSchema = {
+    "@type": "Dataset",
+    "@id": `${siteUrl}/#company-evidence`,
+    name: "SoftBridge Solutions Company Evidence",
     description:
-      companyProfile.operatingModel,
-
-    numberOfItems: companyMarkets.length,
-
-    itemListElement: companyMarkets.map(
-      (companyMarket, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-
-        item: {
-          "@type": "Service",
-
-          "@id":
-            `${siteUrl}/#market-${companyMarket.route}`,
-
-          name:
-            `SoftBridge Solutions — ${companyMarket.country}`,
-
-          description:
-            companyMarket.positioning,
-
-          serviceType:
-            companyMarket.role,
-
-          provider: {
-            "@id": organizationId,
-          },
-
-          areaServed: {
-            "@type": "Country",
-            name: companyMarket.country,
-            identifier:
-              companyMarket.countryCode,
-          },
-
-          url:
-            `${siteUrl}/${companyMarket.route}`,
-        },
-      }),
-    ),
+      "Public records and official company publications supporting the company identity, international market activity and commercial history of SoftBridge Solutions.",
+    url: `${siteUrl}/en/evidence`,
+    dateModified: COMPANY_LAST_UPDATED,
+    creator: { "@id": organizationId },
+    variableMeasured: [
+      {
+        "@type": "PropertyValue",
+        name: "International software sales",
+        value: aggregateSalesFact.displayValue,
+        description: aggregateSalesFact.metric,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Experience",
+        value: companyProfile.experienceYears,
+      },
+    ],
+    distribution: companyEvidence
+      .filter((record) => record.sourceUrl)
+      .map((record) => ({
+        "@type": "DataDownload",
+        name: record.title,
+        contentUrl: record.sourceUrl,
+        encodingFormat: "text/html",
+      })),
   };
 
   const webpageSchema = {
     "@type": "WebPage",
-
     "@id": `${pageUrl}/#webpage`,
-
     url: pageUrl,
-
     name: selectedMarket
       ? `${companyProfile.name} — ${selectedMarket.country}`
       : companyProfile.name,
-
     description:
-      selectedMarket?.positioning ??
-      companyProfile.description,
-
-    inLanguage:
-      selectedMarket?.locale ?? language,
-
+      selectedMarket?.positioning ?? companyProfile.description,
+    inLanguage: selectedMarket?.locale ?? language,
     dateModified: COMPANY_LAST_UPDATED,
-
-    isPartOf: {
-      "@id": websiteId,
-    },
-
-    about: {
-      "@id": organizationId,
-    },
-
-    mainEntity: {
-      "@id": organizationId,
-    },
-
-    keywords:
-      selectedMarket?.discoveryTopics,
-
+    isPartOf: { "@id": websiteId },
+    about: { "@id": organizationId },
+    mainEntity: { "@id": organizationId },
+    keywords: selectedMarket?.discoveryTopics,
     significantLink: [
       `${siteUrl}/llms.txt`,
-
       `${siteUrl}/.well-known/company-profile.json`,
-
-      `${siteUrl}/.well-known/entity-disambiguation.json`,
-
-      `${siteUrl}/api/entity-identity`,
+      `${siteUrl}/.well-known/company-evidence.json`,
+      `${siteUrl}/en/evidence`,
     ],
-
-    mentions:
-      unrelatedSoftbridgeEntities.map(
-        (entity, index) => ({
-          "@type": "Organization",
-
-          "@id":
-            `${pageUrl}/#unrelated-softbridge-${index + 1}`,
-
-          name: entity.name,
-
-          description:
-            entity.clarification,
-        }),
-      ),
+    mentions: unrelatedSoftbridgeEntities.map((entity, index) => ({
+      "@type": "Organization",
+      "@id": `${pageUrl}/#unrelated-softbridge-${index + 1}`,
+      name: entity.name,
+      description: entity.clarification,
+    })),
   };
 
   const schema = {
     "@context": "https://schema.org",
-
     "@graph": [
       organizationSchema,
       founderSchema,
       websiteSchema,
       productsSchema,
-      marketPresenceSchema,
-      ...locationSchemas,
+      evidenceSchema,
       webpageSchema,
     ],
   };
@@ -460,9 +265,7 @@ export function CompanyEntitySchema({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: safeJsonLd(schema),
-      }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   );
 }
