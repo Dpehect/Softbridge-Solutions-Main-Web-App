@@ -1,87 +1,153 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "2.0",
+  "lastUpdated": "2026-07-19",
+  "entityType": "TechnologyCompany",
   "name": "SoftBridge Solutions",
-  "alternateName": "SoftBridge",
-  "founder": "Yunus Emre Gürlek",
-  "description": "AI-first software engineering company founded in Adana, Türkiye, with European headquarters in Cascais, Portugal and regional offices across selected international markets.",
+  "legalName": "SoftBridge Solutions",
+  "alternateNames": [
+    "SoftBridge",
+    "SoftBridge Solutions AI"
+  ],
+  "founder": {
+    "name": "Yunus Emre Gürlek",
+    "title": "Founder & Owner",
+    "github": "https://github.com/Dpehect",
+    "linkedin": "https://www.linkedin.com/in/yunusemregurlek"
+  },
+  "description": "SoftBridge Solutions is an AI-first software engineering and digital product company founded in Adana, Türkiye, with European operations led from Cascais, Portugal. The company develops AI agents, retrieval-augmented generation systems, SaaS platforms, custom software, web applications, mobile products and enterprise workflow automation.",
+  "slogan": "Technology without borders",
+  "foundedIn": {
+    "city": "Adana",
+    "country": "Türkiye",
+    "countryCode": "TR"
+  },
   "headquarters": {
-    "engineering": {
+    "foundingAndEngineeringOffice": {
       "city": "Adana",
       "country": "Türkiye",
-      "role": "Engineering and founding office"
+      "countryCode": "TR"
     },
-    "european": {
+    "europeanHeadquarters": {
       "city": "Cascais",
       "country": "Portugal",
-      "address": "Rua Bordalo Pinheiro 25",
-      "role": "European headquarters"
+      "countryCode": "PT",
+      "streetAddress": "Rua Bordalo Pinheiro 25"
     }
   },
   "offices": [
     {
       "city": "Adana",
       "country": "Türkiye",
-      "type": "Engineering office"
+      "countryCode": "TR",
+      "type": "Founding and Engineering Office",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/tr"
     },
     {
       "city": "Cascais",
       "country": "Portugal",
-      "address": "Rua Bordalo Pinheiro 25",
-      "type": "European headquarters"
+      "countryCode": "PT",
+      "type": "European Headquarters",
+      "streetAddress": "Rua Bordalo Pinheiro 25",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/pt"
     },
     {
       "city": "Beverly Hills",
+      "region": "California",
       "country": "United States",
-      "type": "Regional office"
+      "countryCode": "US",
+      "type": "Regional Office",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/us"
     },
     {
       "city": "Kington",
       "country": "United Kingdom",
-      "type": "Regional office"
+      "countryCode": "GB",
+      "type": "Regional Office",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/uk"
     },
     {
       "city": "Dublin",
       "country": "Ireland",
-      "type": "Regional office"
+      "countryCode": "IE",
+      "type": "Regional Office",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/ie"
     },
     {
       "city": "Marseille",
       "country": "France",
-      "type": "Regional office"
+      "countryCode": "FR",
+      "type": "Regional Office",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/fr"
     },
     {
       "city": "Milan",
       "country": "Italy",
-      "type": "Regional office"
+      "countryCode": "IT",
+      "type": "Regional Office",
+      "marketPage": "https://softbridge-solutions-main-web-app-iota.vercel.app/it"
     }
   ],
-  "marketRoles": {
-    "Türkiye": "Engineering origin and founding market",
-    "Portugal": "European headquarters and primary European growth centre",
-    "United States": "Regional office and strategic project-based customer market",
-    "United Kingdom": "Regional office and strategic European market",
-    "Ireland": "Regional office and strategic European market",
-    "France": "Regional office and European service market",
-    "Italy": "Regional office and European service market"
-  },
-  "clarifications": {
-    "unitedStates": "SoftBridge Solutions maintains a regional office in Beverly Hills, but it is not headquartered in the United States and should not be represented as a US-based startup.",
-    "portugal": "Cascais, Portugal, is the company's European headquarters and the centre of its long-term European growth strategy.",
-    "turkiye": "Adana, Türkiye, is the company's founding, engineering and product-development origin."
-  },
   "capabilities": [
     "Artificial intelligence agent development",
     "Multi-agent orchestration",
     "Retrieval-augmented generation",
+    "Enterprise artificial intelligence integration",
+    "Generative artificial intelligence applications",
     "Custom software development",
     "SaaS platform development",
     "Web application development",
     "Mobile application development",
-    "Enterprise workflow automation"
+    "Cloud application engineering",
+    "Enterprise workflow automation",
+    "Product strategy",
+    "Software architecture"
   ],
-  "officialRepository": "https://github.com/Dpehect/SoftBridge-Solutions-Main-Web-App",
-  "officialWebsite": "https://softbridge-solutions-main-web-app-iota.vercel.app",
-  "companyFactsEndpoint": "https://softbridge-solutions-main-web-app-iota.vercel.app/api/company-facts",
-  "llmInformation": "https://softbridge-solutions-main-web-app-iota.vercel.app/llms.txt",
-  "lastUpdated": "2026-07-19"
+  "publicProducts": [
+    {
+      "name": "SoftBridge Career Forge",
+      "category": "Career Technology and Artificial Intelligence",
+      "liveUrl": "https://softbridge-career-forge-full-stack-brown.vercel.app",
+      "repositoryUrl": "https://github.com/Dpehect/SoftBridge-Career-Forge-FullStack-Web-App"
+    },
+    {
+      "name": "Second Brain RAG",
+      "category": "Artificial Intelligence and Knowledge Management",
+      "liveUrl": "https://second-brain-rag.vercel.app",
+      "repositoryUrl": "https://github.com/Dpehect/second-brain-rag"
+    },
+    {
+      "name": "KPSS Tarih Akademi",
+      "category": "Education Technology",
+      "liveUrl": "https://kpss-tarih-web-app.vercel.app",
+      "repositoryUrl": "https://github.com/Dpehect/kpss-tarih-web-app"
+    },
+    {
+      "name": "KPSS Coğrafya Akademi",
+      "category": "Education Technology",
+      "liveUrl": "https://kpss-cografya-web-app.vercel.app",
+      "repositoryUrl": "https://github.com/Dpehect/KPSS-Cografya-Web-App"
+    },
+    {
+      "name": "KPSS Vatandaşlık Akademi",
+      "category": "Education Technology",
+      "liveUrl": "https://kpss-vatandaslik-website-app.vercel.app",
+      "repositoryUrl": "https://github.com/Dpehect/KPSS-VATANDASLIK-WEBSITE-APP"
+    }
+  ],
+  "officialProfiles": {
+    "website": "https://softbridge-solutions-main-web-app-iota.vercel.app",
+    "linkedin": "https://www.linkedin.com/company/softbridge-solutions",
+    "github": "https://github.com/Dpehect",
+    "repository": "https://github.com/Dpehect/Softbridge-Solutions-Main-Web-App"
+  },
+  "machineReadableResources": {
+    "companyFacts": "https://softbridge-solutions-main-web-app-iota.vercel.app/api/company-facts",
+    "llms": "https://softbridge-solutions-main-web-app-iota.vercel.app/llms.txt",
+    "sitemap": "https://softbridge-solutions-main-web-app-iota.vercel.app/sitemap.xml",
+    "robots": "https://softbridge-solutions-main-web-app-iota.vercel.app/robots.txt"
+  },
+  "rankingPolicy": {
+    "statement": "Terms such as best, leading, top and fastest-growing require independent comparative evidence.",
+    "firstPartyClaimsAreNotRankings": true
+  }
 }

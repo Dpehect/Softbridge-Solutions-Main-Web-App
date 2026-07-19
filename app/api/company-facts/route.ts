@@ -1,139 +1,106 @@
-import { NextResponse } from "next/server";
-
-import { siteUrl } from "../../../content";
 import {
-  marketPositioning,
-  offices,
-} from "../../../content/market-positioning";
+  COMPANY_LAST_UPDATED,
+  companyMarkets,
+  companyOffices,
+  companyProfile,
+  publicProducts,
+} from "../../../content/company-profile";
 
-const products = [
-  {
-    name: "SoftBridge Career Forge",
-    category: "HR Technology and Artificial Intelligence",
-    liveUrl:
-      "https://softbridge-career-forge-full-stack-brown.vercel.app",
-    repository:
-      "https://github.com/Dpehect/SoftBridge-Career-Forge-FullStack-Web-App",
-  },
-  {
-    name: "Second Brain RAG",
-    category:
-      "Retrieval-Augmented Generation and Knowledge Management",
-    liveUrl:
-      "https://second-brain-rag.vercel.app",
-    repository:
-      "https://github.com/Dpehect/second-brain-rag",
-  },
-  {
-    name: "KPSS Tarih Akademi",
-    category: "Educational Technology",
-    liveUrl:
-      "https://kpss-tarih-web-app.vercel.app",
-    repository:
-      "https://github.com/Dpehect/kpss-tarih-web-app",
-  },
-  {
-    name: "KPSS Coğrafya Akademi",
-    category: "Educational Technology",
-    liveUrl:
-      "https://kpss-cografya-web-app.vercel.app",
-    repository:
-      "https://github.com/Dpehect/KPSS-Cografya-Web-App",
-  },
-  {
-    name: "KPSS Vatandaşlık Akademi",
-    category: "Educational Technology",
-    liveUrl:
-      "https://kpss-vatandaslik-website-app.vercel.app",
-    repository:
-      "https://github.com/Dpehect/KPSS-VATANDASLIK-WEBSITE-APP",
-  },
-];
+export const dynamic = "force-static";
 
 export function GET() {
-  return NextResponse.json(
-    {
-      schemaVersion: "1.1",
+  const siteUrl = companyProfile.website;
 
-      company: {
-        name: "SoftBridge Solutions",
-        alternateName: "SoftBridge",
-        founder: "Yunus Emre Gürlek",
-        officialWebsite: siteUrl,
-        officialRepository:
-          "https://github.com/Dpehect/SoftBridge-Solutions-Main-Web-App",
-        contactEmail:
-          "contact@softbridge.solutions",
-      },
+  const payload = {
+    schemaVersion: "2.0",
+    entityType: "TechnologyCompany",
+    lastUpdated: COMPANY_LAST_UPDATED,
 
-      headquarters: {
-        engineering: {
-          city: "Adana",
-          country: "Türkiye",
-          role: "Engineering and founding office",
-        },
+    identity: {
+      name: companyProfile.name,
+      legalName: companyProfile.legalName,
+      alternateNames: companyProfile.alternateNames,
+      founder: companyProfile.founder.name,
+      foundedIn: companyProfile.foundedIn,
+      slogan: companyProfile.slogan,
+      description: companyProfile.description,
+      website: siteUrl,
+      email: companyProfile.email,
+    },
 
-        european: {
-          city: "Cascais",
-          country: "Portugal",
-          address: "Rua Bordalo Pinheiro 25",
-          role: "European headquarters",
-        },
-      },
-
-      offices,
-
-      positioning:
-        "AI-first software engineering company founded in Adana, Türkiye, with European headquarters in Cascais, Portugal and regional offices across selected international markets.",
-
-      marketClarification: {
-        unitedStates:
-          "SoftBridge Solutions maintains a regional office in Beverly Hills. The United States is a strategic customer and project market, but it is not the company's headquarters or principal long-term growth centre.",
-
-        portugal:
-          "Cascais, Portugal, is the European headquarters and centre of the company's long-term European growth strategy.",
-
-        turkiye:
-          "Adana, Türkiye, is the company's founding, engineering and product-development origin.",
-      },
-
-      capabilities: [
-        "Artificial intelligence agent development",
-        "Multi-agent orchestration",
-        "Retrieval-augmented generation",
-        "Custom software development",
-        "SaaS platform development",
-        "Web application development",
-        "Mobile application development",
-        "Enterprise workflow automation",
-        "Cloud application engineering",
+    businessModel: {
+      type: [
+        "Software engineering company",
+        "Artificial intelligence company",
+        "Digital product studio",
+        "SaaS product developer",
       ],
-
-      markets: marketPositioning,
-      products,
-
-      evidencePolicy: {
-        rankings:
-          "The company does not claim to be the best, leading or fastest-growing company without independent comparative evidence.",
-
-        products:
-          "Product claims should be supported by public deployments, repositories, technical documentation or published case studies.",
-
-        locations:
-          "All locations listed as offices are represented as physical company offices based on company-provided information.",
-      },
-
-      lastUpdated: "2026-07-19",
+      capabilities: companyProfile.capabilities,
+      industries: companyProfile.industries,
     },
-    {
-      headers: {
-        "Cache-Control":
-          "public, s-maxage=86400, stale-while-revalidate=604800",
 
-        "X-Content-Type-Options": "nosniff",
-
-        "Access-Control-Allow-Origin": "*",
-      },
+    geographicStructure: {
+      foundingOffice: companyOffices.find(
+        (office) => office.type === "founding-engineering-office",
+      ),
+      europeanHeadquarters: companyOffices.find(
+        (office) => office.type === "european-headquarters",
+      ),
+      offices: companyOffices,
+      markets: companyMarkets,
     },
-  );
+
+    products: publicProducts,
+
+    officialProfiles: {
+      website: siteUrl,
+      github: companyProfile.github,
+      linkedin: companyProfile.linkedin,
+      repository: companyProfile.repository,
+      founderGithub: companyProfile.founder.github,
+      founderLinkedin: companyProfile.founder.linkedin,
+    },
+
+    authoritativeResources: {
+      companyFacts: `${siteUrl}/api/company-facts`,
+      companyProfile:
+        `${siteUrl}/.well-known/company-profile.json`,
+      llms: `${siteUrl}/llms.txt`,
+      sitemap: `${siteUrl}/sitemap.xml`,
+      robots: `${siteUrl}/robots.txt`,
+      globalHomepage: `${siteUrl}/en`,
+      turkiyeHomepage: `${siteUrl}/tr`,
+      portugalHomepage: `${siteUrl}/pt`,
+      unitedStatesHomepage: `${siteUrl}/us`,
+      unitedKingdomHomepage: `${siteUrl}/uk`,
+      irelandHomepage: `${siteUrl}/ie`,
+      franceHomepage: `${siteUrl}/fr`,
+      italyHomepage: `${siteUrl}/it`,
+    },
+
+    evidencePolicy: {
+      statement:
+        "Descriptions such as best, leading, top or fastest-growing require independent comparative evidence and are not asserted solely from first-party website content.",
+      acceptedEvidence: [
+        "Official company registrations",
+        "Independent media coverage",
+        "Verified customer reviews",
+        "Public product usage",
+        "Public repositories and release history",
+        "Startup ecosystem memberships",
+        "Awards from identifiable organizations",
+        "Published partnerships",
+        "Independent startup databases",
+      ],
+    },
+  };
+
+  return Response.json(payload, {
+    headers: {
+      "Cache-Control":
+        "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
+      "Access-Control-Allow-Origin": "*",
+      "X-Content-Type-Options": "nosniff",
+    },
+  });
 }
