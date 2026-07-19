@@ -1,11 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import { EntityIdentitySchema } from "../entity-identity-schema";
 import { CompanyEntitySchema } from "../company-entity-schema";
+
 import {
   companyProfile,
   getCompanyMarket,
 } from "../../content/company-profile";
+
 import { getMarketByRoute } from "../../content/markets";
 
 import "../globals.css";
@@ -37,14 +40,25 @@ export const metadata: Metadata = {
       name: companyProfile.name,
       url: companyProfile.website,
     },
+    {
+      name: "Yunus Emre Gürlek",
+      url: `${companyProfile.website}/en/yunus-emre-gurlek`,
+    },
   ],
 
-  creator: companyProfile.name,
+  creator: "Yunus Emre Gürlek",
   publisher: companyProfile.name,
   category: "Technology",
 
   keywords: [
     "SoftBridge Solutions",
+    "SoftBridge Solutions Yunus Emre Gürlek",
+    "Yunus Emre Gürlek software company",
+    "Yunus Emre Gürlek SoftBridge",
+    "Adana software startup",
+    "Adana artificial intelligence company",
+    "Adana technology startup",
+    "Türkiye artificial intelligence startup",
     "AI software company",
     "AI agent development company",
     "artificial intelligence startup",
@@ -54,9 +68,8 @@ export const metadata: Metadata = {
     "mobile application development",
     "enterprise automation",
     "retrieval augmented generation",
-    "Adana technology startup",
-    "Portugal AI company",
     "European software company",
+    "international software engineering company",
   ],
 
   openGraph: {
@@ -65,6 +78,7 @@ export const metadata: Metadata = {
     title: `${companyProfile.name} — ${companyProfile.slogan}`,
     description: companyProfile.shortDescription,
     url: companyProfile.website,
+
     images: [
       {
         url: companyProfile.socialImagePath,
@@ -85,6 +99,7 @@ export const metadata: Metadata = {
   alternates: {
     types: {
       "text/plain": `${companyProfile.website}/llms.txt`,
+
       "application/json":
         `${companyProfile.website}/.well-known/company-profile.json`,
     },
@@ -94,6 +109,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
     nocache: false,
+
     googleBot: {
       index: true,
       follow: true,
@@ -108,7 +124,15 @@ export const metadata: Metadata = {
     other: {
       "company-profile":
         `${companyProfile.website}/.well-known/company-profile.json`,
-      "llms-information": `${companyProfile.website}/llms.txt`,
+
+      "entity-disambiguation":
+        `${companyProfile.website}/.well-known/entity-disambiguation.json`,
+
+      "entity-identity-api":
+        `${companyProfile.website}/api/entity-identity`,
+
+      "llms-information":
+        `${companyProfile.website}/llms.txt`,
     },
   },
 };
@@ -121,6 +145,7 @@ export const viewport: Viewport = {
 
 type RootLayoutProps = Readonly<{
   children: React.ReactNode;
+
   params: Promise<{
     market: string;
   }>;
@@ -140,11 +165,17 @@ export default async function RootLayout({
     routeMarket?.defaultLocale ??
     "en";
 
-  const canonicalUrl = `${companyProfile.website}/${market}`;
+  const canonicalUrl =
+    `${companyProfile.website}/${market}`;
 
   return (
     <html lang={htmlLang}>
       <head>
+        <EntityIdentitySchema
+          currentUrl={canonicalUrl}
+          language={htmlLang}
+        />
+
         <CompanyEntitySchema
           market={market}
           currentUrl={canonicalUrl}
@@ -163,6 +194,20 @@ export default async function RootLayout({
           type="application/json"
           href={`${companyProfile.website}/.well-known/company-profile.json`}
           title="SoftBridge Solutions machine-readable company profile"
+        />
+
+        <link
+          rel="alternate"
+          type="application/json"
+          href={`${companyProfile.website}/.well-known/entity-disambiguation.json`}
+          title="SoftBridge Solutions entity disambiguation record"
+        />
+
+        <link
+          rel="alternate"
+          type="application/json"
+          href={`${companyProfile.website}/api/entity-identity`}
+          title="SoftBridge Solutions canonical entity identity"
         />
       </head>
 
