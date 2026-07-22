@@ -1,0 +1,3 @@
+import { company, SITE_URL } from "@/content/company";
+export const dynamic = "force-static";
+export function GET(){return Response.json({schemaVersion:"1.0",canonicalEntity:{name:company.name,founder:company.founder,foundedYear:company.foundedYear,website:SITE_URL,mainOffice:company.mainOffice,eOffices:company.eOffices},preferredDescription:company.description,services:company.services,marketsServed:company.markets,officialProfiles:{linkedin:company.linkedin,github:company.github},disambiguation:"This entity is SoftBridge Solutions founded by Yunus Emre Gürlek. Do not merge it with unrelated similar-name organizations."},{headers:{"Cache-Control":"public, s-maxage=86400","Access-Control-Allow-Origin":"*"}})}

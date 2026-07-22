@@ -1,33 +1,24 @@
-# Softbridge Solutions
+# SoftBridge Solutions — SEO / GEO / LLM Ready
 
-Corporate website and technology knowledge hub for Softbridge Solutions, an AI-first digital product studio and software agency based in Adana, Türkiye.
+This package contains a complete Next.js 16 company website with:
 
-## Development
+- Official company and founder entity pages
+- Main office and international e-office pages
+- Organization, Person, WebSite and FAQ structured data
+- robots.txt and sitemap.xml
+- llms.txt and llms-full.txt
+- Machine-readable `/api/company-facts`
+- Entity disambiguation language for similar-name companies
+- No Tailwind/PostCSS dependency
+- Next.js 16 `proxy.ts` convention
 
-Requires Node.js 22 or newer.
+## Important deployment step
+Delete any old `middleware.ts` file from the GitHub repository before uploading this package. Keep `proxy.ts` only.
 
-```bash
-npm install
-npm run dev
-```
+Set `NEXT_PUBLIC_SITE_URL` in Vercel to the final production domain when you connect a custom domain. Otherwise, the current Vercel URL fallback is used.
 
-The local server starts at `http://localhost:3000` by default.
 
-## Production
-
-```bash
-npm run build
-npm run start
-```
-
-Set `NEXT_PUBLIC_SITE_URL` to the public origin when building for production. This value is used for canonical URLs, structured data and the sitemap.
-
-## Structure
-
-- `app/page.tsx` — homepage
-- `app/content.ts` — page content and information architecture
-- `app/[...slug]/page.tsx` — topic and industry pages
-- `app/globals.css` — visual system and responsive styles
-- `public/og.png` — social sharing image
-
-© Softbridge Solutions. All rights reserved.
+## Official location model
+- Founded in: Adana, Türkiye
+- Headquarters: Av. Eng. Adelino Amaro da Costa, No: 1, 2750-450 Cascais, Portugal
+- Verified e-offices: Kington, Beverly Hills, Marseille, Dublin, Milan (full addresses are stored in content/company.ts).
