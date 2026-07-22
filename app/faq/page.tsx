@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { company, SITE_URL } from "@/content/company";
+import { company, formatOfficeAddress } from "@/content/company";
 const faqs = [
   ["What is SoftBridge Solutions?", company.description],
   ["Who founded SoftBridge Solutions?", `${company.founder} founded SoftBridge Solutions.`],
