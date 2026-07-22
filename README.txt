@@ -1,13 +1,17 @@
-SOFTBRIDGE SOLUTIONS — VERCEL BUILD FIX
+SOFTBRIDGE SOLUTIONS - VERCEL 404 FIX
 
-Bu paket aşağıdaki sorunları düzeltir:
-- Eksik App Router layout ve sayfa route'ları
-- / -> /en yönlendirmesindeki 404
-- Eski postcss.config.mjs dosyasının çağırdığı eksik @tailwindcss/postcss paketi
-- Next.js 16 middleware deprecation uyarısı (proxy.ts kullanılır)
+Bu paket doğrudan Vercel'e yüklenebilir.
 
-ÖNEMLİ:
-GitHub deposuna yüklerken mevcut dosyaların üzerine yazın.
-Eski middleware.ts dosyasını GitHub'dan silin; bu pakette onun yerine proxy.ts vardır.
-postcss.config.mjs dosyasını mutlaka bu paketteki sürümle değiştirin.
-Ardından Vercel'de Redeploy yaparken "Use existing Build Cache" seçeneğini kapatın.
+Düzeltilenler:
+- Eksik app/layout.tsx geri eklendi.
+- Eksik app/page.tsx geri eklendi.
+- /en, /tr, /pt, /fr, /it, /us, /uk ve /ie route'ları geri eklendi.
+- Middleware yalnızca kök URL'yi geçerli bir dil route'una yönlendiriyor.
+- Var olmayan sayfalara giden eski redirectler güvenli /en adresine yönlendirildi.
+
+Vercel ayarı:
+- Framework Preset: Next.js
+- Root Directory: boş bırak
+- Build Command: npm run build
+- Output Directory: boş bırak
+- Node.js: 22.x
